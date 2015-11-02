@@ -12,7 +12,10 @@ SOURCES += main.cpp \
     meshbuilder.cpp \
     vector2d.cpp \
     vector3d.cpp \
-    mesh.cpp
+    mesh.cpp \
+    generateur.cpp \
+    parcelle.cpp \
+    batiment.cpp
 
 HEADERS += \
     mathutils.h \
@@ -20,5 +23,8 @@ HEADERS += \
     meshbuilder.h \
     vector2d.h \
     vector3d.h \
-    mesh.h
+    mesh.h \
+    generateur.h \
+    parcelle.h \
+    batiment.h
 
