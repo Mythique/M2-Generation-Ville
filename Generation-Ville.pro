@@ -16,6 +16,9 @@ SOURCES += main.cpp \
     generateur.cpp \
     parcelle.cpp \
     batiment.cpp
+    triangle.cpp \
+    polyangle.cpp \
+    quadrangle.cpp
 
 HEADERS += \
     mathutils.h \
@@ -27,4 +30,7 @@ HEADERS += \
     generateur.h \
     parcelle.h \
     batiment.h
+    triangle.h \
+    polyangle.h \
+    quadrangle.h
 
