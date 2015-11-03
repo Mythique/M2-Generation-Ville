@@ -2,10 +2,15 @@
 #include "triangle.h"
 #include "quadrangle.h"
 #include "droite.h"
+#include "batiment/toit.h"
+#include "vector3d.h"
+#include "mesh.h"
+#include "meshbuilder.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+
 
     Vector2D p1(0.24,4.04);
     Vector2D p2(5.16,7.94);
@@ -26,6 +31,7 @@ int main(int argc, char *argv[])
     Droite d2(p3, p4-p3);
     std::cout << d1.getIntersection(d2) << std::endl;*/
 
-    return a.exec();
+
+
 }
 

@@ -37,7 +37,7 @@ double Quadrangle::perimetre()
 
 Polyangle* Quadrangle::shrink(const double l)
 {
-
+    return nullptr;
 }
 
 

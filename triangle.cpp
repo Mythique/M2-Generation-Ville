@@ -40,6 +40,7 @@ Polyangle* Triangle::shrink(const double l)
     Vector2D orthoBC;
     Vector2D orthoCA;
 
+
     Vector2D ab = b-a;
     Vector2D bc = c-b;
     Vector2D ca = c-a;

@@ -13,10 +13,15 @@ SOURCES += main.cpp \
     vector2d.cpp \
     vector3d.cpp \
     mesh.cpp \
+    generateur.cpp \
+    parcelle.cpp \
+    batiment.cpp \
     triangle.cpp \
     polyangle.cpp \
     quadrangle.cpp \
-    droite.cpp
+    droite.cpp \
+    batiment/toit.cpp \
+    batiment/etage.cpp
 
 HEADERS += \
     mathutils.h \
@@ -25,8 +30,13 @@ HEADERS += \
     vector2d.h \
     vector3d.h \
     mesh.h \
+    generateur.h \
+    parcelle.h \
+    batiment.h \
     triangle.h \
     polyangle.h \
     quadrangle.h \
-    droite.h
+    droite.h \
+    batiment/toit.h \
+    batiment/etage.h
 
