@@ -3,6 +3,7 @@
 #include <QVector>
 #include "vector2d.h"
 #include "mathutils.h"
+#include "droite.h"
 
 class Polyangle
 {
@@ -15,6 +16,7 @@ public:
     double area();
     double perimetre();
     Polyangle shrink(const double l);
+    bool split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d);
 
 
     QVector<Vector2D> getLesAngles() const;
