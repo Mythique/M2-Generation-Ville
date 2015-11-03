@@ -8,11 +8,11 @@
 class Toit : public Batiment
 {
 private:
-    Polyangle* base;
+    Polyangle base;
     float hauteur, hauteurToit;
 public:
     Toit();
-    Toit(Polyangle *p, float h, float hToit) : base(p), hauteur(h), hauteurToit(hToit){}
+    Toit(Polyangle p, float h, float hToit) : base(p), hauteur(h), hauteurToit(hToit){}
     Mesh generate();
 };
 
