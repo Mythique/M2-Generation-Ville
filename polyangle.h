@@ -6,7 +6,7 @@
 class Polyangle
 {
 protected:
-    QVector<Vector2D> lesAngles;
+    QVector<Vector2D> lesPoints;
 
 public:
     Polyangle();
@@ -15,8 +15,8 @@ public:
     virtual Polyangle* shrink(const double l) =0;
 
 
-    QVector<Vector2D> getLesAngles() const;
-    void setLesAngles(const QVector<Vector2D> &value);
+    QVector<Vector2D> getLesPoints() const;
+    void setLesPoints(const QVector<Vector2D> &value);
 };
 
 #endif // POLYANGLE_H

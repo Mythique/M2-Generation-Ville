@@ -3,7 +3,7 @@
 #include "polyangle.h"
 #include "vector2d.h"
 
-class Quadrangle : Polyangle
+class Quadrangle : public Polyangle
 {
 
 public:

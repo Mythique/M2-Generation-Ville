@@ -1,13 +1,13 @@
 #include "polyangle.h"
 
-QVector<Vector2D> Polyangle::getLesAngles() const
+QVector<Vector2D> Polyangle::getLesPoints() const
 {
-    return lesAngles;
+    return lesPoints;
 }
 
-void Polyangle::setLesAngles(const QVector<Vector2D> &value)
+void Polyangle::setLesPoints(const QVector<Vector2D> &value)
 {
-    lesAngles = value;
+    lesPoints = value;
 }
 
 Polyangle::Polyangle()

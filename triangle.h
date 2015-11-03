@@ -4,7 +4,7 @@
 #include "polyangle.h"
 #include "droite.h"
 
-class Triangle : Polyangle
+class Triangle : public Polyangle
 {
 public:
     Triangle();

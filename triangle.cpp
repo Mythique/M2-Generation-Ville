@@ -3,17 +3,17 @@
 
 Triangle::Triangle(const Vector2D& p1, const Vector2D& p2, const Vector2D& p3)
 {
-    lesAngles.resize(3);
-    lesAngles[0] = p1;
-    lesAngles[1] = p2;
-    lesAngles[2] = p3;
+    lesPoints.resize(3);
+    lesPoints[0] = p1;
+    lesPoints[1] = p2;
+    lesPoints[2] = p3;
 }
 
 double Triangle::area()
 {
-    Vector2D a = lesAngles.at(0);
-    Vector2D b = lesAngles.at(1);
-    Vector2D c = lesAngles.at(2);
+    Vector2D a = lesPoints.at(0);
+    Vector2D b = lesPoints.at(1);
+    Vector2D c = lesPoints.at(2);
     double ab = a.distanceToPoint2D(b);
     double ac = a.distanceToPoint2D(c);
     double cb = c.distanceToPoint2D(b);
@@ -24,18 +24,18 @@ double Triangle::area()
 
 double Triangle::perimetre()
 {
-    Vector2D a = lesAngles.at(0);
-    Vector2D b = lesAngles.at(1);
-    Vector2D c = lesAngles.at(2);
+    Vector2D a = lesPoints.at(0);
+    Vector2D b = lesPoints.at(1);
+    Vector2D c = lesPoints.at(2);
     return a.distanceToPoint2D(c) + a.distanceToPoint2D(b) + c.distanceToPoint2D(b);
 }
 
 Polyangle* Triangle::shrink(const double l)
 {
 
-    Vector2D a = lesAngles.at(0);
-    Vector2D b = lesAngles.at(1);
-    Vector2D c = lesAngles.at(2);
+    Vector2D a = lesPoints.at(0);
+    Vector2D b = lesPoints.at(1);
+    Vector2D c = lesPoints.at(2);
     Vector2D orthoAB;
     Vector2D orthoBC;
     Vector2D orthoCA;

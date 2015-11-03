@@ -7,31 +7,42 @@ Toit::Toit()
 
 Mesh Toit::generate()
 {
-    Vector3D e = (a+b+c+d)/4;
-    e.setY(e.y()+hauteur);
     QList<Vector3D> geom;
-    geom << a << b << c << d << e;
-
     QList<int> topo;
     QList<Vector3D> normales;
 
+    int nbPoints = base->getLesPoints().size();
+    Vector3D e(0,0,0);
+    for (int i = 0; i < nbPoints; i++)
+    {
+        e += Vector3D(base->getLesPoints()[i], hauteur + hauteurToit);
+        geom << Vector3D(base->getLesPoints()[i], hauteur);
+    }
+    e /= nbPoints;
+    geom << e;
+
+
+
     // Test de l'orientation des points pour les normales
+    Vector3D a = base->getLesPoints()[0];
+    Vector3D b = base->getLesPoints()[1];
+    Vector3D c = base->getLesPoints()[2];
     Vector3D orientation = (c-b)^(a-b);
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < nbPoints; i++)
     {
         int p1, p2, p3;
         if (orientation.y() < 0)
         {
-            p1 = 4;
-            p2 = (i+1)%4;
+            p1 = nbPoints;
+            p2 = (i+1)%nbPoints;
             p3 = i;
         }
         else
         {
-            p1 = 4;
+            p1 = nbPoints;
             p2 = i;
-            p3 = (i+1)%4;
+            p3 = (i+1)%nbPoints;
         }
 
         Vector3D n = (geom[p2]-geom[p3])^(geom[p1]-geom[p3]);
