@@ -20,7 +20,7 @@ double Quadrangle::perimetre()
 
 Polyangle* Quadrangle::shrink(const double l)
 {
-
+    return nullptr;
 }
 
 Vector2D Quadrangle::getA() const

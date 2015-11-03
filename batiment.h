@@ -2,7 +2,7 @@
 #define BATIMENT_H
 #include "generateur.h"
 
-class Batiment
+class Batiment : public Generateur
 {
 public:
     Batiment();

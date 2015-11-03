@@ -18,7 +18,7 @@ double Triangle::perimetre()
 
 Polyangle* Triangle::shrink(const double l)
 {
-
+    return nullptr;
 }
 
 
