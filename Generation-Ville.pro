@@ -15,7 +15,8 @@ SOURCES += main.cpp \
     mesh.cpp \
     triangle.cpp \
     polyangle.cpp \
-    quadrangle.cpp
+    quadrangle.cpp \
+    droite.cpp
 
 HEADERS += \
     mathutils.h \
@@ -26,5 +27,6 @@ HEADERS += \
     mesh.h \
     triangle.h \
     polyangle.h \
-    quadrangle.h
+    quadrangle.h \
+    droite.h
 
