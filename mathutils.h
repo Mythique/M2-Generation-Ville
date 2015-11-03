@@ -1,5 +1,6 @@
 #ifndef MATHUTILS_H
 #define MATHUTILS_H
+#include "vector2d.h"
 
 /**
  * @brief The MathUtils class
@@ -61,6 +62,9 @@ public:
      * @return the absolute value of d
      */
     static double dabs(double d);
+
+    static double aireTriangle(const Vector2D & a, const Vector2D & b, const Vector2D & c);
+
 };
 
 #endif // MATHUTILS_H

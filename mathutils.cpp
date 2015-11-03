@@ -41,3 +41,13 @@ double MathUtils::mod(double a, double b) {
 double MathUtils::dabs(double d) {
     return d>=0?d:-d;
 }
+
+double MathUtils::aireTriangle(const Vector2D & a, const Vector2D & b, const Vector2D & c)
+{
+    double ab = a.distanceToPoint2D(b);
+    double ac = a.distanceToPoint2D(c);
+    double cb = c.distanceToPoint2D(b);
+    double s = (ab+ac+cb)/2;
+
+    return sqrt(s*(s-ab)*(s-ac)*(s-cb));
+}

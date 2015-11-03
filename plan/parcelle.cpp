@@ -5,3 +5,8 @@ Parcelle::Parcelle()
 
 }
 
+Mesh Parcelle::generate()
+{
+    return Mesh();
+}
+

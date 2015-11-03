@@ -2,6 +2,7 @@
 #define POLYANGLE_H
 #include <QVector>
 #include "vector2d.h"
+#include "mathutils.h"
 
 class Polyangle
 {
@@ -10,10 +11,10 @@ protected:
 
 public:
     Polyangle();
-    virtual double area() =0;
-    virtual double perimetre() =0;
-    virtual Polyangle* shrink(const double l) =0;
-
+    Polyangle(QVector<Vector2D> points) : lesPoints(points){}
+    double area();
+    double perimetre();
+    Polyangle shrink(const double l);
 
     QVector<Vector2D> getLesPoints() const;
     void setLesPoints(const QVector<Vector2D> &value);
