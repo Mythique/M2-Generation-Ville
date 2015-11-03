@@ -3,9 +3,9 @@
 double Polyangle::area()
 {
     double total = 0;
-    for(int cpt = 2; cpt < lesAngles.size(); cpt++)
+    for(int cpt = 2; cpt < lesPoints.size(); cpt++)
     {
-        total += MathUtils::aireTriangle(lesAngles.at(0), lesAngles.at(cpt), lesAngles.at(cpt-1));
+        total += MathUtils::aireTriangle(lesPoints.at(0), lesPoints.at(cpt), lesPoints.at(cpt-1));
     }
     return total;
 }
@@ -13,9 +13,9 @@ double Polyangle::area()
 double Polyangle::perimetre()
 {
     double total = 0;
-    for(int cpt = 0; cpt < lesAngles.size(); cpt++)
+    for(int cpt = 0; cpt < lesPoints.size(); cpt++)
     {
-        total += lesAngles.at(cpt).distanceToPoint2D(lesAngles.at((cpt+1)%lesAngles.size()));
+        total += lesPoints.at(cpt).distanceToPoint2D(lesPoints.at((cpt+1)%lesPoints.size()));
     }
     return total;
 }
@@ -27,12 +27,12 @@ Polyangle Polyangle::shrink(const double l)
 
 QVector<Vector2D> Polyangle::getLesAngles() const
 {
-    return lesAngles;
+    return lesPoints;
 }
 
-void Polyangle::setLesAngles(const QVector<Vector2D> &value)
+void Polyangle::setLesPoints(const QVector<Vector2D> &value)
 {
-    lesAngles = value;
+    lesPoints = value;
 }
 
 Polyangle::Polyangle()
