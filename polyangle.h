@@ -12,14 +12,13 @@ protected:
 
 public:
     Polyangle();
-    Polyangle(QVector<Vector2D> angles) : lesPoints(angles){}
+    Polyangle(QVector<Vector2D> points) : lesPoints(points){}
     double area();
     double perimetre();
     Polyangle shrink(const double l);
     bool split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d);
 
-
-    QVector<Vector2D> getLesAngles() const;
+    QVector<Vector2D> getLesPoints() const;
     void setLesPoints(const QVector<Vector2D> &value);
 };
 

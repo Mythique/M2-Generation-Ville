@@ -1,5 +1,10 @@
 #include "polyangle.h"
 
+QVector<Vector2D> Polyangle::getLesPoints() const
+{
+    return lesPoints;
+}
+
 double Polyangle::area()
 {
     double total = 0;
@@ -66,12 +71,9 @@ Polyangle Polyangle::shrink(const double l)
         newPoints[cpt] = aPrime;
     }
     return Polyangle(newPoints);
+
 }
 
-QVector<Vector2D> Polyangle::getLesAngles() const
-{
-    return lesPoints;
-}
 
 void Polyangle::setLesPoints(const QVector<Vector2D> &value)
 {

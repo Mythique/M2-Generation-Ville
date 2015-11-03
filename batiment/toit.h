@@ -2,16 +2,17 @@
 #define TOIT_H
 #include "batiment.h"
 #include "vector3d.h"
+#include "polyangle.h"
 #include "mesh.h"
 
 class Toit : public Batiment
 {
 private:
-    Vector3D a, b, c, d;
-    float hauteur;
+    Polyangle base;
+    float hauteur, hauteurToit;
 public:
     Toit();
-    Toit(Vector3D a, Vector3D b, Vector3D c, Vector3D d, float h) : a(a), b(b), c(c), d(d), hauteur(h){}
+    Toit(Polyangle p, float h, float hToit) : base(p), hauteur(h), hauteurToit(hToit){}
     Mesh generate();
 };
 
