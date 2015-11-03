@@ -3,15 +3,16 @@
 #include "batiment.h"
 #include "vector3d.h"
 #include "mesh.h"
+#include "polyangle.h"
 
 class Etage : public Batiment
 {
 private:
-    Vector3D a, b, c, d;
-    float hauteur;
+    Polyangle base;
+    float hauteur, hauteurEtage;
 public:
     Etage();
-    Etage(Vector3D a, Vector3D b, Vector3D c, Vector3D d, float h) : a(a), b(b), c(c), d(d), hauteur(h){}
+    Etage(Polyangle p, float h, float hE) : base(p), hauteur(h), hauteurEtage(hE) {}
     Mesh generate();
 };
 

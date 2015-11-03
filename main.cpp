@@ -12,12 +12,6 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-
-    /*Vector3D p1(0,0,0);
-    Vector3D p2(1,0,0);
-    Vector3D p4(1,0,1);
-    Vector3D p3(0,0,1);
-
     Vector2D p1(0,0);
     Vector2D p2(1,0);
     Vector2D p3(1,1);
@@ -25,15 +19,15 @@ int main(int argc, char *argv[])
     Vector2D p5(-0.5,0.5);
 
     QVector<Vector2D> listePoints;
-    listePoints << p1 << p2 << p3 << p4 << p5;
+    listePoints << p1 << p2 << p3 << p4;
     Polyangle p(listePoints);
 
-    Toit t = Toit(p, 0, 0.5);
-    Mesh m = t.generate();
+    Etage e = Etage(p, 0, 0.5);
+    Mesh m = e.generate();
     MeshBuilder mb;
-    mb.saveMesh("toit.obj", m);*/
+    mb.saveMesh("etage.obj", m);
 
-    Vector2D p1(0.24,4.04);
+    /*Vector2D p1(0.24,4.04);
     Vector2D p2(5.16,7.94);
     Vector2D p3(7.58,1.6);
     Vector2D p4(2.75,0.27);
