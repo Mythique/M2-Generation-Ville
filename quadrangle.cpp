@@ -1,7 +1,20 @@
 #include "quadrangle.h"
 
+Quadrangle::Quadrangle(const Vector2D &p1, const Vector2D &p2, const Vector2D &p3, const Vector2D &p4)
+{
+    lesAngles.resize(4);
+    lesAngles[0] = p1;
+    lesAngles[1] = p2;
+    lesAngles[2] = p3;
+    lesAngles[3] = p4;
+}
+
 double Quadrangle::area()
 {
+    Vector2D a = lesAngles.at(0);
+    Vector2D b = lesAngles.at(1);
+    Vector2D c = lesAngles.at(2);
+    Vector2D d = lesAngles.at(3);
     double ab = a.distanceToPoint2D(b);
     double ac = a.distanceToPoint2D(c);
     double cb = c.distanceToPoint2D(b);
@@ -15,6 +28,10 @@ double Quadrangle::area()
 
 double Quadrangle::perimetre()
 {
+    Vector2D a = lesAngles.at(0);
+    Vector2D b = lesAngles.at(1);
+    Vector2D c = lesAngles.at(2);
+    Vector2D d = lesAngles.at(3);
     return a.distanceToPoint2D(c) + a.distanceToPoint2D(b) + b.distanceToPoint2D(d) + c.distanceToPoint2D(d);
 }
 
@@ -23,45 +40,6 @@ Polyangle* Quadrangle::shrink(const double l)
     return nullptr;
 }
 
-Vector2D Quadrangle::getA() const
-{
-    return a;
-}
-
-void Quadrangle::setA(const Vector2D &value)
-{
-    a = value;
-}
-
-Vector2D Quadrangle::getB() const
-{
-    return b;
-}
-
-void Quadrangle::setB(const Vector2D &value)
-{
-    b = value;
-}
-
-Vector2D Quadrangle::getC() const
-{
-    return c;
-}
-
-void Quadrangle::setC(const Vector2D &value)
-{
-    c = value;
-}
-
-Vector2D Quadrangle::getD() const
-{
-    return d;
-}
-
-void Quadrangle::setD(const Vector2D &value)
-{
-    d = value;
-}
 
 Quadrangle::Quadrangle()
 {

@@ -19,6 +19,7 @@ SOURCES += main.cpp \
     triangle.cpp \
     polyangle.cpp \
     quadrangle.cpp \
+    droite.cpp \
     batiment/toit.cpp \
     batiment/etage.cpp
 
@@ -35,5 +36,7 @@ HEADERS += \
     triangle.h \
     polyangle.h \
     quadrangle.h \
+    droite.h \
     batiment/toit.h \
     batiment/etage.h
+
