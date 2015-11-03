@@ -1,6 +1,6 @@
 #ifndef GENERATEUR_H
 #define GENERATEUR_H
-#include "mesh.h";
+#include "mesh.h"
 
 class Generateur
 {
