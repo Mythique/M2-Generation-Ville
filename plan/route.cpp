@@ -1,6 +1,6 @@
 #include "route.h"
 
-Route::Route(Quadrangle q) : quad(q)
+Route::Route(Polyangle q) : quad(q)
 {
 
 }

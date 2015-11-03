@@ -8,9 +8,9 @@
 class Plan
 {
 private:
-    Polyangle* poly;
+    Polyangle poly;
 public:
-    Plan(Polyangle * const p);
+    Plan(const Polyangle p);
     void create(QList<Quartier>& qs, QList<Route>& rs);
 
 };

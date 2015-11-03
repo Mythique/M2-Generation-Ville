@@ -1,6 +1,6 @@
 #include "plan.h"
 
-Plan::Plan(Polyangle  * const p) : poly(p)
+Plan::Plan(const Polyangle p) : poly(p)
 {
 
 }

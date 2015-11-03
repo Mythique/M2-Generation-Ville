@@ -7,10 +7,9 @@
 class Parcelle : public Generateur
 {
 private:
-    Polyangle* poly;
+    Polyangle poly;
     enum TypeConstruction : int {HABITATION, JARDIN};
     TypeConstruction type;
-    //Quartier* quartier;
 public:
     Parcelle();
     virtual Mesh generate();

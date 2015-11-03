@@ -8,7 +8,7 @@
 class Quartier
 {
 private:
-    Polyangle* poly;
+    Polyangle poly;
     enum TypeQuartier : int {RESIDENTIEL, MARCHAND};
     TypeQuartier type;
     QList<Parcelle> parcelles;
