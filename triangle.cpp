@@ -1,7 +1,7 @@
 #include "triangle.h"
 #include <math.h>
 
-Triangle::Triangle(const Vector2D& p1, const Vector2D& p2, const Vector2D& p3)
+/*Triangle::Triangle(const Vector2D& p1, const Vector2D& p2, const Vector2D& p3)
 {
     lesAngles.resize(3);
     lesAngles[0] = p1;
@@ -30,7 +30,7 @@ double Triangle::perimetre()
     return a.distanceToPoint2D(c) + a.distanceToPoint2D(b) + c.distanceToPoint2D(b);
 }
 
-Polyangle* Triangle::shrink(const double l)
+Triangle* Triangle::shrink(const double l)
 {
 
     Vector2D a = lesAngles.at(0);
@@ -113,7 +113,7 @@ Polyangle* Triangle::shrink(const double l)
     std::cout << cPrime << std::endl;
 
     return new Triangle(aPrime, bPrime, cPrime);
-}
+}*/
 
 Triangle::Triangle()
 {
