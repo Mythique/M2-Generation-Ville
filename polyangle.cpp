@@ -74,6 +74,61 @@ Polyangle Polyangle::shrink(const double l)
 
 }
 
+void Polyangle::uncross() {
+
+
+    //cout << p[0] << p[1] << p[2] << p[3] << p[4] << p[5] << endl;
+        bool test = false;
+        for(int i = 0; i < l.size(); ++i) {
+            Vector2D ab = lesPoints.at((i+1)%lesPoints.size())-lesPoints.at(i);
+            Vector2D cd = lesPoints.at((i+3)%lesPoints.size())-lesPoints.at((i+2)%lesPoints.size());
+
+            Vector2D bc = lesPoints.at((i+2)%lesPoints.size())-lesPoints.at((i+1)%lesPoints.size());
+            Vector2D da = lesPoints.at(i)-lesPoints.at((i+3)%lesPoints.size());
+
+            double crossABCD = ab*cd;
+            double crossBCDA = bc*da;
+            if(crossBCDA > 0)
+            {
+                Vector2D temp = lesPoints[(i+1)%lesPoints.size()];
+                lesPoints[(i+1)%lesPoints.size()] = lesPoints[(i+2)%lesPoints.size()];
+                lesPoints[(i+2)%lesPoints.size()] = temp;
+
+                /*int tmp = p[(i+1)%p.size()];
+                p[(i+1)%p.size()] = p[(i+2)%p.size()];
+                p[(i+2)%p.size()] = tmp;//*/
+
+                test = true;
+
+            }
+
+
+            if(!test)
+            {
+                if(crossABCD > 0)
+                {
+                    test = true;
+                    Vector2D temp = lesPoints[(i+2)%lesPoints.size()];
+                    lesPoints[(i+2)%lesPoints.size()] = lesPoints[(i+3)%lesPoints.size()];
+                    lesPoints[(i+3)%lesPoints.size()] = temp;
+
+                    /*int tmp = p[(i+2)%p.size()];
+                    p[(i+2)%p.size()] = p[(i+3)%p.size()];
+                    p[(i+3)%p.size()] = tmp;//*/
+
+                }
+            }
+
+            if(crossBCDA > 0 || crossABCD > 0) {
+                break;
+            }
+        }
+        if(test) {
+            uncross();
+        }
+
+}
+
 
 void Polyangle::setLesPoints(const QVector<Vector2D> &value)
 {

@@ -16,6 +16,7 @@ public:
     double area();
     double perimetre();
     Polyangle shrink(const double l);
+    void uncross();
     bool split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d);
 
     QVector<Vector2D> getLesPoints() const;
