@@ -79,7 +79,7 @@ void Polyangle::uncross() {
 
     //cout << p[0] << p[1] << p[2] << p[3] << p[4] << p[5] << endl;
         bool test = false;
-        for(int i = 0; i < l.size(); ++i) {
+        for(int i = 0; i < lesPoints.size(); ++i) {
             Vector2D ab = lesPoints.at((i+1)%lesPoints.size())-lesPoints.at(i);
             Vector2D cd = lesPoints.at((i+3)%lesPoints.size())-lesPoints.at((i+2)%lesPoints.size());
 
