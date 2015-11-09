@@ -31,7 +31,9 @@ int main(int argc, char *argv[])
     Polyangle poly2;
     Polyangle route;
     p.split(poly1, poly2, route, d, 2.4);
-
+    std::cout<<poly1<<std::endl;
+    std::cout<<poly2<<std::endl;
+    std::cout<<route<<std::endl;
 
 
 

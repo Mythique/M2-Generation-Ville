@@ -25,5 +25,10 @@ public:
     QVector<Vector2D> getLesPoints() const;
     void setLesPoints(const QVector<Vector2D> &value);
 };
-
+inline std::ostream& operator<<(std::ostream& out, const Polyangle& p){
+    for (int i=0 ;i<p.getLesPoints().size();++i){
+        out<<p.getLesPoints().at(i)<<" / ";
+    }
+      return out;
+}
 #endif // POLYANGLE_H
