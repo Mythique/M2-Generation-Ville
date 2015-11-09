@@ -7,15 +7,22 @@
 
 class Quartier
 {
+public :
+    enum TypeQuartier : int {RESIDENTIEL, MARCHAND};
 private:
     Polyangle poly;
-    enum TypeQuartier : int {RESIDENTIEL, MARCHAND};
     TypeQuartier type;
     QList<Parcelle> parcelles;
 public:
+
     Quartier();
     Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment);
+
+
+    Quartier(const Polyangle& p, TypeQuartier tq);
+
     void generate(QList<Mesh>& meshes);
+    const Polyangle getPoly();
 };
 
 #endif // QUARTIER_H

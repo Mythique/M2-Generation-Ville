@@ -21,7 +21,7 @@ Polyangle::Polyangle(QVector<Vector2D> points) : lesPoints(points)
 }
 
 
-double Polyangle::area()
+double Polyangle::area() const
 {
     double total = 0;
     for(int cpt = 2; cpt < lesPoints.size(); cpt++)
@@ -31,7 +31,7 @@ double Polyangle::area()
     return total;
 }
 
-double Polyangle::perimetre()
+double Polyangle::perimetre() const
 {
     double total = 0;
     for(int cpt = 0; cpt < lesPoints.size(); cpt++)
@@ -41,7 +41,7 @@ double Polyangle::perimetre()
     return total;
 }
 
-Polyangle Polyangle::shrink(const double l)
+Polyangle Polyangle::shrink(const double l) const
 {
     int length = lesPoints.size();
     QVector<Vector2D> newPoints;
@@ -84,11 +84,11 @@ Polyangle Polyangle::shrink(const double l)
 
         aPrimeBPrime.getIntersection(bPrimeCPrime, aPrime);
 
-        std::cout << aPrime << std::endl;
+        //std::cout << aPrime << std::endl;
         newPoints[cpt] = aPrime;
     }
-    return Polyangle(newPoints);
 
+    return Polyangle(newPoints);
 }
 
 void Polyangle::uncross() {
@@ -166,7 +166,7 @@ void Polyangle::checkSens()
 
 }
 
-bool Polyangle::split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d, const double largeurDemiRoute)
+bool Polyangle::split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d, const double largeurDemiRoute) const
 {
     //calcul des deux parallèles a ma droite de coupe
     Vector2D orthoAB = Vector2D(-d.getD().y(), d.getD().x());
