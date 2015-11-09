@@ -3,9 +3,9 @@
     #define dabs(x) x>0?x:-x
 #endif
 
-Vector3D::Vector3D(const Vector2D &vector):xp(vector.x()), yp(0.0), zp(vector.y()){}
+Vector3D::Vector3D(const Vector2D &vector):xp(vector.x()), yp(vector.y()), zp(0.0){}
 
-Vector3D::Vector3D(const Vector2D &vector, double ypos):xp(vector.x()), yp(ypos), zp(vector.y()){}
+Vector3D::Vector3D(const Vector2D &vector, double zpos):xp(vector.x()), yp(vector.y()), zp(zpos){}
 
 void Vector3D::rotate(const QMatrix3x3 &mat)
 {

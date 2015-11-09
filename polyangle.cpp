@@ -1,9 +1,18 @@
 #include "polyangle.h"
 
-QVector<Vector2D> Polyangle::getLesPoints() const
+
+Polyangle::Polyangle()
 {
-    return lesPoints;
+
 }
+
+
+Polyangle::Polyangle(QVector<Vector2D> points) : lesPoints(points)
+{
+    uncross();
+    checkSens();
+}
+
 
 double Polyangle::area()
 {
@@ -130,13 +139,35 @@ void Polyangle::uncross() {
 }
 
 
+void Polyangle::checkSens()
+{
+    QVector<Vector2D> newPoints;
+    Vector3D a = lesPoints[0];
+    Vector3D b = lesPoints[1];
+    Vector3D c = lesPoints[2];
+    Vector3D orientation = (c-b)^(a-b);
+    if (orientation.z() < 0)
+    {
+        std::cout << "mauvais sens"<< std::endl;
+        for(int i = lesPoints.size()-1; i >=0 ; i--)
+        {
+            newPoints.push_back(lesPoints[i]);
+        }
+        lesPoints = newPoints;
+    }
+
+}
+
+
+QVector<Vector2D> Polyangle::getLesPoints() const
+{
+    return lesPoints;
+}
+
 void Polyangle::setLesPoints(const QVector<Vector2D> &value)
 {
     lesPoints = value;
 }
 
-Polyangle::Polyangle()
-{
-    
-}
+
 

@@ -33,7 +33,7 @@ public:
      * @param[in] vector the Vector2D to base the xp and yp coordinates on
      * @param[in] ypos the y position of the vector
      */
-    Vector3D(const Vector2D& vector, double ypos);
+    Vector3D(const Vector2D& vector, double zpos);
 
     /**
      * @brief Return the x value of the vector

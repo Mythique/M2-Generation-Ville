@@ -26,24 +26,24 @@ Mesh Etage::generate()
     }
 
     // Test de l'orientation des points pour les normales
-    Vector3D a = base.getLesPoints()[0];
+    /*Vector3D a = base.getLesPoints()[0];
     Vector3D b = base.getLesPoints()[1];
     Vector3D c = base.getLesPoints()[2];
-    Vector3D orientation = (c-b)^(a-b);
+    Vector3D orientation = (c-b)^(a-b);*/
 
     // Topologie
     for (int i = 0; i < nbPoints; i++)
     {
         int p1, p2, p3, p4;
         Vector3D n;
+        p1 = i;
+        p2 = (i+1)%nbPoints;
+        p3 = i+nbPoints;
 
-        if (orientation.y() > 0)
+        n = (geom[p3]-geom[p2])^(geom[p1]-geom[p2]);
+        /*if (orientation.y() > 0)
         {
-            p1 = i;
-            p2 = (i+1)%nbPoints;
-            p3 = i+nbPoints;
 
-            n = (geom[p3]-geom[p2])^(geom[p1]-geom[p2]);
         }
         else
         {
@@ -52,7 +52,7 @@ Mesh Etage::generate()
             p3 = (i+1)%nbPoints;
 
             n = (geom[p1]-geom[p2])^(geom[p3]-geom[p2]);
-        }
+        }*/
 
         p4 = (i+1)%nbPoints+nbPoints;
 
