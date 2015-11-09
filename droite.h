@@ -10,7 +10,7 @@ class Droite
     public:
         Droite();
         Droite(Vector2D p1, Vector2D p2) : o(p1), d(p2.normalized()){}
-        Vector2D getIntersection(const Droite& a);
+        bool getIntersection(const Droite& a, Vector2D & point);
 
         Vector2D getO() const;
         void setO(const Vector2D &value);

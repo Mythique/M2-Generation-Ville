@@ -6,6 +6,10 @@ Polyangle::Polyangle()
 
 }
 
+Polyangle::Polyangle(const Polyangle &poly)
+{
+    lesPoints = poly.getLesPoints();
+}
 
 Polyangle::Polyangle(QVector<Vector2D> points) : lesPoints(points)
 {
@@ -75,7 +79,8 @@ Polyangle Polyangle::shrink(const double l)
         cPrime = c + orthoBC * l;
         Droite bPrimeCPrime(bPrime, cPrime - bPrime);
 
-        aPrime = aPrimeBPrime.getIntersection(bPrimeCPrime);
+        aPrimeBPrime.getIntersection(bPrimeCPrime, aPrime);
+
         std::cout << aPrime << std::endl;
         newPoints[cpt] = aPrime;
     }
@@ -158,6 +163,21 @@ void Polyangle::checkSens()
 
 }
 
+bool Polyangle::split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d, const double largeurDemiRoute)
+{
+    /*bool b = false;
+    for(int i = 0; i < lesPoints.size(); i++)
+    {
+        Droite d1(lesPoints[i+1], lesPoints[i]);
+        Vector2D pointIntersection;
+        if(d.getIntersection(d1, pointIntersection))
+        {
+            b =true;
+        }
+    }
+    return b;*/
+    return false;
+}
 
 QVector<Vector2D> Polyangle::getLesPoints() const
 {

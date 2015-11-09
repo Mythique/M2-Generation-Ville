@@ -1,10 +1,17 @@
 #include "droite.h"
 
-Vector2D Droite::getIntersection(const Droite& a)
+bool Droite::getIntersection(const Droite& a, Vector2D &point)
 {
-    double t = ((d.x()*o.y())+(d.y()*a.o.x())-(d.y()*o.x())-(d.x()*a.o.y()))/((d.x()*a.d.y())-(d.y()*a.d.x()));
-    //std::cout << t << std::endl;
-    return a.getO()+a.getD()*(t);
+    bool b = false;
+    //droites non paralleles
+    if(std::abs(a.d.x()/a.d.y()- d.x()/d.y()) > 0.0001)
+    {
+        double t = ((d.x()*o.y())+(d.y()*a.o.x())-(d.y()*o.x())-(d.x()*a.o.y()))/((d.x()*a.d.y())-(d.y()*a.d.x()));
+        point = a.getO()+a.getD()*(t);
+        b = true;
+    }
+
+    return b;
 }
 
 

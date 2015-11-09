@@ -12,12 +12,13 @@ protected:
 
 public:
     Polyangle();
+    Polyangle(const Polyangle &poly);
     Polyangle(QVector<Vector2D> points);
     double area();
     double perimetre();
     Polyangle shrink(const double l);
     void uncross();
-    bool split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d);
+    bool split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d, const double largeurDemiRoute);
     void checkSens();
 
     QVector<Vector2D> getLesPoints() const;
