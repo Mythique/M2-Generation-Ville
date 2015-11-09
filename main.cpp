@@ -6,11 +6,14 @@
 #include "meshbuilder.h"
 #include "batiment/etage.h"
 #include <QVector>
+#include <time.h>
 #include "polyangle.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+    srand(time(NULL));
+
 
     Vector2D p1(4.14,2.64);
     Vector2D p2(11,4);
