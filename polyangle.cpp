@@ -81,11 +81,11 @@ Polyangle Polyangle::shrink(const double l)
 
         aPrimeBPrime.getIntersection(bPrimeCPrime, aPrime);
 
-        std::cout << aPrime << std::endl;
+        //std::cout << aPrime << std::endl;
         newPoints[cpt] = aPrime;
     }
-    return Polyangle(newPoints);
 
+    return Polyangle(newPoints);
 }
 
 void Polyangle::uncross() {
