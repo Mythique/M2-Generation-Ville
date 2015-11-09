@@ -14,11 +14,11 @@ public:
     Polyangle();
     Polyangle(const Polyangle &poly);
     Polyangle(QVector<Vector2D> points);
-    double area();
-    double perimetre();
-    Polyangle shrink(const double l);
+    double area() const;
+    double perimetre() const ;
+    Polyangle shrink(const double l) const;
     void uncross();
-    bool split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d, const double largeurDemiRoute);
+    bool split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d, const double largeurDemiRoute) const;
     void checkSens();
 
     QVector<Vector2D> getLesPoints() const;

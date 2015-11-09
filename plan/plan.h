@@ -12,6 +12,7 @@ private:
 public:
     Plan(const Polyangle p);
     void create(QList<Quartier>& qs, QList<Route>& rs);
+    void divide(const Polyangle &p, QList<Quartier>& qs, QList<Route> &routes) const;
 
 };
 
