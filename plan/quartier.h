@@ -14,6 +14,7 @@ private:
     QList<Parcelle> parcelles;
 public:
     Quartier();
+    Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment);
     void generate(QList<Mesh>& meshes);
 };
 
