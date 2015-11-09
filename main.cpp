@@ -8,6 +8,7 @@
 #include <QVector>
 #include <time.h>
 #include "polyangle.h"
+#include "batiment/rezdechaussee.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,14 +19,19 @@ int main(int argc, char *argv[])
     Vector2D p2(1,0);
     Vector2D p3(1,1);
     Vector2D p4(0,1);
-    //Vector2D p5(-0.5,0.5);
+    Vector2D p5(-0.5,0.5);
 
 
     QVector<Vector2D> listePoints;
-    listePoints << p1 << p2 << p3 << p4;
+    listePoints << p1 << p2 << p3 << p4 << p5;
+
     Polyangle p(listePoints);
-    Etage e = Etage(p, 0, 0.5);
-    Mesh m = e.generate();
+
+    //Etage e = Etage(p, 0, 0.5);
+
+    RezDeChaussee rdc = RezDeChaussee(p,0,0.5);
+
+    Mesh m = rdc.generate();
     MeshBuilder mb;
     mb.saveMesh("etage.obj", m);
 
