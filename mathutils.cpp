@@ -1,6 +1,7 @@
 #include "mathutils.h"
 #include <cmath>
 #include <iostream>
+#include <math.h>
 
 MathUtils::MathUtils()
 {
@@ -50,4 +51,10 @@ double MathUtils::aireTriangle(const Vector2D & a, const Vector2D & b, const Vec
     double s = (ab+ac+cb)/2;
 
     return sqrt(s*(s-ab)*(s-ac)*(s-cb));
+}
+
+double MathUtils::random(double min, double max)
+{
+    double f = (double)rand() / RAND_MAX;
+    return min + f * (max - min);
 }

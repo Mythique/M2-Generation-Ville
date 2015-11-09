@@ -1,7 +1,7 @@
 #ifndef MATHUTILS_H
 #define MATHUTILS_H
 #include "vector2d.h"
-
+#include <random>
 /**
  * @brief The MathUtils class
  * This class concentrates functions not present in cmath
@@ -65,6 +65,7 @@ public:
 
     static double aireTriangle(const Vector2D & a, const Vector2D & b, const Vector2D & c);
 
+    static double random(double min, double max);
 };
 
 #endif // MATHUTILS_H
