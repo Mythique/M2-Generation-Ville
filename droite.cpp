@@ -1,6 +1,6 @@
 #include "droite.h"
 
-bool Droite::getIntersection(const Droite& a, Vector2D &point)
+bool Droite::getIntersection(const Droite& a, Vector2D &point) const
 {
     bool b = false;
     //droites non paralleles

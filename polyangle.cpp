@@ -13,8 +13,11 @@ Polyangle::Polyangle(const Polyangle &poly)
 
 Polyangle::Polyangle(QVector<Vector2D> points) : lesPoints(points)
 {
-    uncross();
-    checkSens();
+    //std::cout << "debut constructeur" << std::endl;
+    //uncross();
+    //std::cout << "après uncross" << std::endl;
+    //checkSens();
+    //std::cout << "après check sens" << std::endl;
 }
 
 
@@ -46,9 +49,9 @@ Polyangle Polyangle::shrink(const double l)
 
     for(int cpt = 0; cpt <length ; cpt++)
     {
-        Vector2D a = lesPoints.at(cpt);
-        Vector2D b = lesPoints.at((cpt+1)%length);
-        Vector2D c = lesPoints.at((cpt+2)%length);
+        Vector2D a = lesPoints.at((cpt-1+length)%length);
+        Vector2D b = lesPoints.at((cpt));
+        Vector2D c = lesPoints.at((cpt+1)%length);
 
         Vector2D ab = b-a;
         Vector2D bc = c-b;
@@ -153,7 +156,7 @@ void Polyangle::checkSens()
     Vector3D orientation = (c-b)^(a-b);
     if (orientation.z() < 0)
     {
-        std::cout << "mauvais sens"<< std::endl;
+        //std::cout << "mauvais sens"<< std::endl;
         for(int i = lesPoints.size()-1; i >=0 ; i--)
         {
             newPoints.push_back(lesPoints[i]);
@@ -165,18 +168,110 @@ void Polyangle::checkSens()
 
 bool Polyangle::split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d, const double largeurDemiRoute)
 {
-    /*bool b = false;
+    //calcul des deux parallèles a ma droite de coupe
+    Vector2D orthoAB = Vector2D(-d.getD().y(), d.getD().x());
+    Droite para1(d.getO() + orthoAB * largeurDemiRoute, d.getD());
+    Droite para2(d.getO() - orthoAB * largeurDemiRoute, d.getD());
+
+    Polyangle pTemp;
+    if(!split(p1, pTemp, para1))return false;
+    return pTemp.split(route, p2, para2);
+
+}
+
+bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d)
+{
+    std::cout << "début split" << std::endl;
+    //Droite d(dr.getO()-dr.getD()*100000000,dr.getD());
+    Vector2D pointIntersection1;
+    int iBeforeInter1;
+    int iAfterInter1;
+    Vector2D pointIntersection2;
+    int iBeforeInter2;
+    int iAfterInter2;
+
+    bool inter2=false;
+
     for(int i = 0; i < lesPoints.size(); i++)
     {
-        Droite d1(lesPoints[i+1], lesPoints[i]);
         Vector2D pointIntersection;
-        if(d.getIntersection(d1, pointIntersection))
+        Vector2D pointCote1 = lesPoints[i];
+        Vector2D pointCote2 = lesPoints[(i+1)%lesPoints.size()];
+        //std::cout << pointCote1 << std::endl;
+        //std::cout << pointCote2 << std::endl;
+
+        Droite cote(pointCote1, (pointCote2-pointCote1));
+        if(d.getIntersection(cote, pointIntersection))
         {
-            b =true;
+            if(pointCote1.distanceToPoint2DSquared(pointIntersection) < pointCote1.distanceToPoint2DSquared(pointCote2)
+                    && pointCote2.distanceToPoint2DSquared(pointIntersection) < pointCote1.distanceToPoint2DSquared(pointCote2))
+            {
+                if(!inter2)
+                {
+                    pointIntersection1 = pointIntersection;
+                    iBeforeInter1=i;
+                    iAfterInter1 = (i+1)%lesPoints.size();
+                    inter2=true;
+                }
+                else
+                {
+                    pointIntersection2 = pointIntersection;
+                    iBeforeInter2=i;
+                    iAfterInter2 = (i+1)%lesPoints.size();
+                    break;
+                }
+            }
         }
     }
-    return b;*/
-    return false;
+    if(!inter2)
+    {
+        return false;
+    }
+
+    QVector<Vector2D> lesPoints1;
+    if(lesPoints.size() > iBeforeInter2)
+    {
+        for(int i = iAfterInter1; i <=  iBeforeInter2; i++)
+        {
+            lesPoints1.push_back(lesPoints[i]);
+        }
+    }
+    else
+    {
+        for(int i = iAfterInter1; i <  lesPoints.size(); i++)
+        {
+            lesPoints1.push_back(lesPoints[i]);
+        }
+        for(int i = 0; i < iBeforeInter2; i++)
+        {
+            lesPoints1.push_back(lesPoints[i]);
+        }
+    }
+    lesPoints1.push_back(pointIntersection2);
+    lesPoints1.push_back(pointIntersection1);
+
+
+
+    QVector<Vector2D> lesPoints2;
+    for(int i = iAfterInter2; i <= iBeforeInter1; i++)
+    {
+        lesPoints2.push_back(lesPoints[i]);
+    }
+    lesPoints2.push_back(pointIntersection1);
+    lesPoints2.push_back(pointIntersection2);
+
+    if(d.getD().distanceToPoint2DSquared(pointIntersection1) > d.getD().distanceToPoint2DSquared(pointIntersection2))
+    {
+        p1 = Polyangle(lesPoints1);
+        p2 = Polyangle(lesPoints2);
+    }
+    else
+    {
+        p2 = Polyangle(lesPoints1);
+        p1 = Polyangle(lesPoints2);
+    }
+    return true;
+
 }
 
 QVector<Vector2D> Polyangle::getLesPoints() const

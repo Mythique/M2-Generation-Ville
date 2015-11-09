@@ -12,19 +12,30 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    Vector2D p1(0,0);
-    Vector2D p2(1,0);
-    Vector2D p3(1,1);
-    Vector2D p4(0,1);
+    Vector2D p1(4.14,2.64);
+    Vector2D p2(11,4);
+    Vector2D p3(14.32,-1.46);
+    Vector2D p4(2.44,-6.24);
     //Vector2D p5(-0.5,0.5);
 
+    Droite d(Vector2D(4.28,4.5), Vector2D(1.06,-0.86));
+
     QVector<Vector2D> listePoints;
-    listePoints << p1 << p4 << p2 << p3;
+    listePoints << p1 << p4 << p3 << p2;
     Polyangle p(listePoints);
-    Etage e = Etage(p, 0, 0.5);
+
+    Polyangle poly1;
+    Polyangle poly2;
+    Polyangle route;
+    p.split(poly1, poly2, route, d, 2.4);
+
+
+
+
+    /*Etage e = Etage(p, 0, 0.5);
     Mesh m = e.generate();
     MeshBuilder mb;
-    mb.saveMesh("etage.obj", m);
+    mb.saveMesh("etage.obj", m);*/
 
     /*Vector2D p1(0.24,4.04);
     Vector2D p2(5.16,7.94);

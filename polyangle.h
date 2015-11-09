@@ -19,6 +19,7 @@ public:
     Polyangle shrink(const double l);
     void uncross();
     bool split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d, const double largeurDemiRoute);
+    bool split(Polyangle & p1, Polyangle & p2, const Droite & d);
     void checkSens();
 
     QVector<Vector2D> getLesPoints() const;
