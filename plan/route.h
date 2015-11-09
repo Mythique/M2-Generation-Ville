@@ -10,6 +10,7 @@ private:
 public:
     Route(Polyangle q);
     Polyangle getQuad();
+    virtual Mesh generate();
 
 
 };

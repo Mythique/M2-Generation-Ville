@@ -21,7 +21,7 @@ Polyangle::Polyangle(QVector<Vector2D> points) : lesPoints(points)
 }
 
 
-double Polyangle::area()
+double Polyangle::area() const
 {
     double total = 0;
     for(int cpt = 2; cpt < lesPoints.size(); cpt++)
@@ -31,7 +31,7 @@ double Polyangle::area()
     return total;
 }
 
-double Polyangle::perimetre()
+double Polyangle::perimetre() const
 {
     double total = 0;
     for(int cpt = 0; cpt < lesPoints.size(); cpt++)
@@ -41,7 +41,7 @@ double Polyangle::perimetre()
     return total;
 }
 
-Polyangle Polyangle::shrink(const double l)
+Polyangle Polyangle::shrink(const double l) const
 {
     int length = lesPoints.size();
     QVector<Vector2D> newPoints;
@@ -166,7 +166,7 @@ void Polyangle::checkSens()
 
 }
 
-bool Polyangle::split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d, const double largeurDemiRoute)
+bool Polyangle::split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d, const double largeurDemiRoute) const
 {
     //calcul des deux parallèles a ma droite de coupe
     Vector2D orthoAB = Vector2D(-d.getD().y(), d.getD().x());
@@ -181,7 +181,7 @@ bool Polyangle::split(Polyangle & p1, Polyangle & p2, Polyangle & route, const D
 
 bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d)
 {
-    std::cout << "début split" << std::endl;
+    //std::cout << "début split" << std::endl;
     //Droite d(dr.getO()-dr.getD()*100000000,dr.getD());
     Vector2D pointIntersection1;
     int iBeforeInter1;
@@ -229,7 +229,7 @@ bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d)
     }
 
     QVector<Vector2D> lesPoints1;
-    if(lesPoints.size() > iBeforeInter2)
+    if(iAfterInter1 <= iBeforeInter2)
     {
         for(int i = iAfterInter1; i <=  iBeforeInter2; i++)
         {
@@ -253,9 +253,23 @@ bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d)
 
 
     QVector<Vector2D> lesPoints2;
-    for(int i = iAfterInter2; i <= iBeforeInter1; i++)
+    if(iAfterInter2 <= iBeforeInter1)
     {
-        lesPoints2.push_back(lesPoints[i]);
+        for(int i = iAfterInter2; i <= iBeforeInter1; i++)
+        {
+            lesPoints2.push_back(lesPoints[i]);
+        }
+    }
+    else
+    {
+        for(int i = iAfterInter2; i < lesPoints.size(); i++)
+        {
+            lesPoints2.push_back(lesPoints[i]);
+        }
+        for(int i = 0; i <= iBeforeInter1; i++)
+        {
+            lesPoints2.push_back(lesPoints[i]);
+        }
     }
     lesPoints2.push_back(pointIntersection1);
     lesPoints2.push_back(pointIntersection2);
