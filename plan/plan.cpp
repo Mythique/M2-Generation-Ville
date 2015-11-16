@@ -8,48 +8,44 @@ Plan::Plan(const Polyangle p) : poly(p)
 
 void Plan::create(QList<Quartier> &qs, QList<Route> &rs)
 {
-    QList<Quartier> lq;
-    QList<Route> lr;
-    divide(poly, lq, lr);
 
+    divide(poly, qs, rs);
 
     Mesh mf;
-    for(int i = 0; i < lq.size(); ++i) {
+
+    for(int i = 0; i < qs.size(); ++i) {
+
         QList<Vector3D> geom;
         QList<int> topo;
         QList<Vector3D> norms;
         QString nom = "blop";
-        Quartier quart = lq.at(i);
+        Quartier quart = qs.at(i);
         const QVector<Vector2D> points = quart.getPoly().getLesPoints();
-        if(points.size() == 4) {
-            std::cout << "Pouf" << std::endl;
-            geom << points[0] << points[1] << points[2] << points[3];
-            topo << 1 << 0 << 1
-                 << 2 << 0 << 1
-                 << 4 << 0 << 1
 
-                 << 2 << 0 << 1
-                 << 3 << 0 << 1
-                 << 4 << 0 << 1;
-            std::cout << "Paf" << std::endl;
+        if(points.size() == 4) {
+
+            geom << points[0] << points[1] << points[2] << points[3];
+            topo << 0 << 0 << 0
+                 << 1 << 0 << 0
+                 << 3 << 0 << 0
+
+                 << 1 << 0 << 0
+                 << 2 << 0 << 0
+                 << 3 << 0 << 0;
+
             norms << Vector3D(0,0,1);
             Mesh tmp(geom, topo, norms, nom);
-            std::cout << "Pif" << std::endl;
+
             mf.merge(tmp);
-            std::cout << "Pef" << std::endl;
         }
         if(points.size() == 3){
-            std::cout << "Pouf3" << std::endl;
             geom << points[0] << points[1] << points[2];
-            topo << 1 << 0 << 1
-                 << 3 << 0 << 1
-                 << 2 << 0 << 1;
-            std::cout << "Paf3" << std::endl;
+            topo << 0 << 0 << 0
+                 << 2 << 0 << 0
+                 << 1 << 0 << 0;
             norms << Vector3D(0,0,-1);
             Mesh tmp(geom, topo, norms, nom);
-            std::cout << "Pif3" << std::endl;
             mf.merge(tmp);
-            std::cout << "Pef3" << std::endl;
         }
     }
     MeshBuilder mb;
@@ -60,6 +56,7 @@ void Plan::create(QList<Quartier> &qs, QList<Route> &rs)
 
 void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes) const
 {
+    std::cout << "Poly : " << p.getLesPoints().size() << std::endl;
     if(p.area() > 4000){
 
         int cotes = p.getLesPoints().size();
@@ -91,7 +88,7 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
                 Vector2D elu23 = deux + dir23 * 0.3 + dir23 *0.4 * (rand()/RAND_MAX);
                 Vector2D elu31 = trois + dir31 * 0.3 + dir31 *0.4 * (rand()/RAND_MAX);
 
-                d = Droite(elu23, elu31-elu23);
+                d = Droite(elu31, elu23-elu31);
 
             }
             if(l23 < l12 && l23 < l31) // segment 2-3 le plus petit
@@ -100,7 +97,7 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
                 Vector2D elu12 = un + dir12 * 0.3 + dir12 *0.4 * (rand()/RAND_MAX);
                 Vector2D elu31 = trois + dir31 * 0.3 + dir31 *0.4 * (rand()/RAND_MAX);
 
-                d = Droite(elu12, elu31-elu12);
+                d = Droite(elu31, elu12-elu31);
             }
             if(l31 < l23 && l31 < l12) // segment 3-1 le plus petit
             {
@@ -108,7 +105,7 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
                 Vector2D elu12 = un + dir12 * 0.3 + dir12 *0.4 * (rand()/RAND_MAX);
                 Vector2D elu23 = deux + dir23 * 0.3 + dir23 *0.4 * (rand()/RAND_MAX);
 
-                d = Droite(elu23, elu12-elu23);
+                d = Droite(elu12, elu23-elu12);
             }
         }
         if(cotes == 4) {
@@ -120,19 +117,23 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
 
               */
 
+            std::cout << "Par ici : quad" << std::endl;
             Vector2D un, deux;
             un = p.getLesPoints().at(0);
             deux = p.getLesPoints().at(2);
-            d = Droite(un, deux-un);
+            d = Droite(deux, un-deux);
         }
 
-        p.split(p1, p2, pr, d, 3.5);
+        p.split(p1, pr, p2, d, 3.5);
+        std::cout << "Before divide p1 : " << p1.getLesPoints().size() << std::endl;
         divide(p1, qs, routes);
+        std::cout << "Before divide p2 : " << p2.getLesPoints().size() << std::endl;
         divide(p2, qs, routes);
         routes.push_back(pr);
     }
     else {
         Quartier q(p, Quartier::RESIDENTIEL);
+        //std::cout << "Quartier créé : " << p.getLesPoints().size() << std::endl;
         qs.push_back(q);
     }
 }
