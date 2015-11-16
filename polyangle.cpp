@@ -174,15 +174,18 @@ bool Polyangle::split(Polyangle & p1, Polyangle & p2, Polyangle & route, const D
     Droite para2(d.getO() - orthoAB * largeurDemiRoute, d.getD());
 
     Polyangle pTemp;
-    if(!split(p1, pTemp, para1))return false;
+    if(!split(p1, pTemp, para1)){
+
+        return false;
+    }
     return pTemp.split(route, p2, para2);
 
 }
 
-bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d)
+bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & dr) const
 {
     //std::cout << "début split" << std::endl;
-    //Droite d(dr.getO()-dr.getD()*100000000,dr.getD());
+    Droite d(dr.getO()-dr.getD()*100000000,dr.getD());
     Vector2D pointIntersection1;
     int iBeforeInter1;
     int iAfterInter1;
@@ -281,8 +284,8 @@ bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d)
     }
     else
     {
-        p2 = Polyangle(lesPoints1);
-        p1 = Polyangle(lesPoints2);
+        p2 = Polyangle(lesPoints2);
+        p1 = Polyangle(lesPoints1);
     }
     return true;
 
