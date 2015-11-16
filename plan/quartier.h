@@ -21,7 +21,7 @@ public:
 
     Quartier(const Polyangle& p, TypeQuartier tq);
 
-    void generate(QList<Mesh>& meshes);
+    void generate(Mesh& mesh);
     const Polyangle getPoly();
 };
 

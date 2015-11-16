@@ -1,12 +1,11 @@
 #include "parcelle.h"
+#include "../batiment/rezdechaussee.h"
 
-Parcelle::Parcelle()
+
+void Parcelle::generate(Mesh &m)
 {
-
-}
-
-Mesh Parcelle::generate()
-{
-    return Mesh();
+    RezDeChaussee rdc(poly,0,3);
+    Mesh bat=rdc.generate();
+    m.merge(bat);
 }
 

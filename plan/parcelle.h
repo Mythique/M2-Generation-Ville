@@ -6,12 +6,15 @@
 
 class Parcelle : public Generateur
 {
+public :
+    enum TypeConstruction : int {HABITATION, JARDIN};
 private:
     Polyangle poly;
-    enum TypeConstruction : int {HABITATION, JARDIN};
+
     TypeConstruction type;
 public:
-    Parcelle();
+
+    Parcelle(Polyangle polya, TypeConstruction t) : poly(polya), type(t){}
     virtual Mesh generate();
 };
 
