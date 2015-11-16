@@ -1,4 +1,6 @@
 #include "quartier.h"
+#include "../meshbuilder.h"
+#include "../polyanglehauteur.h"
 
 
 Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment) : poly(polya)
@@ -64,6 +66,13 @@ void Quartier::generate(Mesh &mesh)
     {
         parcelles[i].generate(mesh);
     }
+
+    MeshBuilder mb;
+    PolyangleHauteur ph1(poly,-0.1);
+    PolyangleHauteur ph2(poly,0);
+    QVector<PolyangleHauteur> vect;
+    vect<<ph1<<ph2;
+    mesh.merge(mb.generationPolyanglesRelies(vect));
 }
 
 const Polyangle Quartier::getPoly()

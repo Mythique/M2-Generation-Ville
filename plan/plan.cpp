@@ -124,7 +124,9 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
         divide(p1, qs, routes);
         //std::cout << "Before divide p2 : " << p2 << std::endl;
         divide(p2, qs, routes);
-        routes.push_back(pr);
+        //routes.push_back(pr);
+        Route rou(pr);
+        rou.generate(mesh);
     }
     else {
         Quartier q(p, 2.5, 10);

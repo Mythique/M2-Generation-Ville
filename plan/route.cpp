@@ -1,11 +1,17 @@
 #include "route.h"
-
-Route::Route(Polyangle q) : quad(q)
+#include "../meshbuilder.h"
+#include "../polyanglehauteur.h"
+Route::Route(Polyangle q) : poly(q)
 {
 
 }
 
-Mesh Route::generate()
+void Route::generate(Mesh& m)
 {
-    return Mesh();
+    MeshBuilder mb;
+    PolyangleHauteur ph(poly,-0.1);
+    QVector<PolyangleHauteur> vect;
+    vect<<ph;
+
+    m.merge(mb.generationPolyanglesRelies(vect));
 }
