@@ -56,14 +56,15 @@ void Plan::create(QList<Quartier> &qs, QList<Route> &rs)
 
 void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes) const
 {
-    std::cout << "Poly : " << p.getLesPoints().size() << std::endl;
-    if(p.area() > 4000){
+    std::cout << "Poly : " << p.area() << std::endl;
+    if(p.area() > 10000*10000-1){
 
         int cotes = p.getLesPoints().size();
         Polyangle p1, p2, pr;
         Droite d;
 
         if(cotes == 3) {
+            //std::cout << "Par ici : tri " << std::endl;
             double l12, l23, l31;
 
             Vector2D un, deux, trois;
@@ -117,17 +118,20 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
 
               */
 
-            std::cout << "Par ici : quad" << std::endl;
+            //std::cout << "Par ici : quad" << std::endl;
             Vector2D un, deux;
             un = p.getLesPoints().at(0);
             deux = p.getLesPoints().at(2);
             d = Droite(deux, un-deux);
         }
 
-        p.split(p1, pr, p2, d, 3.5);
-        std::cout << "Before divide p1 : " << p1.getLesPoints().size() << std::endl;
+        std::cout << "Poly et droite " << p << std::endl << d.getO() << "," << d.getD() << std::endl;
+        p.split(p1, p2, pr, d, 3.5);
+        std::cout << "Route : " << pr << std::endl;
+
+        std::cout << "Before divide p1 : " << p1 << std::endl;
         divide(p1, qs, routes);
-        std::cout << "Before divide p2 : " << p2.getLesPoints().size() << std::endl;
+        std::cout << "Before divide p2 : " << p2 << std::endl;
         divide(p2, qs, routes);
         routes.push_back(pr);
     }
