@@ -94,3 +94,64 @@ MeshBuilder::~MeshBuilder()
 {
 
 }
+
+Mesh MeshBuilder::generationPolyanglesRelies(const QVector<PolyangleHauteur> &polyangles) const
+{
+    QList<Vector3D> geom;
+    QList<int> topo;
+    QList<Vector3D> normales;
+
+    int nbPoly = polyangles.size();
+    int nbPoints = polyangles[0].getPolyangle().getLesPoints().size();
+
+    // Géométrie
+    for (int i = 0; i < nbPoints; i++)
+    {
+        for (int j = 0; j < nbPoly; j++)
+        {
+            geom << Vector3D(polyangles[j].getPolyangle().getLesPoints()[i], polyangles[j].getHauteur());
+        }
+    }
+
+    // Topologie
+    for (int i = 0; i < nbPoints*nbPoly; i++)
+    {
+        if ((i+1)%nbPoly != 0)
+        {
+            int p1, p2, p3, p4;
+            Vector3D n(1,0,0);
+            p1 = i;
+            p2 = (i + nbPoly) % (nbPoly*nbPoints);
+            p3 = i + 1;
+            p4 = p2 + 1;
+
+            normales.push_back(n);
+            normales.push_back(n);
+
+            // indice point, indice texture, indice normale
+            // Premier triangle
+            topo << p1 << 0 << i
+                 << p2 << 0 << i
+                 << p3 << 0 << i;
+            // Second triangle
+            topo << p3 << 0 << i
+                 << p2 << 0 << i
+                 << p4 << 0 << i;
+        }
+    }
+
+    // Topologie plafond
+    for (int i = 1; i < nbPoints-1; i++)
+    {
+        int p1, p2, p3;
+        p1 = nbPoly-1;
+        p2 = nbPoly-1 + i*nbPoly;
+        p3 = nbPoly-1 + (i+1)*nbPoly;
+
+        topo << p1 << 0 << i
+             << p2 << 0 << i
+             << p3 << 0 << i;
+    }
+
+    return Mesh(geom, topo, normales, "Cylindre");
+}

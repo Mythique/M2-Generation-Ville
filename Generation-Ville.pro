@@ -25,7 +25,8 @@ SOURCES += main.cpp \
     plan/quartier.cpp \
     batiment/rezdechaussee.cpp \
     batiment/toitplat.cpp \
-    batiment/toitbordure.cpp
+    batiment/toitbordure.cpp \
+    polyanglehauteur.cpp
 
 HEADERS += \
     mathutils.h \
@@ -46,5 +47,6 @@ HEADERS += \
     plan/quartier.h \
     batiment/rezdechaussee.h \
     batiment/toitplat.h \
-    batiment/toitbordure.h
+    batiment/toitbordure.h \
+    polyanglehauteur.h
 

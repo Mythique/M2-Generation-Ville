@@ -3,6 +3,7 @@
 #include "mesh.h"
 #include <QString>
 #include "vector2d.h"
+#include "polyanglehauteur.h"
 
 /**
  * @brief The MeshBuilder class, contains methods to create and load meshes
@@ -28,6 +29,8 @@ public:
      * @param[in] mesh The mesh to save
      */
     void saveMesh(const QString& nom, const Mesh &mesh) const;
+
+    Mesh generationPolyanglesRelies(const QVector<PolyangleHauteur> & polyangles) const;
 
     /**
      * Destructor of MeshBuilder, empty.
