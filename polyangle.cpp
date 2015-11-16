@@ -179,7 +179,7 @@ bool Polyangle::split(Polyangle & p1, Polyangle & p2, Polyangle & route, const D
 
 }
 
-bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d)
+bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d) const
 {
     //std::cout << "début split" << std::endl;
     //Droite d(dr.getO()-dr.getD()*100000000,dr.getD());

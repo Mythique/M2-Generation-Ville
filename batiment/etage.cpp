@@ -2,6 +2,7 @@
 #include <iostream>
 #include "mathutils.h"
 #include "toit.h"
+#include "toitplat.h"
 
 Etage::Etage()
 {
@@ -70,16 +71,26 @@ Mesh Etage::generate()
     Mesh etageMesh = Mesh(geom, topo, normales, "etage");
 
     double rand = MathUtils::random(0.0, 1.0);
-    std::cout << rand << std::endl;
-    if (rand < 0.05)
+    if (rand < 0.3)
     {
-        Toit toit = Toit(base, hauteur + hauteurEtage, hauteurEtage / 2);
-        etageMesh.merge(toit.generate());
+        double rand2 = MathUtils::random(0.0, 1.0);
+        if (rand2 < 0.5)
+        {
+            Toit toit = Toit(base, hauteur + hauteurEtage, hauteurEtage / 2);
+            etageMesh.merge(toit.generate());
+            return etageMesh;
+        }
+        else
+        {
+            ToitPlat toitPlat = ToitPlat(base, hauteur + hauteurEtage, hauteurEtage / 4, base.perimetre()/20);
+            etageMesh.merge(toitPlat.generate());
+            return etageMesh;
+        }
 
-        return etageMesh;
     }
     else
     {
+        std::cout << "Etage" << std::endl;
         Etage etageSup = Etage(base, hauteur + hauteurEtage, hauteurEtage);
         etageMesh.merge(etageSup.generate());
         return etageMesh;

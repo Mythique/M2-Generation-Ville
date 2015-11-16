@@ -23,7 +23,8 @@ SOURCES += main.cpp \
     plan/route.cpp \
     plan/plan.cpp \
     plan/quartier.cpp \
-    batiment/rezdechaussee.cpp
+    batiment/rezdechaussee.cpp \
+    batiment/toitplat.cpp
 
 HEADERS += \
     mathutils.h \
@@ -42,5 +43,6 @@ HEADERS += \
     plan/route.h \
     plan/plan.h \
     plan/quartier.h \
-    batiment/rezdechaussee.h
+    batiment/rezdechaussee.h \
+    batiment/toitplat.h
 
