@@ -24,7 +24,8 @@ SOURCES += main.cpp \
     plan/plan.cpp \
     plan/quartier.cpp \
     batiment/rezdechaussee.cpp \
-    batiment/toitplat.cpp
+    batiment/toitplat.cpp \
+    batiment/toitbordure.cpp
 
 HEADERS += \
     mathutils.h \
@@ -44,5 +45,6 @@ HEADERS += \
     plan/plan.h \
     plan/quartier.h \
     batiment/rezdechaussee.h \
-    batiment/toitplat.h
+    batiment/toitplat.h \
+    batiment/toitbordure.h
 
