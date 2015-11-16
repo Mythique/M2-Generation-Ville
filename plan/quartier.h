@@ -15,7 +15,12 @@ private:
     QList<Parcelle> parcelles;
 public:
 
+    Quartier();
+    Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment);
+
+
     Quartier(const Polyangle& p, TypeQuartier tq);
+
     void generate(QList<Mesh>& meshes);
     const Polyangle getPoly();
 };
