@@ -46,7 +46,7 @@ Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment
         parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::HABITATION));
 
     }
-    parcelles.append(Parcelle(interieur, Parcelle::JARDIN));
+    //parcelles.append(Parcelle(interieur, Parcelle::JARDIN));
 
 
 }
@@ -62,7 +62,7 @@ void Quartier::generate(Mesh &mesh)
 {
     for(int i = 0; i < parcelles.length(); i++)
     {
-        parcelles[0].generate(mesh);
+        parcelles[i].generate(mesh);
     }
 }
 

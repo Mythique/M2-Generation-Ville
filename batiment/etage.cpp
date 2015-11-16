@@ -76,14 +76,14 @@ Mesh Etage::generate()
         double rand2 = MathUtils::random(0.0, 1.0);
         if (rand2 < 0.5)
         {
-            std::cout << "Toit" << std::endl;
+            //std::cout << "Toit" << std::endl;
             Toit toit = Toit(base, hauteur + hauteurEtage, hauteurEtage / 2);
             etageMesh.merge(toit.generate());
             return etageMesh;
         }
         else
         {
-            std::cout << "Toit Plat" << std::endl;
+            //std::cout << "Toit Plat" << std::endl;
             ToitPlat toitPlat = ToitPlat(base, hauteur + hauteurEtage, hauteurEtage / 4, base.perimetre()/20);
             etageMesh.merge(toitPlat.generate());
             return etageMesh;
@@ -91,7 +91,7 @@ Mesh Etage::generate()
     }
     else
     {
-        std::cout << "Etage" << std::endl;
+        //std::cout << "Etage" << std::endl;
         double rand2 = MathUtils::random(0.0, 1.0);
         if (rand2 < 0.5)
         {
@@ -101,7 +101,7 @@ Mesh Etage::generate()
         }
         else
         {
-            std::cout << "plus petit" << std::endl;
+            //std::cout << "plus petit" << std::endl;
             Etage etageSup = Etage(base.shrink(base.perimetre()/50), hauteur + hauteurEtage, hauteurEtage);
             etageMesh.merge(etageSup.generate());
             return etageMesh;

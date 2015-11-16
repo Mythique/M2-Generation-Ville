@@ -4,7 +4,7 @@
 #include "../polyangle.h"
 #include "../mesh.h"
 
-class Parcelle : public Generateur
+class Parcelle //: public Generateur
 {
 public :
     enum TypeConstruction : int {HABITATION, JARDIN};
@@ -15,7 +15,7 @@ private:
 public:
 
     Parcelle(Polyangle polya, TypeConstruction t) : poly(polya), type(t){}
-    virtual Mesh generate();
+    void generate(Mesh &m);
 };
 
 #endif // PARCELLE_H
