@@ -1,7 +1,8 @@
 #include "plan.h"
 #include "MeshBuilder.h"
+#include "../batiment/rezdechaussee.h"
 
-Plan::Plan(const Polyangle p) : poly(p)
+Plan::Plan(const Polyangle& p) : poly(p)
 {
 
 }
@@ -22,7 +23,7 @@ void Plan::create(QList<Quartier> &qs, QList<Route> &rs)
         Quartier quart = qs.at(i);
         const QVector<Vector2D> points = quart.getPoly().getLesPoints();
 
-        if(points.size() == 4) {
+        /*if(points.size() == 4) {
 
             geom << points[0] << points[1] << points[2] << points[3];
             topo << 0 << 0 << 0
@@ -46,7 +47,11 @@ void Plan::create(QList<Quartier> &qs, QList<Route> &rs)
             norms << Vector3D(0,0,-1);
             Mesh tmp(geom, topo, norms, nom);
             mf.merge(tmp);
-        }
+        }*/
+
+        RezDeChaussee rdc(quart.getPoly(), 0, 2.5);
+        Mesh mrdc = rdc.generate();
+        mf.merge(mrdc);
     }
     MeshBuilder mb;
     QString str = "C:/Users/etu/Desktop/testTerrain.obj";
@@ -56,8 +61,8 @@ void Plan::create(QList<Quartier> &qs, QList<Route> &rs)
 
 void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes) const
 {
-    std::cout << "Poly : " << p.area() << std::endl;
-    if(p.area() > 10000*10000-1){
+    //std::cout << "-------- Poly : divide " << p.area() << std::endl;
+    if(p.area() > 4000){
 
         int cotes = p.getLesPoints().size();
         Polyangle p1, p2, pr;
@@ -83,28 +88,28 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
 
               */
 
-            if(l12 < l23 && l12 < l31) // segment 1-2 le plus petit
+            if(l12 < l23 && l12 < l31) // segment 1-2 le plus grand
             {
                 Vector2D dir23 = trois - deux, dir31 = un-trois;
-                Vector2D elu23 = deux + dir23 * 0.3 + dir23 *0.4 * (rand()/RAND_MAX);
-                Vector2D elu31 = trois + dir31 * 0.3 + dir31 *0.4 * (rand()/RAND_MAX);
+                Vector2D elu23 = deux + dir23 * 0.4 + dir23 *0.2 * (rand()/RAND_MAX);
+                Vector2D elu31 = trois + dir31 * 0.4 + dir31 *0.2 * (rand()/RAND_MAX);
 
                 d = Droite(elu31, elu23-elu31);
 
             }
-            if(l23 < l12 && l23 < l31) // segment 2-3 le plus petit
+            else if(l23 < l12 && l23 < l31) // segment 2-3 le plus petit
             {
                 Vector2D dir12 = deux - un, dir31 = un-trois;
-                Vector2D elu12 = un + dir12 * 0.3 + dir12 *0.4 * (rand()/RAND_MAX);
-                Vector2D elu31 = trois + dir31 * 0.3 + dir31 *0.4 * (rand()/RAND_MAX);
+                Vector2D elu12 = un + dir12 * 0.4 + dir12 *0.2 * (rand()/RAND_MAX);
+                Vector2D elu31 = trois + dir31 * 0.4 + dir31 *0.2 * (rand()/RAND_MAX);
 
                 d = Droite(elu31, elu12-elu31);
             }
-            if(l31 < l23 && l31 < l12) // segment 3-1 le plus petit
+            else //(l31 < l23 && l31 < l12) // segment 3-1 le plus petit
             {
                 Vector2D dir23 = trois - deux, dir12 = deux-un;
-                Vector2D elu12 = un + dir12 * 0.3 + dir12 *0.4 * (rand()/RAND_MAX);
-                Vector2D elu23 = deux + dir23 * 0.3 + dir23 *0.4 * (rand()/RAND_MAX);
+                Vector2D elu12 = un + dir12 * 0.4 + dir12 *0.2 * (rand()/RAND_MAX);
+                Vector2D elu23 = deux + dir23 * 0.4 + dir23 *0.2 * (rand()/RAND_MAX);
 
                 d = Droite(elu12, elu23-elu12);
             }
@@ -118,20 +123,54 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
 
               */
 
+            double l12, l23, l34, l41;
+
+            Vector2D un, deux, trois, quatre;
+            un = p.getLesPoints().at(0);
+            deux = p.getLesPoints().at(1);
+            trois = p.getLesPoints().at(2);
+            quatre = p.getLesPoints().at(3);
+
+            l12 = un.distanceToPoint2DSquared(deux);
+            l23 = deux.distanceToPoint2DSquared(trois);
+            l34 = trois.distanceToPoint2DSquared(quatre);
+            l41 = quatre.distanceToPoint2DSquared(un);
+
+
+            double lc13 = l12 + l34, lc24 = l23 + l41;
+
+            if(lc13 > lc24) {
+                Vector2D dir12 = deux-un, dir34 = quatre-trois;
+                Vector2D elu12 = un + dir12 * 0.35 + dir12 * 0.3 * (rand()/RAND_MAX);
+                Vector2D elu34 = trois + dir34 * 0.35 + dir34 * 0.3 * (rand()/RAND_MAX);
+
+                d = Droite(elu12, elu34-elu12);
+            }
+            else {
+                Vector2D dir23 = trois-deux, dir41 = un-quatre;
+                Vector2D elu23 = deux + dir23 * 0.35 + dir23 * 0.3 * (rand()/RAND_MAX);
+                Vector2D elu41 = quatre + dir41 * 0.35 + dir41 * 0.3 * (rand()/RAND_MAX);
+
+                d = Droite(elu23, elu41-elu23);
+            }
+
+
             //std::cout << "Par ici : quad" << std::endl;
-            Vector2D un, deux;
+            /*Vector2D un, deux;
             un = p.getLesPoints().at(0);
             deux = p.getLesPoints().at(2);
-            d = Droite(deux, un-deux);
+            d = Droite(deux, un-deux);*/
+
+
         }
 
-        std::cout << "Poly et droite " << p << std::endl << d.getO() << "," << d.getD() << std::endl;
+        //std::cout << "Poly et droite " << p << std::endl << d.getO() << "," << d.getD() << std::endl;
         p.split(p1, p2, pr, d, 3.5);
-        std::cout << "Route : " << pr << std::endl;
+        //std::cout << "Route : " << pr << std::endl;
 
-        std::cout << "Before divide p1 : " << p1 << std::endl;
+        //std::cout << "Before divide p1 : " << p1 << std::endl;
         divide(p1, qs, routes);
-        std::cout << "Before divide p2 : " << p2 << std::endl;
+        //std::cout << "Before divide p2 : " << p2 << std::endl;
         divide(p2, qs, routes);
         routes.push_back(pr);
     }
