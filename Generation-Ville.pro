@@ -42,7 +42,7 @@ SOURCES += main.cpp \
     batiment/antenne.cpp \
     batiment/toitbordure.cpp \
     polyanglehauteur.cpp \
-    batiment/doubleetagebusiness.cpp
+    batiment/doubleetagebusiness.cpp \
 
 HEADERS += \
     mathutils.h \

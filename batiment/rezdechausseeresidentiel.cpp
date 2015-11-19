@@ -2,6 +2,7 @@
 #include "toitresidentiel.h"
 #include "etageresidentiel.h"
 #include "petitetageresidentiel.h"
+#include "../meshbuilder.h"
 
 Mesh RezDeChausseeResidentiel::generate() const
 {
@@ -11,7 +12,7 @@ Mesh RezDeChausseeResidentiel::generate() const
     MeshBuilder mb;
     Mesh rdcMesh = mb.generationEtage(this);
 
-    QVector<std::pair<Batiment*,int> bats;
+    QVector<std::pair<Batiment*,int>> bats;
 
     ToitResidentiel tr(base,hauteur+hauteurEtage,hauteurEtage,hMax-1,shrinkMax,aireMin);
     PetitEtageResidentiel per(base.shrink(base.plusPetitCote()/10),hauteur+hauteurEtage,hauteurEtage,hMax-1,shrinkMax-1,aireMin);
@@ -26,5 +27,5 @@ Mesh RezDeChausseeResidentiel::generate() const
         }
 
     rdcMesh.merge(Batiment::getRandomBatiment(bats)->generate());
-
+    return rdcMesh;
 }
