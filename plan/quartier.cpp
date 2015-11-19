@@ -42,11 +42,18 @@ Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment
         poly<<b<< p2<< bPrime<< p1;
         polyReste<<p2<<p3<<cPrime<<bPrime;
 
-        parcelles.append(Parcelle(Polyangle(poly), Parcelle::HABITATION));
-        parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::HABITATION));
+        if(type==RESIDENTIEL){
+            parcelles.append(Parcelle(Polyangle(poly), Parcelle::HABITATION));
+            parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::HABITATION));
+        }
+        else if(type==MARCHAND){
+            parcelles.append(Parcelle(Polyangle(poly), Parcelle::BUSINESS));
+            parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::BUSINESS));
+        }
+
 
     }
-    //parcelles.append(Parcelle(interieur, Parcelle::JARDIN));
+    parcelles.append(Parcelle(interieur, Parcelle::JARDIN));
 
 
 }

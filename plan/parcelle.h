@@ -7,7 +7,7 @@
 class Parcelle //: public Generateur
 {
 public :
-    enum TypeConstruction : int {HABITATION, JARDIN};
+    enum TypeConstruction : int {HABITATION, JARDIN, BUSINESS};
 private:
     Polyangle poly;
 
