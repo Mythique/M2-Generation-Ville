@@ -25,6 +25,21 @@ SOURCES += main.cpp \
     plan/quartier.cpp \
     batiment/rezdechaussee.cpp \
     batiment/toitplat.cpp \
+    batiment/toitresidentiel.cpp \
+    batiment/etageresidentiel.cpp \
+    batiment/petitetageresidentiel.cpp \
+    batiment/cheminee.cpp \
+    batiment/rezdechausseebusiness.cpp \
+    batiment/rezdechausseeresidentiel.cpp \
+    batiment/etagebusiness.cpp \
+    batiment/petitetagebusiness.cpp \
+    batiment/division.cpp \
+    batiment/jointure.cpp \
+    batiment/etagel.cpp \
+    batiment/divisionl.cpp \
+    batiment/jointurel.cpp \
+    batiment/toitbusiness.cpp \
+    batiment/antenne.cpp \
     batiment/toitbordure.cpp \
     polyanglehauteur.cpp
 
@@ -47,6 +62,21 @@ HEADERS += \
     plan/quartier.h \
     batiment/rezdechaussee.h \
     batiment/toitplat.h \
+    batiment/toitresidentiel.h \
+    batiment/etageresidentiel.h \
+    batiment/petitetageresidentiel.h \
+    batiment/cheminee.h \
+    batiment/rezdechausseebusiness.h \
+    batiment/rezdechausseeresidentiel.h \
+    batiment/etagebusiness.h \
+    batiment/petitetagebusiness.h \
+    batiment/division.h \
+    batiment/jointure.h \
+    batiment/etagel.h \
+    batiment/divisionl.h \
+    batiment/jointurel.h \
+    batiment/toitbusiness.h \
+    batiment/antenne.h \
     batiment/toitbordure.h \
     polyanglehauteur.h
 
