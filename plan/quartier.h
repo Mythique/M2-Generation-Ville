@@ -16,10 +16,8 @@ private:
 public:
 
     Quartier();
-    Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment);
+    Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment, const TypeQuartier tq);
 
-
-    Quartier(const Polyangle& p, TypeQuartier tq);
 
     void generate(Mesh& mesh);
     const Polyangle getPoly();

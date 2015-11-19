@@ -246,8 +246,14 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
         rou.generate(meshRoute);
     }
     else {
-        Quartier q(p, 2.5, 10);
-        q.generate(meshBatiments);
+        if(MathUtils::random(0,1) < 0.5) {
+            Quartier q(p, 2.5, 10, Quartier::TypeQuartier::RESIDENTIEL);
+            q.generate(meshBatiments);
+        }
+        else{
+            Quartier q(p, 2.5, 10, Quartier::TypeQuartier::MARCHAND);
+            q.generate(meshBatiments);
+        }
     }
 }
 

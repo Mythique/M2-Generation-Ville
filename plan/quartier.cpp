@@ -3,7 +3,7 @@
 #include "../polyanglehauteur.h"
 
 
-Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment) : poly(polya)
+Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment, const TypeQuartier tq) : poly(polya), type(tq)
 {
     QVector<Polyangle> restes;
     Polyangle exterieur = polya.shrink(tailleTrottoir);
@@ -58,11 +58,6 @@ Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment
 
 }
 
-
-Quartier::Quartier(const Polyangle &p, TypeQuartier tq) : poly(p), type(tq)
-{
-
-}
 
 
 void Quartier::generate(Mesh &mesh)
