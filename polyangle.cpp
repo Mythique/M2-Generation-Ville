@@ -166,7 +166,7 @@ void Polyangle::checkSens()
 
 }
 
-float Polyangle::plusPetitCote()
+float Polyangle::plusPetitCote() const
 {
     float dist = 0;
     int size = lesPoints.size();

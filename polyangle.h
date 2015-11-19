@@ -25,7 +25,7 @@ public:
     void checkSens();
     std::pair<int, int> getHighestPair();
 
-    float plusPetitCote();
+    float plusPetitCote() const;
 
     QVector<Vector2D> getLesPoints() const;
     void setLesPoints(const QVector<Vector2D> &value);
