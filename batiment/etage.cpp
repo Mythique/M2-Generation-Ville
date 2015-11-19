@@ -13,7 +13,7 @@ Etage::Etage()
 
 Mesh Etage::generate() const
 {
-    Polyangle baseShrinked = base.shrink(base.plusPetitCote()/3);
+    Polyangle baseShrinked = base.shrink(base.plusPetitCote()/10);
 
     QVector<PolyangleHauteur> polyangles;
     polyangles << PolyangleHauteur(baseShrinked, hauteur)
@@ -56,7 +56,7 @@ Mesh Etage::generate() const
         else
         {
             //std::cout << "plus petit" << std::endl;
-            Etage etageSup = Etage(base.shrink(base.perimetre()/50), hauteur + hauteurEtage, hauteurEtage);
+            Etage etageSup = Etage(base.shrink(base.plusPetitCote()/10), hauteur + hauteurEtage, hauteurEtage);
             etageMesh.merge(etageSup.generate());
             return etageMesh;
         }
