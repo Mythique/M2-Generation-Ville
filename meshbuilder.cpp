@@ -111,30 +111,34 @@ Mesh MeshBuilder::generationPolyanglesRelies(const QVector<PolyangleHauteur> &po
         }
     }
 
+    int cptNormales = 0;
+
     // Topologie
     for (int i = 0; i < nbPoints*nbPoly; i++)
     {
         if ((i+1)%nbPoly != 0)
         {
             int p1, p2, p3, p4;
-            Vector3D n(1,0,0);
             p1 = i;
             p2 = (i + nbPoly) % (nbPoly*nbPoints);
             p3 = i + 1;
             p4 = p2 + 1;
 
-            normales.push_back(n);
-            normales.push_back(n);
+            Vector3D n = (geom[p3]-geom[p2])^(geom[p1]-geom[p2]);
+            n.normalize();
+            normales << n;
 
             // indice point, indice texture, indice normale
             // Premier triangle
-            topo << p1 << 0 << i
-                 << p2 << 0 << i
-                 << p3 << 0 << i;
+            topo << p1 << 0 << cptNormales
+                 << p2 << 0 << cptNormales
+                 << p3 << 0 << cptNormales;
             // Second triangle
-            topo << p3 << 0 << i
-                 << p2 << 0 << i
-                 << p4 << 0 << i;
+            topo << p3 << 0 << cptNormales
+                 << p2 << 0 << cptNormales
+                 << p4 << 0 << cptNormales;
+            cptNormales++;
+
         }
     }
 
@@ -146,9 +150,12 @@ Mesh MeshBuilder::generationPolyanglesRelies(const QVector<PolyangleHauteur> &po
         p2 = nbPoly-1 + i*nbPoly;
         p3 = nbPoly-1 + (i+1)*nbPoly;
 
-        topo << p1 << 0 << i
-             << p2 << 0 << i
-             << p3 << 0 << i;
+        Vector3D n(0,0,1);
+        normales << n;
+        topo << p1 << 0 << cptNormales
+             << p2 << 0 << cptNormales
+             << p3 << 0 << cptNormales;
+        cptNormales++;
     }
 
     return Mesh(geom, topo, normales, "Cylindre");

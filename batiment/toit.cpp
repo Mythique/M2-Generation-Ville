@@ -31,7 +31,7 @@ Mesh Toit::generate() const
         p2 = i;
         p3 = (i+1)%nbPoints;
 
-        Vector3D n = (geom[p2]-geom[p3])^(geom[p1]-geom[p3]);
+        Vector3D n = (geom[p1]-geom[p3])^(geom[p2]-geom[p3]);
         n.normalize();
 
         normales.push_back(n);

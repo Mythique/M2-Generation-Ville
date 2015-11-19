@@ -46,29 +46,29 @@ void Mesh::homotecie(const Vector3D &c, double h)
 void Mesh::merge(const Mesh &mesh)
 {
     QList<int> posv;
-        QList<int> posn;
-        for(int i=0;i<mesh.geom.size();i++){
-            int n=containsGeom(mesh.geom[i]);
-            if(n==-1){
-                n=geom.size();
-                geom.append(mesh.geom[i]);
-            }
-            posv.append(n);
+    QList<int> posn;
+    for(int i=0;i<mesh.geom.size();i++){
+        int n=containsGeom(mesh.geom[i]);
+        if(n==-1){
+            n=geom.size();
+            geom.append(mesh.geom[i]);
         }
+        posv.append(n);
+    }
 
-        for(int i=0;i<mesh.norm.size();i++){
-            int n=containsNorm(mesh.norm[i]);
-            if(n==-1){
-                n=norm.size();
-                norm.append(mesh.norm[i]);
-            }
-            posn.append(n);
+    for(int i=0;i<mesh.norm.size();i++){
+        int n=containsNorm(mesh.norm[i]);
+        if(n==-1){
+            n=norm.size();
+            norm.append(mesh.norm[i]);
         }
-        for(int i=0;i<mesh.topo.size();i+=3){
-            topo.append(posv[mesh.topo[i]]);
-            topo.append(0);
-            topo.append(posn[mesh.topo[i+2]]);
-        }
+        posn.append(n);
+    }
+    for(int i=0;i<mesh.topo.size();i+=3){
+        topo.append(posv[mesh.topo[i]]);
+        topo.append(0);
+        topo.append(posn[mesh.topo[i+2]]);
+    }
 }
 
 int Mesh::containsGeom(const Vector3D &g)
