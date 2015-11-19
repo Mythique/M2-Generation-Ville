@@ -5,7 +5,7 @@
 class RezDeChausseeBusiness:public Batiment
 {
 public:
-    RezDeChausseeBusiness(int hm,int sm,float am):Batiment(hm,sm,am){}
+    RezDeChausseeBusiness(const Polyangle & p, float h, float hE,int hm,int sm,float am):Batiment(p,h, hE, hm,sm,am){}
     Mesh generate() const;
 };
 

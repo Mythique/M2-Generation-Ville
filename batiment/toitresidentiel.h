@@ -5,7 +5,7 @@
 class ToitResidentiel:public Batiment
 {
 public:
-    ToitResidentiel(int hm,int sm,float am):Batiment(hm,sm,am){}
+    ToitResidentiel(const Polyangle & p, float h, float hE,int hm,int sm,float am):Batiment(p,h, hE, hm,sm,am){}
     Mesh generate() const;
 };
 

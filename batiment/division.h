@@ -4,7 +4,7 @@
 class Division:public Batiment
 {
 public:
-    Division(int hm,int sm,float am):Batiment(hm,sm,am){}
+    Division(const Polyangle & p, float h, float hE,int hm,int sm,float am):Batiment(p,h, hE, hm,sm,am){}
     Mesh generate() const;
 };
 
