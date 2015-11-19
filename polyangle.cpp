@@ -206,8 +206,8 @@ bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d) const
     int iBeforeInter1;
     int iAfterInter1;
     Vector2D pointIntersection2;
-    int iBeforeInter2;
-    int iAfterInter2;
+    int iBeforeInter2 = -1;
+    int iAfterInter2 = -1;
 
     bool inter2=false;
 

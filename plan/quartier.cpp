@@ -27,9 +27,7 @@ Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment
 
         ba.normalize();
         bc.normalize();
-        bbPrime;
         cb.normalize();
-        ccPrime;
 
         float scalBA = ba*bbPrime;
         float scalBC = bc*bbPrime;
