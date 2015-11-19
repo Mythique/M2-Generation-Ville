@@ -12,6 +12,7 @@ public:
     Batiment();
     Batiment(int hM, int sM, float aM);
     virtual Mesh generate() const =0 ;
+    static Batiment* getRandomBatiment(QVector<std::pair<Batiment *, int> > bats);
 };
 
 #endif // BATIMENT_H
