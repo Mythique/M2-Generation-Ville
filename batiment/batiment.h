@@ -11,7 +11,7 @@ private :
 public:
     Batiment();
     Batiment(int hM, int sM, float aM);
-    virtual Mesh generate()=0;
+    virtual Mesh generate() const =0 ;
 };
 
 #endif // BATIMENT_H
