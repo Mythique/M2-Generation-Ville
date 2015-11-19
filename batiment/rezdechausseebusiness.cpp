@@ -8,8 +8,6 @@
 
 Mesh RezDeChausseeBusiness::generate() const
 {
-
-
     if(base.area() > aireMin)
     {
         QVector<PolyangleHauteur> polyangles;
