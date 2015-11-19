@@ -15,7 +15,7 @@ SOURCES += main.cpp \
     mesh.cpp \
     generateur.cpp \
     plan/parcelle.cpp \
-    batiment.cpp \
+    batiment/batiment.cpp \
     polyangle.cpp \
     droite.cpp \
     batiment/toit.cpp \
@@ -24,7 +24,22 @@ SOURCES += main.cpp \
     plan/plan.cpp \
     plan/quartier.cpp \
     batiment/rezdechaussee.cpp \
-    batiment/toitplat.cpp
+    batiment/toitplat.cpp \
+    batiment/toitresidentiel.cpp \
+    batiment/etageresidentiel.cpp \
+    batiment/petitetageresidentiel.cpp \
+    batiment/cheminee.cpp \
+    batiment/rezdechausseebusiness.cpp \
+    batiment/rezdechausseeresidentiel.cpp \
+    batiment/etagebusiness.cpp \
+    batiment/petitetagebusiness.cpp \
+    batiment/division.cpp \
+    batiment/jointure.cpp \
+    batiment/etagel.cpp \
+    batiment/divisionl.cpp \
+    batiment/jointurel.cpp \
+    batiment/toitbusiness.cpp \
+    batiment/antenne.cpp
 
 HEADERS += \
     mathutils.h \
@@ -35,7 +50,7 @@ HEADERS += \
     mesh.h \
     generateur.h \
     plan/parcelle.h \
-    batiment.h \
+    batiment/batiment.h \
     polyangle.h \
     droite.h \
     batiment/toit.h \
@@ -44,5 +59,20 @@ HEADERS += \
     plan/plan.h \
     plan/quartier.h \
     batiment/rezdechaussee.h \
-    batiment/toitplat.h
+    batiment/toitplat.h \
+    batiment/toitresidentiel.h \
+    batiment/etageresidentiel.h \
+    batiment/petitetageresidentiel.h \
+    batiment/cheminee.h \
+    batiment/rezdechausseebusiness.h \
+    batiment/rezdechausseeresidentiel.h \
+    batiment/etagebusiness.h \
+    batiment/petitetagebusiness.h \
+    batiment/division.h \
+    batiment/jointure.h \
+    batiment/etagel.h \
+    batiment/divisionl.h \
+    batiment/jointurel.h \
+    batiment/toitbusiness.h \
+    batiment/antenne.h
 
