@@ -155,3 +155,16 @@ Mesh MeshBuilder::generationPolyanglesRelies(const QVector<PolyangleHauteur> &po
 
     return Mesh(geom, topo, normales, "Cylindre");
 }
+
+Mesh MeshBuilder::generationEtage(const Batiment *etage) const
+{
+    Polyangle baseShrinked = etage->getBase().shrink(etage->getBase().plusPetitCote()/10);
+
+    QVector<PolyangleHauteur> polyangles;
+    polyangles << PolyangleHauteur(baseShrinked, etage->getHauteur())
+               << PolyangleHauteur(baseShrinked, etage->getHauteur() + etage->getHauteurEtage()/10)
+               << PolyangleHauteur(etage->getBase(), etage->getHauteur() + etage->getHauteurEtage()/10)
+               << PolyangleHauteur(etage->getBase(), etage->getHauteur() + etage->getHauteurEtage());
+
+    return generationPolyanglesRelies(polyangles);
+}
