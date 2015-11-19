@@ -4,8 +4,13 @@
 
 class Batiment : public Generateur
 {
+private :
+    int hMax;
+    int shrinkMax;
+    float aireMax;
 public:
     Batiment();
+    Batiment(int hM, int sM, float aM);
     virtual Mesh generate()=0;
 };
 

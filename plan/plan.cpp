@@ -1,6 +1,7 @@
 #include "plan.h"
 #include "MeshBuilder.h"
 #include "../batiment/rezdechaussee.h"
+#include "../mathutils.h"
 
 Plan::Plan(const Polyangle& p, Mesh &m) : poly(p), mesh(m)
 {
@@ -15,7 +16,7 @@ void Plan::create(QList<Quartier> &qs, QList<Route> &rs)
 void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
 {
 
-    if(p.area() > 4000){
+    if(p.area() > MathUtils::random(3000,5000)){
 
         int cotes = p.getLesPoints().size();
         Polyangle p1, p2, pr;

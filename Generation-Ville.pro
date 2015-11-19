@@ -15,7 +15,7 @@ SOURCES += main.cpp \
     mesh.cpp \
     generateur.cpp \
     plan/parcelle.cpp \
-    batiment.cpp \
+    batiment/batiment.cpp \
     polyangle.cpp \
     droite.cpp \
     batiment/toit.cpp \
@@ -37,7 +37,7 @@ HEADERS += \
     mesh.h \
     generateur.h \
     plan/parcelle.h \
-    batiment.h \
+    batiment/batiment.h \
     polyangle.h \
     droite.h \
     batiment/toit.h \
