@@ -166,6 +166,25 @@ void Polyangle::checkSens()
 
 }
 
+float Polyangle::plusPetitCote()
+{
+    float dist = 0;
+    int size = lesPoints.size();
+    if(size > 1) {
+        Vector3D prec = lesPoints[0];
+        Vector3D next;
+        for(int i = 1; i <= size; ++i) {
+            next = lesPoints[i%size];
+            float distTmp = prec.distanceToPoint(next);
+            if(dist == 0 || distTmp < dist) {
+                dist = distTmp;
+            }
+            prec = next;
+        }
+    }
+    return dist;
+}
+
 bool Polyangle::split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d, const double largeurDemiRoute) const
 {
     //calcul des deux parallèles a ma droite de coupe

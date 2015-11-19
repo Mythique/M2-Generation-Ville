@@ -13,7 +13,7 @@ private:
 public:
     RezDeChaussee();
     RezDeChaussee(Polyangle p, float h, float hRDC) : base(p), hauteur(h), hauteurRDC(hRDC) {}
-    Mesh generate();
+    Mesh generate() const;
 };
 
 #endif // REZDECHAUSSEE_H

@@ -24,6 +24,8 @@ public:
 
     void checkSens();
 
+    float plusPetitCote();
+
     QVector<Vector2D> getLesPoints() const;
     void setLesPoints(const QVector<Vector2D> &value);
 };

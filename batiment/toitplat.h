@@ -13,7 +13,7 @@ private:
 public:
     ToitPlat();
     ToitPlat(Polyangle p, float h, float hToit, float tailleShrink) : base(p), hauteur(h), hauteurToit(hToit), tailleShrink(tailleShrink){}
-    Mesh generate();
+    Mesh generate() const;
 };
 
 #endif // TOITPLAT_H

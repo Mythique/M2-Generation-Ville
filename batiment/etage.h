@@ -13,7 +13,7 @@ private:
 public:
     Etage();
     Etage(Polyangle p, float h, float hE) : base(p), hauteur(h), hauteurEtage(hE) {}
-    Mesh generate();
+    Mesh generate() const;
 };
 
 #endif // ETAGE_H

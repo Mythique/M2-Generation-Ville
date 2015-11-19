@@ -71,10 +71,11 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
 
             /**
 
-              Début construction quad coupé entre deux sommets opposés
-              Résultat : deux tris
+              Début construction quad coupé entre deux côtés opposés
+              Résultat : deux quad
 
-              */
+             */
+
 
             double l12, l23, l34, l41;
 
@@ -107,6 +108,12 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
                 d = Droite(elu23, elu41-elu23);
             }
 
+            /**
+
+              Début construction quad coupé entre deux sommets opposés
+              Résultat : deux tris
+
+              */
 
             //std::cout << "Par ici : quad" << std::endl;
             /*Vector2D un, deux;

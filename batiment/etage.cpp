@@ -11,7 +11,7 @@ Etage::Etage()
 
 }
 
-Mesh Etage::generate()
+Mesh Etage::generate() const
 {
     Polyangle baseShrinked = base.shrink(base.perimetre()/100);
 

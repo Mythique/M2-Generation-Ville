@@ -5,7 +5,7 @@ ToitBordure::ToitBordure()
 
 }
 
-Mesh ToitBordure::generate()
+Mesh ToitBordure::generate() const
 {
     QList<Vector3D> geom;
     QList<int> topo;

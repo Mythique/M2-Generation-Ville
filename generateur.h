@@ -6,7 +6,7 @@ class Generateur
 {
 public:
     Generateur();
-    virtual Mesh generate()=0;
+    virtual Mesh generate() const =0;
 };
 
 #endif // GENERATEUR_H

@@ -15,18 +15,18 @@ MeshBuilder::MeshBuilder()
 void MeshBuilder::saveMesh(const QString &nom, const Mesh &mesh) const
 {
     QFile file(nom);
-    cout<<"file create"<<endl;
+    //cout<<"file create"<<endl;
     file.open((QIODevice::WriteOnly | QIODevice::Text));
-    cout<<"file open"<<endl;
+    //cout<<"file open"<<endl;
     QTextStream out(&file);
-    cout<<"stream create"<<endl;
+    //cout<<"stream create"<<endl;
     out << "o "<<mesh.getNom()<<"\n";
     for(QList<Vector3D>::const_iterator itVect = mesh.getGeom().begin(); itVect != mesh.getGeom().end(); ++itVect) {
     out << "v " << itVect->x() << " " << itVect->y() << " " << itVect->z() << "\n";
     }
     out << "\n";
 
-    cout<<"vertices ok"<<endl;
+    //cout<<"vertices ok"<<endl;
 
     for(QList<Vector3D>::const_iterator itNorm = mesh.getNorm().begin(); itNorm != mesh.getNorm().end(); ++itNorm) {
     out << "vn " << itNorm->x() << " " << itNorm->y() << " " << itNorm->z() << "\n";
@@ -47,7 +47,7 @@ void MeshBuilder::saveMesh(const QString &nom, const Mesh &mesh) const
     }
 
     file.close();
-    cout<<"file close"<<endl;
+    //cout<<"file close"<<endl;
 }
 
 // Ne prend pas les textures en compte

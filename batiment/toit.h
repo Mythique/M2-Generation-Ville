@@ -13,7 +13,7 @@ private:
 public:
     Toit();
     Toit(Polyangle p, float h, float hToit) : base(p), hauteur(h), hauteurToit(hToit){}
-    Mesh generate();
+    Mesh generate() const;
 };
 
 #endif // TOIT_H

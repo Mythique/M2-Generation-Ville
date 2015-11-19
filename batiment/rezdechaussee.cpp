@@ -9,7 +9,7 @@ RezDeChaussee::RezDeChaussee()
 }
 
 
-Mesh RezDeChaussee::generate()
+Mesh RezDeChaussee::generate() const
 {
     QVector<PolyangleHauteur> polyangles;
     polyangles << PolyangleHauteur(base, hauteur)

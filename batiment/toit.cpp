@@ -5,7 +5,7 @@ Toit::Toit()
 {
 }
 
-Mesh Toit::generate()
+Mesh Toit::generate() const
 {
     QList<Vector3D> geom;
     QList<int> topo;

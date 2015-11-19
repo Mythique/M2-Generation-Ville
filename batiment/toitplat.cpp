@@ -7,7 +7,7 @@ ToitPlat::ToitPlat()
 
 }
 
-Mesh ToitPlat::generate()
+Mesh ToitPlat::generate() const
 {
     Polyangle baseShrinked = base.shrink(tailleShrink);
 
