@@ -163,7 +163,7 @@ Mesh MeshBuilder::generationPolyanglesRelies(const QVector<PolyangleHauteur> &po
 
 Mesh MeshBuilder::generationEtage(const Batiment *etage) const
 {
-    Polyangle baseShrinked = etage->getBase().shrink(etage->getBase().plusPetitCote()/10);
+    Polyangle baseShrinked = etage->getBase().shrink(etage->getBase().plusPetitCote()/20);
 
     QVector<PolyangleHauteur> polyangles;
     polyangles << PolyangleHauteur(baseShrinked, etage->getHauteur())
