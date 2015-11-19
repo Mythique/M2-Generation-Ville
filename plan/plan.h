@@ -11,12 +11,15 @@ private:
     Polyangle poly;
     Mesh meshBatiments;
     Mesh meshRoute;
+    int id;
+    QList<std::pair<Vector2D, int>>* pointsRoute;
 public:
-    Plan(const Polyangle& p, Mesh& mb, Mesh& mr);
+    Plan(const Polyangle& p, Mesh& mb, Mesh& mr, int i, QList<std::pair<Vector2D, int>>* pR);
     void create( QList<Quartier>& qs, QList<Route>& rs);
     void divide(const Polyangle &p, QList<Quartier>& qs, QList<Route> &routes);
     Mesh getMeshBatiment();
     Mesh getMeshRoute();
+    bool getFirstPointBetween(const Vector2D& a, const Vector2D& b, float decalage, int &out);
 
 };
 
