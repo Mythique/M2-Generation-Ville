@@ -26,6 +26,7 @@ double Polyangle::area() const
     double total = 0;
     for(int cpt = 2; cpt < lesPoints.size(); cpt++)
     {
+
         total += MathUtils::aireTriangle(lesPoints.at(0), lesPoints.at(cpt), lesPoints.at(cpt-1));
     }
     return total;
@@ -312,7 +313,7 @@ bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d) const
 
 }
 
-std::pair<int, int> Polyangle::getHighestPair()
+std::pair<int, int> Polyangle::getHighestPair() const
 {
     std::pair<int, int> indices;
     double max = 0;

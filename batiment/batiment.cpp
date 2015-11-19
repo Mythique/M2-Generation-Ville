@@ -2,8 +2,12 @@
 #include "../mathutils.h"
 
 Batiment::Batiment() {}
+Batiment::Batiment(const Polyangle &p, float h, float hE, int hM, int sM, float aM) : base(p), hauteur(h), hauteurEtage(hE),hMax(hM), shrinkMax(sM), aireMin(aM)
+{
 
-Batiment::Batiment(int hM, int sM, float aM) : hMax(hM), shrinkMax(sM), aireMax(aM) {}
+}
+
+Batiment::Batiment(int hM, int sM, float aM) : hMax(hM), shrinkMax(sM), aireMin(aM) {}
 
 Batiment* Batiment::getRandomBatiment(QVector<std::pair<Batiment*,int>> bats)
 {

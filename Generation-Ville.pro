@@ -41,7 +41,8 @@ SOURCES += main.cpp \
     batiment/toitbusiness.cpp \
     batiment/antenne.cpp \
     batiment/toitbordure.cpp \
-    polyanglehauteur.cpp
+    polyanglehauteur.cpp \
+    batiment/doubleetagebusiness.cpp
 
 HEADERS += \
     mathutils.h \
@@ -78,5 +79,6 @@ HEADERS += \
     batiment/toitbusiness.h \
     batiment/antenne.h \
     batiment/toitbordure.h \
-    polyanglehauteur.h
+    polyanglehauteur.h \
+    batiment/doubleetagebusiness.h
 
