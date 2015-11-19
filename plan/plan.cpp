@@ -249,12 +249,10 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
 
 
         if(MathUtils::random(0,1) > influence*1) {
-            std::cout << "Yop" << std::endl;
             Quartier q(p, 2.5, 10, Quartier::TypeQuartier::RESIDENTIEL);
             q.generate(meshBatiments);
         }
         else{
-            std::cout << "Bip" << std::endl;
             Quartier q(p, 2.5, 10, Quartier::TypeQuartier::MARCHAND);
             q.generate(meshBatiments);
         }

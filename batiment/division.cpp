@@ -61,7 +61,7 @@ Mesh Division::generate() const
     QVector<std::pair<Batiment*,int>> bats;
 
     DoubleToit dt(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
-    //EtageResidentiel er(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin);
+
     Division d(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
     Jointure j(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
 
@@ -69,7 +69,6 @@ Mesh Division::generate() const
 
     if(hMax > 1)
     {
-        //bats.append(std::make_pair(&er, 20));
         bats.append(std::make_pair(&d, 20));
         bats.append(std::make_pair(&j, 10));
     }
