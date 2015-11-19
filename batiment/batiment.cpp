@@ -9,7 +9,7 @@ Batiment::Batiment(const Polyangle &p, float h, float hE, int hM, int sM, float 
 
 Batiment::Batiment(int hM, int sM, float aM) : hMax(hM), shrinkMax(sM), aireMin(aM) {}
 
-Batiment* Batiment::getRandomBatiment(QVector<std::pair<Batiment*,int>> bats)
+Batiment* Batiment::getRandomBatiment(const QVector<std::pair<Batiment*,int>>& bats)
 {
     int somme=0;
     for(int i=0;i<bats.size();++i){

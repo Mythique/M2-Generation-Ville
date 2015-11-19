@@ -16,7 +16,7 @@ public:
     Batiment(const Polyangle& p, float h, float hE, int hM, int sM, float aM);
     Batiment(int hM, int sM, float aM);
     virtual Mesh generate() const =0 ;
-    static Batiment* getRandomBatiment(QVector<std::pair<Batiment *, int> > bats);
+    static Batiment* getRandomBatiment(const QVector<std::pair<Batiment *, int>>& bats);
 };
 
 #endif // BATIMENT_H
