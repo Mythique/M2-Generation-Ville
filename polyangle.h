@@ -27,6 +27,7 @@ public:
 
     float plusPetitCote() const;
     Vector2D getCentre() const;
+    Polyangle getIncircle(int definition) const;
 
     QVector<Vector2D> getLesPoints() const;
     void setLesPoints(const QVector<Vector2D> &value);
