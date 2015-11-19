@@ -1,75 +1,28 @@
 #include "plan.h"
 #include "MeshBuilder.h"
 #include "../batiment/rezdechaussee.h"
+#include "../mathutils.h"
 
-Plan::Plan(const Polyangle& p) : poly(p)
+Plan::Plan(const Polyangle& p, Mesh &m) : poly(p), mesh(m)
 {
 
 }
 
 void Plan::create(QList<Quartier> &qs, QList<Route> &rs)
 {
-
     divide(poly, qs, rs);
-
-    Mesh mf;
-
-    for(int i = 0; i < qs.size(); ++i) {
-
-        QList<Vector3D> geom;
-        QList<int> topo;
-        QList<Vector3D> norms;
-        QString nom = "blop";
-        Quartier quart = qs.at(i);
-        const QVector<Vector2D> points = quart.getPoly().getLesPoints();
-
-        /*if(points.size() == 4) {
-
-            geom << points[0] << points[1] << points[2] << points[3];
-            topo << 0 << 0 << 0
-                 << 1 << 0 << 0
-                 << 3 << 0 << 0
-
-                 << 1 << 0 << 0
-                 << 2 << 0 << 0
-                 << 3 << 0 << 0;
-
-            norms << Vector3D(0,0,1);
-            Mesh tmp(geom, topo, norms, nom);
-
-            mf.merge(tmp);
-        }
-        if(points.size() == 3){
-            geom << points[0] << points[1] << points[2];
-            topo << 0 << 0 << 0
-                 << 2 << 0 << 0
-                 << 1 << 0 << 0;
-            norms << Vector3D(0,0,-1);
-            Mesh tmp(geom, topo, norms, nom);
-            mf.merge(tmp);
-        }*/
-
-        RezDeChaussee rdc(quart.getPoly(), 0, 2.5);
-        Mesh mrdc = rdc.generate();
-        mf.merge(mrdc);
-    }
-    MeshBuilder mb;
-    QString str = "C:/Users/etu/Desktop/testTerrain.obj";
-    mb.saveMesh(str, mf);
-
 }
 
-void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes) const
+void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
 {
-    //std::cout << "-------- Poly : divide " << p.area() << std::endl;
-    if(p.area() > 4000){
+
+    if(p.area() > MathUtils::random(3000,5000)){
 
         int cotes = p.getLesPoints().size();
         Polyangle p1, p2, pr;
         Droite d;
 
         if(cotes == 3) {
-            //std::cout << "Par ici : tri " << std::endl;
             double l12, l23, l31;
 
             Vector2D un, deux, trois;
@@ -172,12 +125,18 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
         divide(p1, qs, routes);
         //std::cout << "Before divide p2 : " << p2 << std::endl;
         divide(p2, qs, routes);
-        routes.push_back(pr);
+        //routes.push_back(pr);
+        Route rou(pr);
+        rou.generate(mesh);
     }
     else {
-        Quartier q(p, Quartier::RESIDENTIEL);
-        //std::cout << "Quartier créé : " << p.getLesPoints().size() << std::endl;
-        qs.push_back(q);
+        Quartier q(p, 2.5, 10);
+        q.generate(mesh);
     }
+}
+
+Mesh Plan::getMesh()
+{
+    return mesh;
 }
 

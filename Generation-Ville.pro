@@ -39,7 +39,9 @@ SOURCES += main.cpp \
     batiment/divisionl.cpp \
     batiment/jointurel.cpp \
     batiment/toitbusiness.cpp \
-    batiment/antenne.cpp
+    batiment/antenne.cpp \
+    batiment/toitbordure.cpp \
+    polyanglehauteur.cpp
 
 HEADERS += \
     mathutils.h \
@@ -74,5 +76,7 @@ HEADERS += \
     batiment/divisionl.h \
     batiment/jointurel.h \
     batiment/toitbusiness.h \
-    batiment/antenne.h
+    batiment/antenne.h \
+    batiment/toitbordure.h \
+    polyanglehauteur.h
 

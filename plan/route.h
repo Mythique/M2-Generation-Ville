@@ -3,14 +3,14 @@
 #include "../polyangle.h"
 #include "../generateur.h"
 
-class Route : public Generateur
+class Route
 {
 private:
-    Polyangle quad;
+    Polyangle poly;
 public:
     Route(Polyangle q);
     Polyangle getQuad();
-    virtual Mesh generate();
+    void generate(Mesh &m);
 
 
 };
