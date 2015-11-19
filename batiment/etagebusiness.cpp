@@ -31,7 +31,7 @@ Mesh EtageBusiness::generate() const
     bats << std::make_pair(&tb,5);
     if(hMax>1)
     {
-        bats << std::make_pair(&eb,40);
+        bats << std::make_pair(&eb,50);
         if(shrinkMax > 0 && aireMin < base.area())
         {
             bats << std::make_pair(&peb,20);
@@ -46,7 +46,7 @@ Mesh EtageBusiness::generate() const
             }
             if(del.getBase().area() > aireMin)
             {
-                bats << std::make_pair(&del,5);
+                bats << std::make_pair(&del,10);
             }
         }
     }

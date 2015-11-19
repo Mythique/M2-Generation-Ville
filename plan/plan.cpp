@@ -3,7 +3,7 @@
 #include "../batiment/rezdechaussee.h"
 #include "../mathutils.h"
 
-Plan::Plan(const Polyangle& p, Mesh &mb, Mesh &mr, int i, QList<std::pair<Vector2D, int> > *pR) : poly(p), meshBatiments(mb), meshRoute(mr), id(i), pointsRoute(pR) {}
+Plan::Plan(const Polyangle& p, Mesh &mb, Mesh &mr, int i, QList<std::pair<Vector2D, int> > *pR, const CityCenter &cc) : poly(p), meshBatiments(mb), meshRoute(mr), id(i), pointsRoute(pR), cityCenter(cc) {}
 
 void Plan::create(QList<Quartier> &qs, QList<Route> &rs)
 {
@@ -22,11 +22,11 @@ bool Plan::getFirstPointBetween(const Vector2D& a, const Vector2D& b, float deca
                 Vector2D compNorm = comp.normalized();
 
                 if(tmpNorm.x() == compNorm.x() && compNorm.y() == tmpNorm.y()) {
-                        float dist = (a.distanceToPoint2DSquared(pointsRoute->operator [](i).first))/a.distanceToPoint2DSquared(b);
-                        if(dist > decalage && dist < (1-decalage)){
-                            out = i;
-                            return true;
-                        }
+                    float dist = (a.distanceToPoint2DSquared(pointsRoute->operator [](i).first))/a.distanceToPoint2DSquared(b);
+                    if(dist > decalage && dist < (1-decalage)){
+                        out = i;
+                        return true;
+                    }
                 }
             }
         }
@@ -233,24 +233,28 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
 
         }
 
-        //std::cout << "Poly et droite " << p << std::endl << d.getO() << "," << d.getD() << std::endl;
         p.split(p1, p2, pr, d, 3.5);
-        //std::cout << "Route : " << pr << std::endl;
-
-        //std::cout << "Before divide p1 : " << p1 << std::endl;
         divide(p1, qs, routes);
-        //std::cout << "Before divide p2 : " << p2 << std::endl;
         divide(p2, qs, routes);
-        //routes.push_back(pr);
         Route rou(pr);
         rou.generate(meshRoute);
     }
     else {
-        if(MathUtils::random(0,1) < 0.5) {
+        Vector2D center(0,0);
+        for(int i = 0; i < p.getLesPoints().size(); ++i) {
+            center += p.getLesPoints()[i];
+        }
+        center /= p.getLesPoints().size();
+        float influence = MathUtils::fonctionQuadratiqueInv(0.0, cityCenter.getInfluence(), center.distanceToPoint2D(cityCenter.getCenter()));
+
+
+        if(MathUtils::random(0,1) > influence*1) {
+            std::cout << "Yop" << std::endl;
             Quartier q(p, 2.5, 10, Quartier::TypeQuartier::RESIDENTIEL);
             q.generate(meshBatiments);
         }
         else{
+            std::cout << "Bip" << std::endl;
             Quartier q(p, 2.5, 10, Quartier::TypeQuartier::MARCHAND);
             q.generate(meshBatiments);
         }

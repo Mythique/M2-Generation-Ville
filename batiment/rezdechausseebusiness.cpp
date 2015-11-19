@@ -21,11 +21,11 @@ Mesh RezDeChausseeBusiness::generate() const
         ToitBusiness tb(base, hauteur, hauteurEtage, hMax, shrinkMax, aireMin);
         EtageBusiness eb(base, hauteur, hauteurEtage, hMax-1, shrinkMax, aireMin);
         PetitEtageBusiness peb(base, hauteur, hauteurEtage, hMax-1, shrinkMax-1, aireMin);
-        bats.append(std::make_pair(&tb, 10));
+        bats.append(std::make_pair(&tb, 2));
 
         if(hMax > 1)
         {
-            std::make_pair(&eb, 50);
+            bats.append(std::make_pair(&eb, 50));
             if(shrinkMax > 0)
             {
                 bats.append(std::make_pair(&peb, 20));

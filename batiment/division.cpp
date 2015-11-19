@@ -8,6 +8,7 @@
 #include "doubletoit.h"
 #include "etageresidentiel.h"
 #include "jointure.h"
+#include "../mathutils.h"
 
 
 Division::Division(const Polyangle & p, float h, float hE,int hm,int sm,float am):Batiment(p,h, hE, hm,sm,am)
@@ -19,8 +20,8 @@ Division::Division(const Polyangle & p, float h, float hE,int hm,int sm,float am
     Vector2D p3(points[indices.second]);
     Vector2D p4(points[(indices.second+1)%points.length()]);
 
-    Vector2D p1Prime = (p1+p2)*0.5;
-    Vector2D p2Prime = (p3+p4)*0.5;
+    Vector2D p1Prime = (p1+p2)*MathUtils::random(0.4,0.6);
+    Vector2D p2Prime = (p3+p4)*MathUtils::random(0.4,0.6);
     Droite coupe(p1Prime, p2Prime-p1Prime);
     base.split(poly1, poly2, coupe);
 
@@ -60,7 +61,7 @@ Mesh Division::generate() const
     QVector<std::pair<Batiment*,int>> bats;
 
     DoubleToit dt(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
-    EtageResidentiel er(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin);
+    //EtageResidentiel er(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin);
     Division d(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
     Jointure j(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
 
@@ -68,9 +69,9 @@ Mesh Division::generate() const
 
     if(hMax > 1)
     {
-        bats.append(std::make_pair(&er, 20));
+        //bats.append(std::make_pair(&er, 20));
         bats.append(std::make_pair(&d, 20));
-        bats.append(std::make_pair(&j, 40));
+        bats.append(std::make_pair(&j, 10));
     }
 
 

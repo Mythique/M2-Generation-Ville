@@ -4,6 +4,7 @@
 #include "../polyangle.h"
 #include "route.h"
 #include "quartier.h"
+#include "citycenter.h"
 
 class Plan
 {
@@ -13,8 +14,9 @@ private:
     Mesh meshRoute;
     int id;
     QList<std::pair<Vector2D, int>>* pointsRoute;
+    CityCenter cityCenter;
 public:
-    Plan(const Polyangle& p, Mesh& mb, Mesh& mr, int i, QList<std::pair<Vector2D, int>>* pR);
+    Plan(const Polyangle& p, Mesh& mb, Mesh& mr, int i, QList<std::pair<Vector2D, int>>* pR, const CityCenter& cc);
     void create( QList<Quartier>& qs, QList<Route>& rs);
     void divide(const Polyangle &p, QList<Quartier>& qs, QList<Route> &routes);
     Mesh getMeshBatiment();

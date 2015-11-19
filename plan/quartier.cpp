@@ -48,7 +48,7 @@ Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment
         }
         else if(type==MARCHAND){
             parcelles.append(Parcelle(Polyangle(poly), Parcelle::BUSINESS));
-            parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::GRATTECIEL));
+            parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::BUSINESS));
         }
 
 
