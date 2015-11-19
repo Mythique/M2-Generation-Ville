@@ -52,15 +52,17 @@ void Division::setPoly2(const Polyangle &value)
 Mesh Division::generate() const
 {
     MeshBuilder mb;
-    Mesh etageMesh = mb.generationEtage(poly1);
-    etageMesh.merge(mb.generationEtage(poly2));
+    EtageResidentiel er1(poly1, hauteur, hauteurEtage, hMax, shrinkMax, aireMin);
+    EtageResidentiel er2(poly2, hauteur, hauteurEtage, hMax, shrinkMax, aireMin);
+    Mesh etageMesh = mb.generationEtage(&er1);
+    etageMesh.merge(mb.generationEtage(&er2));
 
     QVector<std::pair<Batiment*,int>> bats;
 
-    DoubleToit dt(base, hauteur, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
-    EtageResidentiel er(base, hauteur, hauteurEtage, hMax-1, shrinkMax, aireMin);
-    Division d(base, hauteur, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
-    Jointure j(base, hauteur, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
+    DoubleToit dt(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
+    EtageResidentiel er(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin);
+    Division d(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
+    Jointure j(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
 
     bats.append(std::make_pair(&dt, 10));
 
@@ -68,7 +70,7 @@ Mesh Division::generate() const
     {
         bats.append(std::make_pair(&er, 20));
         bats.append(std::make_pair(&d, 20));
-        bats.append(std::make_pair(&j, 20));
+        bats.append(std::make_pair(&j, 40));
     }
 
 
