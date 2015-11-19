@@ -26,6 +26,7 @@ public:
     std::pair<int, int> getHighestPair() const;
 
     float plusPetitCote() const;
+    Vector2D getCentre() const;
 
     QVector<Vector2D> getLesPoints() const;
     void setLesPoints(const QVector<Vector2D> &value);

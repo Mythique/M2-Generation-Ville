@@ -344,6 +344,16 @@ std::pair<int, int> Polyangle::getHighestPair() const
     return indices;
 }
 
+Vector2D Polyangle::getCentre() const
+{
+    Vector2D tot;
+    for(int i = 0; i < lesPoints.size(); i++)
+    {
+        tot += lesPoints[i];
+    }
+    return tot/lesPoints.size();
+}
+
 QVector<Vector2D> Polyangle::getLesPoints() const
 {
     return lesPoints;

@@ -9,6 +9,10 @@ Jointure::Jointure(const Polyangle & p, float h, float hE,int hm,int sm,float am
 
 Mesh generate() const
 {
+
+
+
+
     MeshBuilder mb;
     Mesh etageMesh = mb.generationEtage(poly1);
     etageMesh.merge(mb.generationEtage(poly2));
