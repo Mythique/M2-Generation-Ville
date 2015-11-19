@@ -3,6 +3,8 @@
 #include <QTextStream>
 #include <iostream>
 #include <cmath>
+#include <iomanip>
+#include <fstream>
 #ifndef fmin
 #define fmin(a,b) a<b?a:b
 #endif
@@ -12,21 +14,18 @@ MeshBuilder::MeshBuilder()
 {
 }
 
-void MeshBuilder::saveMesh(const QString &nom, const Mesh &mesh) const
+void MeshBuilder::saveMesh(const string &nom, const Mesh &mesh) const
 {
-    QFile file(nom);
-    //cout<<"file create"<<endl;
-    file.open((QIODevice::WriteOnly | QIODevice::Text));
-    //cout<<"file open"<<endl;
-    QTextStream out(&file);
-    //cout<<"stream create"<<endl;
-    out << "o "<<mesh.getNom()<<"\n";
+    ofstream out;
+    out.open(nom);
+
+    out << fixed << setprecision(2);
+    out << "o "<<mesh.getNom().toStdString()<<"\n";
     for(QList<Vector3D>::const_iterator itVect = mesh.getGeom().begin(); itVect != mesh.getGeom().end(); ++itVect) {
     out << "v " << itVect->x() << " " << itVect->y() << " " << itVect->z() << "\n";
     }
     out << "\n";
 
-    //cout<<"vertices ok"<<endl;
 
     for(QList<Vector3D>::const_iterator itNorm = mesh.getNorm().begin(); itNorm != mesh.getNorm().end(); ++itNorm) {
     out << "vn " << itNorm->x() << " " << itNorm->y() << " " << itNorm->z() << "\n";
@@ -46,8 +45,7 @@ void MeshBuilder::saveMesh(const QString &nom, const Mesh &mesh) const
     out << "\n";
     }
 
-    file.close();
-    //cout<<"file close"<<endl;
+    out.close();
 }
 
 // Ne prend pas les textures en compte

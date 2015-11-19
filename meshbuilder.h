@@ -28,7 +28,7 @@ public:
      * @param[in] nom The file location to save in
      * @param[in] mesh The mesh to save
      */
-    void saveMesh(const QString& nom, const Mesh &mesh) const;
+    void saveMesh(const std::string &nom, const Mesh &mesh) const;
 
     Mesh generationPolyanglesRelies(const QVector<PolyangleHauteur> & polyangles) const;
 

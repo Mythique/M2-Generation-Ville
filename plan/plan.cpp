@@ -3,10 +3,7 @@
 #include "../batiment/rezdechaussee.h"
 #include "../mathutils.h"
 
-Plan::Plan(const Polyangle& p, Mesh &m) : poly(p), mesh(m)
-{
-
-}
+Plan::Plan(const Polyangle& p, Mesh &mb, Mesh &mr) : poly(p), meshBatiments(mb), meshRoute(mr) {}
 
 void Plan::create(QList<Quartier> &qs, QList<Route> &rs)
 {
@@ -134,16 +131,21 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
         divide(p2, qs, routes);
         //routes.push_back(pr);
         Route rou(pr);
-        rou.generate(mesh);
+        rou.generate(meshRoute);
     }
     else {
         Quartier q(p, 2.5, 10);
-        q.generate(mesh);
+        q.generate(meshBatiments);
     }
 }
 
-Mesh Plan::getMesh()
+Mesh Plan::getMeshRoute()
 {
-    return mesh;
+    return meshRoute;
+}
+
+Mesh Plan::getMeshBatiment()
+{
+    return meshBatiments;
 }
 
