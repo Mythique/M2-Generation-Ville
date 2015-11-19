@@ -12,8 +12,12 @@ Mesh RezDeChausseeBusiness::generate() const
 
     if(base.area() > aireMin)
     {
+        QVector<PolyangleHauteur> polyangles;
+        polyangles << PolyangleHauteur(base, hauteur)
+                   << PolyangleHauteur(base, hauteur + hauteurEtage);
+
         MeshBuilder mb;
-        Mesh rdcMesh = mb.generationEtage(this);
+        Mesh rdcMesh = mb.generationPolyanglesRelies(polyangles);
         QVector<std::pair<Batiment*,int>> bats;
 
         ToitBusiness tb(base, hauteur, hauteurEtage, hMax, shrinkMax, aireMin);

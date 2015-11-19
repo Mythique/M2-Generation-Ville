@@ -9,8 +9,12 @@ Mesh RezDeChausseeResidentiel::generate() const
     if(aireMin>base.area())
         return Mesh();
 
+    QVector<PolyangleHauteur> polyangles;
+    polyangles << PolyangleHauteur(base, hauteur)
+               << PolyangleHauteur(base, hauteur + hauteurEtage);
+
     MeshBuilder mb;
-    Mesh rdcMesh = mb.generationEtage(this);
+    Mesh rdcMesh = mb.generationPolyanglesRelies(polyangles);
 
     QVector<std::pair<Batiment*,int>> bats;
 
