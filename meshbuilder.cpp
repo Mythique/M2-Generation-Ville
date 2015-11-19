@@ -3,6 +3,8 @@
 #include <QTextStream>
 #include <iostream>
 #include <cmath>
+#include <iomanip>
+#include <fstream>
 #ifndef fmin
 #define fmin(a,b) a<b?a:b
 #endif
@@ -12,21 +14,18 @@ MeshBuilder::MeshBuilder()
 {
 }
 
-void MeshBuilder::saveMesh(const QString &nom, const Mesh &mesh) const
+void MeshBuilder::saveMesh(const string &nom, const Mesh &mesh) const
 {
-    QFile file(nom);
-    //cout<<"file create"<<endl;
-    file.open((QIODevice::WriteOnly | QIODevice::Text));
-    //cout<<"file open"<<endl;
-    QTextStream out(&file);
-    //cout<<"stream create"<<endl;
-    out << "o "<<mesh.getNom()<<"\n";
+    ofstream out;
+    out.open(nom);
+
+    out << fixed << setprecision(2);
+    out << "o "<<mesh.getNom().toStdString()<<"\n";
     for(QList<Vector3D>::const_iterator itVect = mesh.getGeom().begin(); itVect != mesh.getGeom().end(); ++itVect) {
     out << "v " << itVect->x() << " " << itVect->y() << " " << itVect->z() << "\n";
     }
     out << "\n";
 
-    //cout<<"vertices ok"<<endl;
 
     for(QList<Vector3D>::const_iterator itNorm = mesh.getNorm().begin(); itNorm != mesh.getNorm().end(); ++itNorm) {
     out << "vn " << itNorm->x() << " " << itNorm->y() << " " << itNorm->z() << "\n";
@@ -46,8 +45,7 @@ void MeshBuilder::saveMesh(const QString &nom, const Mesh &mesh) const
     out << "\n";
     }
 
-    file.close();
-    //cout<<"file close"<<endl;
+    out.close();
 }
 
 // Ne prend pas les textures en compte
@@ -113,30 +111,34 @@ Mesh MeshBuilder::generationPolyanglesRelies(const QVector<PolyangleHauteur> &po
         }
     }
 
+    int cptNormales = 0;
+
     // Topologie
     for (int i = 0; i < nbPoints*nbPoly; i++)
     {
         if ((i+1)%nbPoly != 0)
         {
             int p1, p2, p3, p4;
-            Vector3D n(1,0,0);
             p1 = i;
             p2 = (i + nbPoly) % (nbPoly*nbPoints);
             p3 = i + 1;
             p4 = p2 + 1;
 
-            normales.push_back(n);
-            normales.push_back(n);
+            Vector3D n = (geom[p3]-geom[p2])^(geom[p1]-geom[p2]);
+            n.normalize();
+            normales << n;
 
             // indice point, indice texture, indice normale
             // Premier triangle
-            topo << p1 << 0 << i
-                 << p2 << 0 << i
-                 << p3 << 0 << i;
+            topo << p1 << 0 << cptNormales
+                 << p2 << 0 << cptNormales
+                 << p3 << 0 << cptNormales;
             // Second triangle
-            topo << p3 << 0 << i
-                 << p2 << 0 << i
-                 << p4 << 0 << i;
+            topo << p3 << 0 << cptNormales
+                 << p2 << 0 << cptNormales
+                 << p4 << 0 << cptNormales;
+            cptNormales++;
+
         }
     }
 
@@ -148,12 +150,15 @@ Mesh MeshBuilder::generationPolyanglesRelies(const QVector<PolyangleHauteur> &po
         p2 = nbPoly-1 + i*nbPoly;
         p3 = nbPoly-1 + (i+1)*nbPoly;
 
-        topo << p1 << 0 << i
-             << p2 << 0 << i
-             << p3 << 0 << i;
+        Vector3D n(0,0,1);
+        normales << n;
+        topo << p1 << 0 << cptNormales
+             << p2 << 0 << cptNormales
+             << p3 << 0 << cptNormales;
+        cptNormales++;
     }
 
-    return Mesh(geom, topo, normales, "Cylindre");
+    return Mesh(geom, topo, normales, "PolyanglesRelies");
 }
 
 Mesh MeshBuilder::generationEtage(const Batiment *etage) const

@@ -9,12 +9,14 @@ class Plan
 {
 private:
     Polyangle poly;
-    Mesh mesh;
+    Mesh meshBatiments;
+    Mesh meshRoute;
 public:
-    Plan(const Polyangle& p, Mesh& m);
+    Plan(const Polyangle& p, Mesh& mb, Mesh& mr);
     void create( QList<Quartier>& qs, QList<Route>& rs);
     void divide(const Polyangle &p, QList<Quartier>& qs, QList<Route> &routes);
-    Mesh getMesh();
+    Mesh getMeshBatiment();
+    Mesh getMeshRoute();
 
 };
 
