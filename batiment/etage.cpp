@@ -13,7 +13,7 @@ Etage::Etage()
 
 Mesh Etage::generate() const
 {
-    Polyangle baseShrinked = base.shrink(base.perimetre()/100);
+    Polyangle baseShrinked = base.shrink(base.plusPetitCote()/3);
 
     QVector<PolyangleHauteur> polyangles;
     polyangles << PolyangleHauteur(baseShrinked, hauteur)
@@ -38,7 +38,7 @@ Mesh Etage::generate() const
         else
         {
             //std::cout << "Toit Plat" << std::endl;
-            ToitPlat toitPlat = ToitPlat(base, hauteur + hauteurEtage, hauteurEtage / 4, base.perimetre()/20);
+            ToitPlat toitPlat = ToitPlat(base, hauteur + hauteurEtage, hauteurEtage / 4);
             etageMesh.merge(toitPlat.generate());
             return etageMesh;
         }

@@ -9,7 +9,7 @@ ToitPlat::ToitPlat()
 
 Mesh ToitPlat::generate() const
 {
-    Polyangle baseShrinked = base.shrink(tailleShrink);
+    Polyangle baseShrinked = base.shrink(base.plusPetitCote()/3);
 
     QVector<PolyangleHauteur> polyangles;
     polyangles << PolyangleHauteur(base, hauteur)

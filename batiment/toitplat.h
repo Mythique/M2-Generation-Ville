@@ -9,10 +9,10 @@ class ToitPlat
 {
 private:
     Polyangle base;
-    float hauteur, hauteurToit, tailleShrink;
+    float hauteur, hauteurToit;
 public:
     ToitPlat();
-    ToitPlat(Polyangle p, float h, float hToit, float tailleShrink) : base(p), hauteur(h), hauteurToit(hToit), tailleShrink(tailleShrink){}
+    ToitPlat(Polyangle p, float h, float hToit) : base(p), hauteur(h), hauteurToit(hToit){}
     Mesh generate() const;
 };
 

@@ -9,7 +9,7 @@ ToitBordure::ToitBordure()
 
 Mesh ToitBordure::generate() const
 {
-    Polyangle baseShrinked = base.shrink(base.perimetre()/100);
+    Polyangle baseShrinked = base.shrink(base.plusPetitCote()/3);
 
     QVector<PolyangleHauteur> polyangles;
     polyangles << PolyangleHauteur(base, hauteur)
