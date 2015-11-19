@@ -312,6 +312,37 @@ bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d) const
 
 }
 
+std::pair<int, int> Polyangle::getHighestPair()
+{
+    std::pair<int, int> indices;
+    double max = 0;
+    if(lesPoints.length()> 3)
+    {
+        for(int i = 0; i < (lesPoints.length()+1)/2; i++)
+        {
+            double longueur = lesPoints[i].distanceToPoint2D(lesPoints[(i+1)%lesPoints.size()]) + lesPoints[(i+2)%lesPoints.size()].distanceToPoint2D(lesPoints[(i+3)%lesPoints.size()]);
+            if(longueur > max)
+            {
+                indices = std::make_pair(i, (i+2)%lesPoints.size());
+                max = longueur;
+            }
+        }
+    }
+    else
+    {
+        for(int i = 0; i < lesPoints.length(); i++)
+        {
+            double longueur = lesPoints[i].distanceToPoint2D(lesPoints[(i+1)%lesPoints.size()]) + lesPoints[(i+1)%lesPoints.size()].distanceToPoint2D(lesPoints[(i+2)%lesPoints.size()]);
+            if(longueur > max)
+            {
+                indices = std::make_pair(i, (i+1)%lesPoints.size());
+                max = longueur;
+            }
+        }
+    }
+    return indices;
+}
+
 QVector<Vector2D> Polyangle::getLesPoints() const
 {
     return lesPoints;

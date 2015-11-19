@@ -23,6 +23,7 @@ public:
     bool split(Polyangle & p1, Polyangle & p2, const Droite & d) const;
 
     void checkSens();
+    std::pair<int, int> getHighestPair();
 
     float plusPetitCote();
 
