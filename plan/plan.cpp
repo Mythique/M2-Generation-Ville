@@ -21,7 +21,7 @@ bool Plan::getFirstPointBetween(const Vector2D& a, const Vector2D& b, float deca
                 Vector2D tmpNorm = tmp.normalized();
                 Vector2D compNorm = comp.normalized();
 
-                if(tmpNorm.x() == compNorm.x() && compNorm.y() == tmpNorm.y()) {
+                if(std::abs(tmpNorm.x() - compNorm.x()) < 0.01 && std::abs(compNorm.y() - tmpNorm.y()) < 0.01) {
                     float dist = (a.distanceToPoint2DSquared(pointsRoute->operator [](i).first))/a.distanceToPoint2DSquared(b);
                     if(dist > decalage && dist < (1-decalage)){
                         out = i;
@@ -35,8 +35,17 @@ bool Plan::getFirstPointBetween(const Vector2D& a, const Vector2D& b, float deca
 
 void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
 {
+    Vector2D center(0,0);
+    for(int i = 0; i < p.getLesPoints().size(); ++i) {
+        center += p.getLesPoints()[i];
+    }
+    center /= p.getLesPoints().size();
+    float influence = MathUtils::fonctionQuadratiqueInv(0.0, cityCenter.getInfluence(), center.distanceToPoint2D(cityCenter.getCenter()));
+    float concentration = 1.2-(influence*0.5);
 
-    if(p.area() > MathUtils::random(3000,5000)){
+    float randArea = MathUtils::random(5000*concentration, 6500*concentration);
+
+    if(p.area() > randArea){
 
         int cotes = p.getLesPoints().size();
         Polyangle p1, p2, pr;
@@ -240,28 +249,35 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
         rou.generate(meshRoute);
     }
     else {
-        Vector2D center(0,0);
-        for(int i = 0; i < p.getLesPoints().size(); ++i) {
-            center += p.getLesPoints()[i];
-        }
-        center /= p.getLesPoints().size();
-        float influence = MathUtils::fonctionQuadratiqueInv(0.0, cityCenter.getInfluence(), center.distanceToPoint2D(cityCenter.getCenter()));
 
-
-        if(MathUtils::random(0,1) > influence*1) {
-            Quartier q(p, 2.5, 10, Quartier::TypeQuartier::RESIDENTIEL);
-            q.generate(meshBatiments);
+        float rand = MathUtils::random(0,1);
+        if(rand < influence*0.2) {
+            Quartier q(p, 2.5, 15*concentration, Quartier::TypeQuartier::GRATTECIEL);
+            q.generate(meshBatiments, cityCenter);
         }
-        else{
-            Quartier q(p, 2.5, 10, Quartier::TypeQuartier::MARCHAND);
-            q.generate(meshBatiments);
+        else if(rand < influence*0.5) {
+            Quartier q(p, 2.5, 15*concentration, Quartier::TypeQuartier::MARCHAND);
+            q.generate(meshBatiments, cityCenter);
         }
+        else /*if (influence == 0 )*/ {
+            Quartier q(p, 2.5, 15*concentration, Quartier::TypeQuartier::RESIDENTIEL);
+            q.generate(meshBatiments, cityCenter);
+        }
+        /*else {
+            Quartier q(p, 0, 15*concentration, Quartier::TypeQuartier::CHAMPS);
+            q.generate(meshBatiments, cityCenter);
+        }*/
     }
 }
 
 Mesh Plan::getMeshRoute()
 {
     return meshRoute;
+}
+
+CityCenter Plan::getCityCenter()
+{
+    return cityCenter;
 }
 
 Mesh Plan::getMeshBatiment()

@@ -18,7 +18,6 @@ Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment
         Vector2D bPrime = interieur.getLesPoints()[cpt];
         Vector2D cPrime = interieur.getLesPoints()[(cpt+1)%length];
 
-
         Vector2D ba = a-b;
         Vector2D bc = c-b;
         Vector2D bbPrime = bPrime -b;
@@ -42,29 +41,35 @@ Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment
         poly<<b<< p2<< bPrime<< p1;
         polyReste<<p2<<p3<<cPrime<<bPrime;
 
-        if(type==RESIDENTIEL){
+        switch(type)
+        {
+        case RESIDENTIEL :
             parcelles.append(Parcelle(Polyangle(poly), Parcelle::HABITATION));
             parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::HABITATION));
-        }
-        else if(type==MARCHAND){
+            break;
+        case MARCHAND :
             parcelles.append(Parcelle(Polyangle(poly), Parcelle::BUSINESS));
             parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::BUSINESS));
+            break;
+        case GRATTECIEL :
+            parcelles.append(Parcelle(Polyangle(poly), Parcelle::BUSINESS));
+            parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::GRATTECIEL));
+            break;
+        default:
+            parcelles.append(Parcelle(Polyangle(poly), Parcelle::JARDIN));
+            parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::JARDIN));
         }
-
-
     }
     parcelles.append(Parcelle(interieur, Parcelle::JARDIN));
-
-
 }
 
 
 
-void Quartier::generate(Mesh &mesh)
+void Quartier::generate(Mesh &mesh,const CityCenter& cc)
 {
     for(int i = 0; i < parcelles.length(); i++)
     {
-        parcelles[i].generate(mesh);
+            parcelles[i].generate(mesh, cc);
     }
 
     MeshBuilder mb;

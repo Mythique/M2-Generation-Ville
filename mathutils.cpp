@@ -13,7 +13,7 @@ double MathUtils::fonctionQuadratique(double min, double max, double x) {
 }
 
 double MathUtils::fonctionQuadratiqueInv(double min, double max, double x) {
-    return 1.0-fonctionQuadratique(max,min,x);
+    return 1.0-fonctionQuadratique(min,max,x);
 }
 
 double MathUtils::interpolate(double before_p0, double p0, double p1, double after_p1, double t)

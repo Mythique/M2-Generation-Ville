@@ -28,22 +28,22 @@ Mesh EtageBusiness::generate() const
     EtageL el(base,hauteur+hauteurEtage,hauteurEtage,hMax-1,shrinkMax-1,aireMin);
     DivisionL del(base,hauteur+hauteurEtage,hauteurEtage,hMax-1,shrinkMax-1,aireMin);
 
-    bats << std::make_pair(&tb,0);
+    bats << std::make_pair(&tb,2);
     if(hMax>1)
     {
-        bats << std::make_pair(&eb,50);
+        bats << std::make_pair(&eb,70);
 
-        if(shrinkMax > 0 && aireMin < base.area())
+        if(shrinkMax > 0 && aireMin < base.area() && base.plusPetitCote() > 5)
         {
-            bats << std::make_pair(&peb,0);
+            bats << std::make_pair(&peb, 10);
             if(erer.getPoly1().area() > aireMin && erer.getPoly2().area() > aireMin)
             {
-                bats << std::make_pair(&erer,0);
-                bats << std::make_pair(&deb,0);
+                bats << std::make_pair(&erer,5);
+                bats << std::make_pair(&deb,20);
             }
             if(el.getBase().area() > aireMin)
             {
-                bats << std::make_pair(&el,80);
+                bats << std::make_pair(&el,5);
             }
             if(del.getBase().area() > aireMin)
             {

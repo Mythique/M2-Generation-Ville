@@ -21,6 +21,7 @@ public:
     void divide(const Polyangle &p, QList<Quartier>& qs, QList<Route> &routes);
     Mesh getMeshBatiment();
     Mesh getMeshRoute();
+    CityCenter getCityCenter();
     bool getFirstPointBetween(const Vector2D& a, const Vector2D& b, float decalage, int &out);
 
 };

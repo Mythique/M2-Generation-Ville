@@ -3,6 +3,7 @@
 #include "../generateur.h"
 #include "../polyangle.h"
 #include "../mesh.h"
+#include "citycenter.h"
 
 class Parcelle //: public Generateur
 {
@@ -15,7 +16,8 @@ private:
 public:
 
     Parcelle(Polyangle polya, TypeConstruction t) : poly(polya), type(t){}
-    void generate(Mesh &m);
+    void generate(Mesh &m, const CityCenter &cc);
+    Polyangle getPoly();
 };
 
 #endif // PARCELLE_H
