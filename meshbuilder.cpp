@@ -197,6 +197,46 @@ Mesh MeshBuilder::generationCone(const PolyangleHauteur &poly, const float haute
              << p2 << 0 << i
              << p3 << 0 << i;
     }
+
+    return Mesh(geom, topo, normales, "cone");
+}
+
+Mesh MeshBuilder::generationCone(const Vector3D &centre, const float hauteurCone, const int definition, const float rayon)
+{
+    float pi = 3.14159265358979323846;
+
+    QList<Vector3D> geom;
+    QList<int> topo;
+    QList<Vector3D> normales;
+    Vector3D pointe = Vector3D(centre.x(), centre.y(), centre.z() + hauteurCone);
+    for (int i=0; i < definition; i++)
+    {
+        float x = cos(2*pi*i/definition)*rayon;
+        float y = sin(2*pi*i/definition)*rayon;
+        geom << centre + Vector3D(x, y, 0);
+    }
+    geom << pointe;
+
+    for (int i = 0; i < definition; i++)
+    {
+        int p1, p2, p3;
+        p1 = definition;
+        p2 = i;
+        p3 = (i+1)%definition;
+
+        Vector3D n = (geom[p1]-geom[p3])^(geom[p2]-geom[p3]);
+        n.normalize();
+
+        normales.push_back(n);
+
+        // indice point, indice texture, indice normale
+        topo << p1 << 0 << i
+             << p2 << 0 << i
+             << p3 << 0 << i;
+    }
+
+    return Mesh(geom, topo, normales, "cone");
+
 }
 
 Mesh MeshBuilder::generationEtage(const Batiment *etage) const

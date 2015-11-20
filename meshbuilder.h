@@ -33,6 +33,7 @@ public:
 
     Mesh generationPolyanglesRelies(const QVector<PolyangleHauteur> & polyangles) const;
     Mesh generationCone(const PolyangleHauteur &poly, const float hauteurCone);
+    Mesh generationCone(const Vector3D &centre, const float hauteurCone, const int definition, const float rayon);
     Mesh generationEtage(const Batiment* etage) const;
 
     /**
