@@ -32,13 +32,11 @@ float Batiment::getHauteurEtage() const
 }
 
 Batiment::Batiment() {}
+
 Batiment::Batiment(const Polyangle &p, float h, float hE, int hM, int sM, float aM) : base(p), hauteur(h), hauteurEtage(hE),hMax(hM), shrinkMax(sM), aireMin(aM)
 {
 
 }
-
-Batiment::Batiment(int hM, int sM, float aM) : hMax(hM), shrinkMax(sM), aireMin(aM) {}
-
 
 Batiment* Batiment::getRandomBatiment(const QVector<std::pair<Batiment*,int>>& bats)
 {

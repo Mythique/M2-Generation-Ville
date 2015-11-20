@@ -6,15 +6,15 @@
 class Batiment : public Generateur
 {
 protected :
+    Polyangle base;
+    float hauteur;
+    float hauteurEtage;
     int hMax;
     int shrinkMax;
     float aireMin;
-    Polyangle base;
-    float hauteur, hauteurEtage;
 public:
     Batiment();
     Batiment(const Polyangle& p, float h, float hE, int hM, int sM, float aM);
-    Batiment(int hM, int sM, float aM);
     virtual Mesh generate() const =0 ;
     static Batiment* getRandomBatiment(const QVector<std::pair<Batiment *, int>>& bats);
     int getHMax() const;
