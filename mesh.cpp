@@ -4,12 +4,12 @@ Mesh::Mesh()
 {
 }
 
-Mesh::Mesh(const Mesh &m):geom(m.geom),norm(m.norm),topo(m.topo),nom(m.nom)
+Mesh::Mesh(const Mesh &m): nom(m.nom), geom(m.geom), topo(m.topo), norm(m.norm)
 {
 
 }
 
-Mesh::Mesh(const QList<Vector3D> &v, const QList<int> &t, const QList<Vector3D> &n, const QString &no):geom(v),topo(t),norm(n),nom(no)
+Mesh::Mesh(const QList<Vector3D> &v, const QList<int> &t, const QList<Vector3D> &n, const QString &no): nom(no), geom(v), topo(t), norm(n)
 {
 
 }
