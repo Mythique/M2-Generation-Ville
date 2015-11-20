@@ -14,7 +14,6 @@ public:
     ToitBordure();
     ToitBordure(Polyangle p, float h, float hToit) : base(p), hauteur(h), hauteurToit(hToit){}
     Mesh generate() const;
-
 };
 
 #endif // TOITBORDURE_H

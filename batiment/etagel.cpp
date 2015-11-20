@@ -89,7 +89,6 @@ Mesh EtageL::generate() const
         bats.append(std::make_pair(&l, 20));
         if(dl.getPoly1().area() > aireMin && dl.getPoly2().area() > aireMin && dl.getPoly3().area() > aireMin)
         {
-            std::cout << "append divl" << std::endl;
             bats.append(std::make_pair(&dl, 5));
         }
         partie1.merge(Batiment::getRandomBatiment(bats)->generate());
