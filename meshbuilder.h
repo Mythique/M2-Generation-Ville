@@ -32,6 +32,7 @@ public:
     void saveMesh(const std::string &nom, const Mesh &mesh) const;
 
     Mesh generationPolyanglesRelies(const QVector<PolyangleHauteur> & polyangles) const;
+    Mesh generationCone(const PolyangleHauteur &poly, const float hauteurCone);
     Mesh generationEtage(const Batiment* etage) const;
 
     /**

@@ -161,6 +161,44 @@ Mesh MeshBuilder::generationPolyanglesRelies(const QVector<PolyangleHauteur> &po
     return Mesh(geom, topo, normales, "PolyanglesRelies");
 }
 
+Mesh MeshBuilder::generationCone(const PolyangleHauteur &poly, const float hauteurCone)
+{
+    QList<Vector3D> geom;
+    QList<int> topo;
+    QList<Vector3D> normales;
+
+    int nbPoints = poly.getPolyangle().getLesPoints().size();
+
+    // Géométrie
+    Vector3D e(0,0,0);
+    for (int i = 0; i < nbPoints; i++)
+    {
+        e += Vector3D(poly.getPolyangle().getLesPoints()[i], poly.getHauteur() + hauteurCone);
+        geom << Vector3D(poly.getPolyangle().getLesPoints()[i], poly.getHauteur());
+    }
+    e /= nbPoints;
+    geom << e;
+
+    // Topologie
+    for (int i = 0; i < nbPoints; i++)
+    {
+        int p1, p2, p3;
+        p1 = nbPoints;
+        p2 = i;
+        p3 = (i+1)%nbPoints;
+
+        Vector3D n = (geom[p1]-geom[p3])^(geom[p2]-geom[p3]);
+        n.normalize();
+
+        normales.push_back(n);
+
+        // indice point, indice texture, indice normale
+        topo << p1 << 0 << i
+             << p2 << 0 << i
+             << p3 << 0 << i;
+    }
+}
+
 Mesh MeshBuilder::generationEtage(const Batiment *etage) const
 {
     Polyangle baseShrinked = etage->getBase().shrink(etage->getBase().plusPetitCote()/20);
