@@ -45,18 +45,12 @@ Batiment* Batiment::getRandomBatiment(const QVector<std::pair<Batiment*,int>>& b
         somme+=bats.at(i).second;
     }
 
-    if(somme==0){
-        if(bats.size()!=0){
-            return bats.at(0).first;
-        }
-        return nullptr_t;
-    }
     float rand=MathUtils::random(0,somme);
 
     somme =0;
     for(int i=0;i<bats.size();++i){
         somme+=bats.at(i).second;
-        if(rand<somme)
+        if(rand<=somme)
             return bats.at(i).first;
     }
     return nullptr;
