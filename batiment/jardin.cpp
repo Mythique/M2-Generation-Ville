@@ -30,6 +30,5 @@ Mesh Jardin::generate() const
         reduc = reduc.shrink(randShrink);
         ++shrinks;
     }
-    std::cout << "shrinks : " << shrinks << " / " << nb << std::endl;
     return parc;
 }

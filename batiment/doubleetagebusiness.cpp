@@ -20,8 +20,9 @@ DoubleEtageBusiness::DoubleEtageBusiness(const Polyangle & p, float h, float hE,
     Vector2D p1Prime = (p1+p2)*0.5;
     Vector2D p2Prime = (p3+p4)*0.5;
     Droite coupe(p1Prime, p2Prime-p1Prime);
-    Polyangle r;
-    base.split(poly1,r, poly2, coupe,poly1.plusPetitCote()/10);
+    //Polyangle r;
+    base.split(poly1,poly2, coupe);
+    //base.split(poly1,poly2, r, coupe,base.plusPetitCote()/10);
 
     poly1 = poly1.shrink(poly1.plusPetitCote()/10);
     poly2 = poly2.shrink(poly2.plusPetitCote()/10);
