@@ -13,13 +13,13 @@ void Parcelle::generate(Mesh &m,const CityCenter& cc)
     }
     center /= poly.getLesPoints().size();
 
-    float influence = 0.2+ (MathUtils::fonctionQuadratiqueInv(0.0, cc.getInfluence(), center.distanceToPoint2D(cc.getCenter()))*0.8);
+    float influence = 0.5+ (MathUtils::fonctionQuadratiqueInv(0.0, cc.getInfluence(), center.distanceToPoint2D(cc.getCenter()))*0.5);
 
     Batiment* bat = nullptr;
-    RezDeChausseeBusiness rdcb(poly,0,3,20*influence,4,20);
+    RezDeChausseeBusiness rdcb(poly,0,3,40*influence,4,20);
     RezDeChausseeResidentiel rdcr(poly,0,3,7*influence,2,20);
     Polyangle circle = poly.getIncircle((int) MathUtils::random(4,6));
-    RezDeChausseeResidentiel rdcg = RezDeChausseeResidentiel(circle, 0, 3, 20*influence, 4, 20);
+    RezDeChausseeResidentiel rdcg = RezDeChausseeResidentiel(circle, 0, 3, 40*influence, 4, 20);
     switch (type) {
     case BUSINESS:
         bat=&rdcb;

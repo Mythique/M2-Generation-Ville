@@ -51,7 +51,7 @@ Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment
             Vector2D point3=bPrime*(1-fa)+cPrime*fa;
             Vector2D point4=bPrime*(1-fb)+cPrime*fb;
             QVector<Vector2D> list;
-            list<<point1<<point2<<point3<<point4;
+            list<<point1<<point2<<point4<<point3;
             pols.push_back(Polyangle(list));
         }
 
