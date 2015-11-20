@@ -6,6 +6,7 @@
 #include "polyanglehauteur.h"
 #include "meshbuilder.h"
 #include "etage.h"
+#include "etagebusiness.h"
 
 DoubleEtageBusiness::DoubleEtageBusiness(const Polyangle & p, float h, float hE,int hm,int sm,float am):Batiment(p,h, hE, hm,sm,am)
 {
@@ -49,10 +50,10 @@ Mesh DoubleEtageBusiness::generate() const
 {
     Mesh etageMesh;
 
-    Etage etageSup1 = Etage(poly1, hauteur, hauteurEtage);
+    EtageBusiness etageSup1(poly1, hauteur, hauteurEtage, hMax, shrinkMax, aireMin);
     etageMesh.merge(etageSup1.generate());
 
-    Etage etageSup2 = Etage(poly2, hauteur, hauteurEtage);
+    EtageBusiness etageSup2(poly2, hauteur, hauteurEtage, hMax, shrinkMax, aireMin);
     etageMesh.merge(etageSup2.generate());
     return etageMesh;
 }

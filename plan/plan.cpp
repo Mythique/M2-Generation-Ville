@@ -41,7 +41,7 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
     }
     center /= p.getLesPoints().size();
     float influence = MathUtils::fonctionQuadratiqueInv(0.0, cityCenter.getInfluence(), center.distanceToPoint2D(cityCenter.getCenter()));
-    float concentration = 1.2-(influence*0.5);
+    float concentration = 1.2-(influence*0.4);
 
     float randArea = MathUtils::random(5000*concentration, 6500*concentration);
 
@@ -249,20 +249,21 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
         rou.generate(meshRoute);
     }
     else {
-
+        float petit = p.plusPetitCote();
+        float tailleTrottoir = std::min(2.5,petit*0.5), tailleBatiment = std::min(15.0f, petit*0.3f);
         float rand = MathUtils::random(0,1);
-        if(rand < influence*0.2) {
-            Quartier q(p, 2.5, 15*concentration, Quartier::TypeQuartier::GRATTECIEL);
+        /*if(rand < influence*0.2) {*/
+            Quartier q(p, tailleTrottoir, tailleBatiment, Quartier::TypeQuartier::GRATTECIEL);
             q.generate(meshBatiments, cityCenter);
-        }
+        /*}
         else if(rand < influence*0.5) {
-            Quartier q(p, 2.5, 15*concentration, Quartier::TypeQuartier::MARCHAND);
+            Quartier q(p, tailleTrottoir, tailleBatiment, Quartier::TypeQuartier::MARCHAND);
             q.generate(meshBatiments, cityCenter);
         }
-        else /*if (influence == 0 )*/ {
-            Quartier q(p, 2.5, 15*concentration, Quartier::TypeQuartier::RESIDENTIEL);
+        else {
+            Quartier q(p, tailleTrottoir, tailleBatiment, Quartier::TypeQuartier::RESIDENTIEL);
             q.generate(meshBatiments, cityCenter);
-        }
+        }*/
         /*else {
             Quartier q(p, 0, 15*concentration, Quartier::TypeQuartier::CHAMPS);
             q.generate(meshBatiments, cityCenter);

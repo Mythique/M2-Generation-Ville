@@ -14,7 +14,7 @@ Mesh PetitEtageResidentiel::generate() const
     EtageResidentiel er(base,hauteur+hauteurEtage,hauteurEtage,hMax-1,shrinkMax,aireMin);
     bats << std::make_pair(&tr,5);
     if(hMax>1){
-        bats << std::make_pair(&er,15);
+        bats << std::make_pair(&er,50);
     }
     etageMesh.merge(Batiment::getRandomBatiment(bats)->generate());
     return etageMesh;

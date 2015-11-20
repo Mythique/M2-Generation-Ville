@@ -23,7 +23,7 @@ Mesh RezDeChausseeResidentiel::generate() const
     EtageResidentiel er(base,hauteur+hauteurEtage,hauteurEtage,hMax-1,shrinkMax,aireMin);
     bats << std::make_pair(&tr,5);
     if(hMax>1){
-        bats << std::make_pair(&er,25);
+        bats << std::make_pair(&er,50);
 
         if(shrinkMax>0)
             bats << std::make_pair(&per,10);

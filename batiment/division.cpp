@@ -67,12 +67,12 @@ Mesh Division::generate() const
     Division d(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
     Jointure j(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
 
-    bats.append(std::make_pair(&dt, 10));
+    bats.append(std::make_pair(&dt, 2));
 
     if(hMax > 1)
     {
-        bats.append(std::make_pair(&d, 20));
-        bats.append(std::make_pair(&j, 10));
+        bats.append(std::make_pair(&d, 50));
+        bats.append(std::make_pair(&j, 25));
     }
 
 

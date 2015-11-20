@@ -31,23 +31,23 @@ Mesh EtageBusiness::generate() const
     bats << std::make_pair(&tb,2);
     if(hMax>1)
     {
-        bats << std::make_pair(&eb,70);
+        bats << std::make_pair(&eb,50);
 
-        if(shrinkMax > 0 && aireMin < base.area() && base.plusPetitCote() > 5)
+        if(shrinkMax > 0 && aireMin < base.area())
         {
-            bats << std::make_pair(&peb, 10);
+            bats << std::make_pair(&peb, 10); //10
             if(erer.getPoly1().area() > aireMin && erer.getPoly2().area() > aireMin)
             {
-                bats << std::make_pair(&erer,5);
-                bats << std::make_pair(&deb,20);
+                bats << std::make_pair(&erer,5); //5
+                bats << std::make_pair(&deb,0); //10
             }
             if(el.getPoly1().area() > aireMin && el.getPoly2().area() > aireMin && el.getPoly3().area() > aireMin)
             {
-                bats << std::make_pair(&el,5);
+                bats << std::make_pair(&el,0); //5
             }
             if(del.getBase().area() > aireMin)
             {
-                bats << std::make_pair(&del,10);
+                bats << std::make_pair(&del,0); //10
             }
         }
     }
