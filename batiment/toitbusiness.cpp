@@ -1,12 +1,18 @@
 #include "toitbusiness.h"
-#include "toit.h"
+#include "toitplat.h"
+#include "toitbordure.h"
 #include "antenne.h"
 
 Mesh ToitBusiness::generate() const
 {
-    Toit t1(base,hauteur,hauteurEtage);
-    //Antenne antenne(base, hauteur, hauteurEtage / 2, hMax, shrinkMax, aireMin);
-    Mesh toitMesh = t1.generate();
-    //toitMesh.merge(antenne.generate());
+    QVector<std::pair<Batiment*,int>> bats;
+
+    ToitPlat toitPlat(base, hauteur, hauteurEtage/2);
+    ToitBordure toitBordure(base, hauteur, hauteurEtage/3);
+
+    bats << std::make_pair(&toitPlat, 1)
+         << std::make_pair(&toitBordure, 1);
+
+    Mesh toitMesh = Batiment::getRandomBatiment(bats)->generate();
     return toitMesh;
 }
