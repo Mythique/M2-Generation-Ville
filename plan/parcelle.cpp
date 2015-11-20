@@ -3,6 +3,7 @@
 #include "../batiment/rezdechausseebusiness.h"
 #include "../batiment/rezdechausseeresidentiel.h"
 #include "../mathutils.h"
+#include "../batiment/jardin.h"
 
 
 void Parcelle::generate(Mesh &m,const CityCenter& cc)
@@ -15,11 +16,12 @@ void Parcelle::generate(Mesh &m,const CityCenter& cc)
 
     float influence = 0.5+ (MathUtils::fonctionQuadratiqueInv(0.0, cc.getInfluence(), center.distanceToPoint2D(cc.getCenter()))*0.5);
 
-    Batiment* bat = nullptr;
+    Generateur* bat = nullptr;
     RezDeChausseeBusiness rdcb(poly,0,3,40*influence,4,20);
     RezDeChausseeResidentiel rdcr(poly,0,3,7*influence,2,20);
     Polyangle circle = poly.getIncircle((int) MathUtils::random(4,6));
-    RezDeChausseeResidentiel rdcg = RezDeChausseeResidentiel(circle, 0, 3, 40*influence, 4, 20);
+    RezDeChausseeResidentiel rdcg(circle, 0, 3, 40*influence, 4, 20);
+    Jardin jar(poly);
     switch (type) {
     case BUSINESS:
         bat=&rdcb;
@@ -29,6 +31,9 @@ void Parcelle::generate(Mesh &m,const CityCenter& cc)
         break;
     case GRATTECIEL:
         bat = &rdcg;
+        break;
+    case JARDIN:
+        bat=&jar;
         break;
     default:
         break;

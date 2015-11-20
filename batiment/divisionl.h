@@ -9,8 +9,7 @@ private:
     Polyangle poly3;
 
 public:
-    DivisionL(const Polyangle & p, float h, float hE,int hm,int sm,float am, Polyangle p1, Polyangle p2, Polyangle p3);
-    DivisionL(const Polyangle & p, float h, float hE,int hm,int sm,float am);
+    DivisionL(const Polyangle & p, float h, float hE, int hm, int sm, float am, Polyangle p1, Polyangle p2, Polyangle p3, bool shrink=true);
     Mesh generate() const;
     Polyangle getPoly1() const;
     void setPoly1(const Polyangle &value);

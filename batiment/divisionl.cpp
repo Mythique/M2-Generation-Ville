@@ -5,16 +5,13 @@
 #include "meshbuilder.h"
 #include "multitoit.h"
 
-DivisionL::DivisionL(const Polyangle & p, float h, float hE,int hm,int sm,float am, Polyangle p1, Polyangle p2, Polyangle p3):Batiment(p,h, hE, hm,sm,am)
+DivisionL::DivisionL(const Polyangle & p, float h, float hE,int hm,int sm,float am, Polyangle p1, Polyangle p2, Polyangle p3,bool shrink):Batiment(p,h, hE, hm,sm,am),poly1(p1),poly2(p2),poly3(p3)
 {
-    poly1 = p1.shrink(p1.plusPetitCote()/10);
-    poly2 = p2.shrink(p2.plusPetitCote()/10);
-    poly3 = p3.shrink(p3.plusPetitCote()/10);
-}
-
-DivisionL::DivisionL(const Polyangle & p, float h, float hE,int hm,int sm,float am)
-{
-
+    if(shrink){
+        poly1 = p1.shrink(p1.plusPetitCote()/10);
+        poly2 = p2.shrink(p2.plusPetitCote()/10);
+        poly3 = p3.shrink(p3.plusPetitCote()/10);
+    }
 }
 
 Polyangle DivisionL::getPoly1() const
@@ -64,7 +61,7 @@ Mesh DivisionL::generate() const
     polys << poly1 << poly2 << poly3;
 
     MultiToit dt (base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, polys);
-    DivisionL dl(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2, poly3);
+    DivisionL dl(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2, poly3,false);
     JointureL jl(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2, poly3);
 
     bats.append(std::make_pair(&dt, 5));

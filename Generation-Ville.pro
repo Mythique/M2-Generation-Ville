@@ -45,7 +45,8 @@ SOURCES += main.cpp \
     batiment/doubleetagebusiness.cpp \
     plan/citycenter.cpp \
     batiment/multitoit.cpp \
-    batiment/toitantenne.cpp
+    batiment/toitantenne.cpp \
+    batiment/jardin.cpp
 
 HEADERS += \
     mathutils.h \
@@ -86,5 +87,6 @@ HEADERS += \
     batiment/doubleetagebusiness.h \
     plan/citycenter.h \
     batiment/multitoit.h \
-    batiment/toitantenne.h
+    batiment/toitantenne.h \
+    batiment/jardin.h
 
