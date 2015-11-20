@@ -3,7 +3,7 @@
 #include "toitbusiness.h"
 #include "etageresidentiel.h"
 #include "meshbuilder.h"
-#include "doubletoit.h"
+#include "multitoit.h"
 
 DivisionL::DivisionL(const Polyangle & p, float h, float hE,int hm,int sm,float am, Polyangle p1, Polyangle p2, Polyangle p3):Batiment(p,h, hE, hm,sm,am)
 {
@@ -63,7 +63,7 @@ Mesh DivisionL::generate() const
     QVector<Polyangle> polys;
     polys << poly1 << poly2 << poly3;
 
-    DoubleToit dt (base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, polys);
+    MultiToit dt (base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, polys);
     DivisionL dl(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2, poly3);
     JointureL jl(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2, poly3);
 

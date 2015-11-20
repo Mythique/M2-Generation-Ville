@@ -1,7 +1,7 @@
-#include "doubletoit.h"
+#include "multitoit.h"
 #include "toitbusiness.h"
 
-Mesh DoubleToit::generate() const
+Mesh MultiToit::generate() const
 {
     ToitBusiness tb1(poly[0],hauteur,hauteurEtage,hMax,shrinkMax,aireMin);
     Mesh m = tb1.generate();

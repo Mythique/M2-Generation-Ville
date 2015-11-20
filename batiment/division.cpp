@@ -5,7 +5,7 @@
 #include "toitplat.h"
 #include "polyanglehauteur.h"
 #include "meshbuilder.h"
-#include "doubletoit.h"
+#include "multitoit.h"
 #include "etageresidentiel.h"
 #include "jointure.h"
 #include "../mathutils.h"
@@ -62,7 +62,7 @@ Mesh Division::generate() const
     QVector<Polyangle> polys;
     polys << poly1 << poly2;
 
-    DoubleToit dt(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, polys);
+    MultiToit dt(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, polys);
 
     Division d(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
     Jointure j(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);

@@ -43,8 +43,8 @@ SOURCES += main.cpp \
     batiment/toitbordure.cpp \
     polyanglehauteur.cpp \
     batiment/doubleetagebusiness.cpp \
-    batiment/doubletoit.cpp \
-    plan/citycenter.cpp
+    plan/citycenter.cpp \
+    batiment/multitoit.cpp
 
 HEADERS += \
     mathutils.h \
@@ -83,6 +83,6 @@ HEADERS += \
     batiment/toitbordure.h \
     polyanglehauteur.h \
     batiment/doubleetagebusiness.h \
-    batiment/doubletoit.h \
-    plan/citycenter.h
+    plan/citycenter.h \
+    batiment/multitoit.h
 

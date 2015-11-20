@@ -1,5 +1,5 @@
 #include "jointure.h"
-#include "doubletoit.h"
+#include "multitoit.h"
 #include "division.h"
 #include "../meshbuilder.h"
 #include "etageresidentiel.h"
@@ -52,7 +52,7 @@ Mesh Jointure::generate() const
     QVector<Polyangle> polys;
     polys << poly1 << poly2;
 
-    DoubleToit dt(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, polys);
+    MultiToit dt(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, polys);
     Division d(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
 
     bats.append(std::make_pair(&dt, 10));
