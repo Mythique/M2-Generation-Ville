@@ -5,11 +5,10 @@
 class DoubleToit:public Batiment
 {
    private:
-    Polyangle poly1;
-    Polyangle poly2;
+    QVector<Polyangle> poly;
 
 public:
-    DoubleToit(const Polyangle & p, float h, float hE,int hm,int sm,float am,Polyangle p1,Polyangle p2):Batiment(p,h, hE, hm,sm,am),poly1(p1),poly2(p2){}
+    DoubleToit(const Polyangle & p, float h, float hE,int hm,int sm,float am,QVector<Polyangle> ps):Batiment(p,h, hE, hm,sm,am),poly(ps){}
     Mesh generate() const;
 
 };

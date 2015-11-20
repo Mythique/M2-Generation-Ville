@@ -3,6 +3,37 @@
 #include "droite.h"
 #include "meshbuilder.h"
 #include "etageresidentiel.h"
+#include "divisionl.h"
+
+Polyangle EtageL::getPoly1() const
+{
+    return poly1;
+}
+
+void EtageL::setPoly1(const Polyangle &value)
+{
+    poly1 = value;
+}
+
+Polyangle EtageL::getPoly2() const
+{
+    return poly2;
+}
+
+void EtageL::setPoly2(const Polyangle &value)
+{
+    poly2 = value;
+}
+
+Polyangle EtageL::getPoly3() const
+{
+    return poly3;
+}
+
+void EtageL::setPoly3(const Polyangle &value)
+{
+    poly3 = value;
+}
 
 Polyangle EtageL::getPoly1() const
 {
@@ -68,21 +99,10 @@ EtageL::EtageL(const Polyangle & p, float h, float hE,int hm,int sm,float am):Ba
 
 Mesh EtageL::generate() const
 {
-   /* QVector<PolyangleHauteur> polyh;
-    QVector<PolyangleHauteur> polyh2;
-    QVector<PolyangleHauteur> polyh3;
-    polyh << PolyangleHauteur(poly1, hauteur)
-          << PolyangleHauteur(poly1, hauteur + hauteurEtage);
-    polyh2 << PolyangleHauteur(poly2, hauteur)
-           << PolyangleHauteur(poly2, hauteur + hauteurEtage);
-    polyh3 << PolyangleHauteur(poly3, hauteur)
-           << PolyangleHauteur(poly3, hauteur + hauteurEtage);*/
-
-
     MeshBuilder mb;
-    EtageResidentiel er1(poly1,hauteur,hauteurEtage,0,0,0);
-    EtageResidentiel er2(poly2,hauteur,hauteurEtage,0,0,0);
-    EtageResidentiel er3(poly3,hauteur,hauteurEtage,0,0,0);
+    EtageResidentiel er1(poly1,hauteur,hauteurEtage,hMax, shrinkMax, aireMin);
+    EtageResidentiel er2(poly2,hauteur,hauteurEtage,hMax, shrinkMax, aireMin);
+    EtageResidentiel er3(poly3,hauteur,hauteurEtage,hMax, shrinkMax, aireMin);
     Mesh partie1 = mb.generationEtage(&er1);
     Mesh partie2 = mb.generationEtage(&er2);
     Mesh partie3 = mb.generationEtage(&er3);
@@ -91,14 +111,16 @@ Mesh EtageL::generate() const
 
     QVector<std::pair<Batiment*,int>> bats;
     EtageL l(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2, poly3);
+    DivisionL dl(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2, poly3);
 
     if(hMax > 1)
     {
         bats.append(std::make_pair(&l, 20));
+        if(dl.getPoly1().area() > aireMin && dl.getPoly2().area() > aireMin && dl.getPoly3().area() > aireMin)
+        {
+            bats.append(std::make_pair(&l, 5));
+        }
         partie1.merge(Batiment::getRandomBatiment(bats)->generate());
     }
-
-
-
     return partie1;
 }

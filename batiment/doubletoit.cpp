@@ -3,10 +3,13 @@
 
 Mesh DoubleToit::generate() const
 {
-    ToitBusiness tb1(poly1,hauteur,hauteurEtage,hMax,shrinkMax,aireMin);
-    ToitBusiness tb2(poly2,hauteur,hauteurEtage,hMax,shrinkMax,aireMin);
+    ToitBusiness tb1(poly[0],hauteur,hauteurEtage,hMax,shrinkMax,aireMin);
+    Mesh m = tb1.generate();
 
-    Mesh m=tb1.generate();
-    m.merge(tb2.generate());
+    for(int i = 1; i < poly.size(); i++)
+    {
+        m.merge(ToitBusiness(poly[i],hauteur,hauteurEtage,hMax,shrinkMax,aireMin).generate());
+    }
+
     return m;
 }

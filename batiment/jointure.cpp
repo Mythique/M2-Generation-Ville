@@ -49,7 +49,10 @@ Mesh Jointure::generate() const
 
     QVector<std::pair<Batiment*,int>> bats;
 
-    DoubleToit dt(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
+    QVector<Polyangle> polys;
+    polys << poly1 << poly2;
+
+    DoubleToit dt(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, polys);
     Division d(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2);
 
     bats.append(std::make_pair(&dt, 10));
