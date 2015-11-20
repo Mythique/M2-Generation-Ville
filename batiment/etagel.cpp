@@ -4,6 +4,36 @@
 #include "meshbuilder.h"
 #include "etageresidentiel.h"
 
+Polyangle EtageL::getPoly1() const
+{
+    return poly1;
+}
+
+void EtageL::setPoly1(const Polyangle &value)
+{
+    poly1 = value;
+}
+
+Polyangle EtageL::getPoly2() const
+{
+    return poly2;
+}
+
+void EtageL::setPoly2(const Polyangle &value)
+{
+    poly2 = value;
+}
+
+Polyangle EtageL::getPoly3() const
+{
+    return poly3;
+}
+
+void EtageL::setPoly3(const Polyangle &value)
+{
+    poly3 = value;
+}
+
 EtageL::EtageL(const Polyangle & p, float h, float hE,int hm,int sm,float am):Batiment(p,h, hE, hm,sm,am)
 {
     base = base.shrink(base.plusPetitCote()/10);
