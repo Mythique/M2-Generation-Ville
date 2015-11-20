@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
     mb.saveMesh("C:/Users/etu/Desktop/testTerrain8.obj", pl8.getMeshBatiment());*/
 
     mb.saveMesh("C:/Users/etu/Desktop/routes.obj", routeTotal);
-    mb.saveMesh("C:/User/etu/Desktop/batiments.obj", batimentTotal);
+    mb.saveMesh("C:/Users/etu/Desktop/batiments.obj", batimentTotal);
 
 
 
