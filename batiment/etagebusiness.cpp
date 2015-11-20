@@ -41,7 +41,7 @@ Mesh EtageBusiness::generate() const
                 bats << std::make_pair(&erer,5);
                 bats << std::make_pair(&deb,20);
             }
-            if(el.getBase().area() > aireMin)
+            if(el.getPoly1().area() > aireMin && el.getPoly2().area() > aireMin && el.getPoly3().area() > aireMin)
             {
                 bats << std::make_pair(&el,5);
             }
