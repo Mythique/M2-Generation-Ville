@@ -1,5 +1,6 @@
 #include "toit.h"
 #include <iostream>
+#include "cheminee.h"
 
 Toit::Toit()
 {
@@ -42,5 +43,8 @@ Mesh Toit::generate() const
              << p3 << 0 << i;
     }
 
-    return Mesh(geom, topo, normales, "toit");
+    Mesh toitMesh = Mesh(geom, topo, normales, "toit");
+    Cheminee cheminee(base, hauteur, hauteurToit / 2, 1, 1, 1);
+    toitMesh.merge(cheminee.generate());
+    return toitMesh;
 }

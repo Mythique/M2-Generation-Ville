@@ -5,7 +5,7 @@
 #include "polyangle.h"
 #include "mesh.h"
 
-class ToitPlat
+class ToitPlat : public Batiment
 {
 private:
     Polyangle base;
