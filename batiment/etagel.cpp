@@ -4,6 +4,7 @@
 #include "meshbuilder.h"
 #include "etageresidentiel.h"
 #include "divisionl.h"
+#include "multitoit.h"
 
 Polyangle EtageL::getPoly1() const
 {
@@ -62,7 +63,6 @@ EtageL::EtageL(const Polyangle & p, float h, float hE,int hm,int sm,float am):Ba
         poly1 = Polyangle(lesPoints1);
         poly2 = Polyangle(lesPoints2);
         poly3 = Polyangle(lesPoints3);
-        //std::cout << base.getLesPoints() << std::endl;
     }
 
 
@@ -83,7 +83,11 @@ Mesh EtageL::generate() const
     QVector<std::pair<Batiment*,int>> bats;
     EtageL l(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2, poly3);
     DivisionL dl(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin, poly1, poly2, poly3);
+    QVector<Polyangle> listT;
+    listT<<poly1<<poly2<<poly3;
+    MultiToit ml(base, hauteur+hauteurEtage, hauteurEtage, hMax-1, shrinkMax, aireMin,listT);
 
+    bats.append(std::make_pair(&ml, 5));
     if(hMax > 1)
     {
         bats.append(std::make_pair(&l, 20));
