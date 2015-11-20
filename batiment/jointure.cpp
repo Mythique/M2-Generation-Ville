@@ -30,7 +30,7 @@ Mesh Jointure::generate() const
 
     QVector<PolyangleHauteur> polyh;
     QVector<PolyangleHauteur> polyh2;
-    polyh << PolyangleHauteur(poly, hauteur+hauteurEtage/8) << PolyangleHauteur(poly, hauteur+hauteurEtage);
+    polyh << PolyangleHauteur(poly, hauteur+hauteurEtage/8) << PolyangleHauteur(poly, hauteur+7/8*hauteurEtage);
     polyh2 << PolyangleHauteur(poly, hauteur+hauteurEtage/8);
 
 
