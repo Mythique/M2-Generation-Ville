@@ -26,8 +26,6 @@ Mesh EtageBusiness::generate() const
     DoubleEtageBusiness erer(base,hauteur+hauteurEtage,hauteurEtage,hMax-1,shrinkMax-1,aireMin);
     Division deb(base,hauteur+hauteurEtage,hauteurEtage,hMax-1,shrinkMax-1,aireMin);
     EtageL el(base,hauteur+hauteurEtage,hauteurEtage,hMax-1,shrinkMax-1,aireMin);
-    DivisionL del(base,hauteur+hauteurEtage,hauteurEtage,hMax-1,shrinkMax-1,aireMin);
-
     bats << std::make_pair(&tb,2);
     if(hMax>1)
     {
@@ -44,10 +42,6 @@ Mesh EtageBusiness::generate() const
             if(el.getPoly1().area() > aireMin && el.getPoly2().area() > aireMin && el.getPoly3().area() > aireMin)
             {
                 bats << std::make_pair(&el,10); //5
-            }
-            if(del.getBase().area() > aireMin)
-            {
-                bats << std::make_pair(&del,10); //10
             }
         }
     }
