@@ -5,7 +5,6 @@
 
 Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment, const TypeQuartier tq) : poly(polya), type(tq)
 {
-    QVector<Polyangle> restes;
     Polyangle exterieur = polya.shrink(tailleTrottoir);
     Polyangle interieur = polya.shrink(tailleTrottoir+tailleBatiment);
     int length = exterieur.getLesPoints().size();
@@ -41,23 +40,43 @@ Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment
         poly<<b<< p2<< bPrime<< p1;
         polyReste<<p2<<p3<<cPrime<<bPrime;
 
+        float dist =cPrime.distanceToPoint2D(bPrime);
+        int nbFacade=(int)(dist/20);
+        QVector<Polyangle> pols;
+        for(int i=0;i<nbFacade;++i){
+            float fa=((float)i)/nbFacade;
+            float fb=((float)(i+1))/nbFacade;
+            Vector2D point1=p2*(1-fa)+p3*fa;
+            Vector2D point2=p2*(1-fb)+p3*fb;
+            Vector2D point3=bPrime*(1-fa)+cPrime*fa;
+            Vector2D point4=bPrime*(1-fb)+cPrime*fb;
+            QVector<Vector2D> list;
+            list<<point1<<point2<<point3<<point4;
+            pols.push_back(Polyangle(list));
+        }
+
+
         switch(type)
         {
         case RESIDENTIEL :
             parcelles.append(Parcelle(Polyangle(poly), Parcelle::HABITATION));
-            parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::HABITATION));
+            for(int i=0;i<pols.size();++i)
+            parcelles.append(Parcelle(Polyangle(pols.at(i)), Parcelle::HABITATION));
             break;
         case MARCHAND :
             parcelles.append(Parcelle(Polyangle(poly), Parcelle::BUSINESS));
-            parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::BUSINESS));
+            for(int i=0;i<pols.size();++i)
+            parcelles.append(Parcelle(Polyangle(pols.at(i)), Parcelle::BUSINESS));
             break;
         case GRATTECIEL :
             parcelles.append(Parcelle(Polyangle(poly), Parcelle::BUSINESS));
-            parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::GRATTECIEL));
+            for(int i=0;i<pols.size();++i)
+            parcelles.append(Parcelle(Polyangle(pols.at(i)), Parcelle::GRATTECIEL));
             break;
         default:
             parcelles.append(Parcelle(Polyangle(poly), Parcelle::JARDIN));
-            parcelles.append(Parcelle(Polyangle(polyReste), Parcelle::JARDIN));
+            for(int i=0;i<pols.size();++i)
+            parcelles.append(Parcelle(Polyangle(pols.at(i)), Parcelle::JARDIN));
         }
     }
     parcelles.append(Parcelle(interieur, Parcelle::JARDIN));
