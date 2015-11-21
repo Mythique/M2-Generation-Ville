@@ -3,7 +3,7 @@
 #include "../polyanglehauteur.h"
 
 
-Quartier::Quartier(Polyangle polya, double tailleTrottoir, double tailleBatiment, const TypeQuartier tq) : poly(polya), type(tq)
+Quartier::Quartier(const Polyangle &polya, double tailleTrottoir, double tailleBatiment, const TypeQuartier tq) : poly(polya), type(tq)
 {
     Polyangle exterieur = polya.shrink(tailleTrottoir);
     Polyangle interieur = polya.shrink(tailleTrottoir+tailleBatiment);

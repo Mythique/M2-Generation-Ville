@@ -3,14 +3,31 @@
 #include "../polyangle.h"
 #include "../generateur.h"
 
+/**
+ * @brief The Route class, representing the separation between Quartiers.
+ */
 class Route
 {
 private:
-    Polyangle poly;
+    Polyangle poly; /**< The Polyangle representing the shape of the Route */
 public:
-    Route(Polyangle q);
+    /**
+     * @brief Route
+     * @param[in] q The Polyangle representing the shape of the Route
+     */
+    Route(const Polyangle& q);
+
+    /**
+     * @brief Getter of poly
+     * @return A copy of poly
+     */
     Polyangle getQuad();
-    void generate(Mesh &m);
+
+    /**
+     * @brief generate Merges the Route's Mesh into m
+     * @param[inout] m The Mesh to merge in
+     */
+    void generate(Mesh& m);
 
 
 };

@@ -2,6 +2,9 @@
 #define GENERATEUR_H
 #include "mesh.h"
 
+/**
+ * @brief The Generateur class, base of every class that generates a Mesh.
+ */
 class Generateur
 {
 public:

@@ -5,18 +5,36 @@
 #include "../mesh.h"
 #include "citycenter.h"
 
-class Parcelle //: public Generateur
+/**
+ * @brief The Parcelle class, representing the smaller part of the division of a Plan.
+ */
+class Parcelle
 {
 public :
-    enum TypeConstruction : int {HABITATION, JARDIN, BUSINESS, GRATTECIEL};
+    enum TypeConstruction : int {HABITATION, JARDIN, BUSINESS, GRATTECIEL}; /**< Types of the different buildings that can be built on the Parcelle */
 private:
-    Polyangle poly;
-
-    TypeConstruction type;
+    Polyangle poly; /**< The Polyangle representing the shape of the area of the Parcelle */
+    TypeConstruction type; /**< The type of the Parcelle */
 public:
 
-    Parcelle(Polyangle polya, TypeConstruction t) : poly(polya), type(t){}
-    void generate(Mesh &m, const CityCenter &cc);
+    /**
+     * @brief Parcelle
+     * @param[in] poly The Polyangle representing the shape of the area of the Parcelle
+     * @param[in] t The type of the Parcelle
+     */
+    Parcelle(const Polyangle& p, TypeConstruction t) : poly(p), type(t){}
+
+    /**
+     * @brief generate Generate a Batiment, based on the type, and merges it in m
+     * @param[inout] m The mesh to merge in
+     * @param[in] cc The CityCenter to consider for the generation of the Batiment
+     */
+    void generate(Mesh& m, const CityCenter &cc);
+
+    /**
+     * @brief Getter of poly;
+     * @return A copy of poly
+     */
     Polyangle getPoly();
 };
 

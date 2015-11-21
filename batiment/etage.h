@@ -5,6 +5,9 @@
 #include "mesh.h"
 #include "polyangle.h"
 
+/**
+ * @brief The Etage class, deprecated.
+ */
 class Etage : public Batiment
 {
 private:

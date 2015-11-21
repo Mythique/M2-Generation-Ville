@@ -5,11 +5,15 @@
 #include "mesh.h"
 #include "polyangle.h"
 
+/**
+ * @brief The RezDeChaussee class, deprecated.
+ */
 class RezDeChaussee : public Batiment
 {
 private:
     Polyangle base;
-    float hauteur, hauteurRDC;
+    float hauteur;
+    float hauteurRDC;
 public:
     RezDeChaussee();
     RezDeChaussee(Polyangle p, float h, float hRDC) : base(p), hauteur(h), hauteurRDC(hRDC) {}

@@ -3,13 +3,25 @@
 #include "../generateur.h"
 #include "../polyangle.h"
 
-class Jardin:public Generateur
+/**
+ * @brief The Jardin class, representing a garden filled with pines.
+ */
+class Jardin : public Generateur
 {
 private:
-    Polyangle poly;
+    Polyangle poly; /**< The Polyangle of the surface */
 public:
-Jardin(const Polyangle & p):poly(p){}
-virtual Mesh generate() const;
+    /**
+     * @brief Jardin
+     * @param[in] p The Polyangle of the surface
+     */
+    Jardin(const Polyangle& p) : poly(p) {}
+
+    /**
+     * @brief Generates cones representing pines, along several shrinkages of poly.
+     * @return A Mesh containing all the cones.
+     */
+    virtual Mesh generate() const;
 };
 
 

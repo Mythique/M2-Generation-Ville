@@ -12,15 +12,15 @@ protected:
 
 public:
     Polyangle();
-    Polyangle(const Polyangle &poly);
+    Polyangle(const Polyangle& poly);
     Polyangle(QVector<Vector2D> points);
     double area() const;
     double perimetre() const ;
     Polyangle shrink(const double l) const;
     void uncross();
 
-    bool split(Polyangle & p1, Polyangle & p2, Polyangle & route, const Droite & d, const double largeurDemiRoute) const;
-    bool split(Polyangle & p1, Polyangle & p2, const Droite & d) const;
+    bool split(Polyangle& p1, Polyangle& p2, Polyangle& route, const Droite& d, const double largeurDemiRoute) const;
+    bool split(Polyangle& p1, Polyangle& p2, const Droite& d) const;
 
     void checkSens();
     std::pair<int, int> getHighestPair() const;

@@ -4,7 +4,7 @@
 #include "divisionl.h"
 #include "../meshbuilder.h"
 
-JointureL::JointureL(const Polyangle & p, float h, float hE,int hm,int sm,float am, Polyangle p1, Polyangle p2, Polyangle p3):Batiment(p,h, hE, hm,sm,am),poly1(p1),poly2(p2),poly3(p3){}
+JointureL::JointureL(const Polyangle & p, float h, float hE, int hm, int sm, float am, const Polyangle &p1, const Polyangle &p2, const Polyangle &p3):Batiment(p,h, hE, hm,sm,am),poly1(p1),poly2(p2),poly3(p3){}
 
 Mesh JointureL::generate() const
 {

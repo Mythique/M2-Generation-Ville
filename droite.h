@@ -5,17 +5,41 @@
 class Droite
 {
     private:
-        Vector2D o;
-        Vector2D d;
+        Vector2D o; /**< The origin of the line */
+        Vector2D d; /**< The direction of the line, normalized */
     public:
         Droite();
-        Droite(Vector2D p1, Vector2D p2) : o(p1), d(p2.normalized()){}
-        bool getIntersection(const Droite& a, Vector2D & point) const;
+        /**
+         * @brief Droite
+         * @param[in] p1 The origin of the line
+         * @param[in] p2 The direction of the line
+         */
+        Droite(const Vector2D& p1,const Vector2D& p2) : o(p1), d(p2.normalized()) {}
+        bool getIntersection(const Droite& a, Vector2D& point) const;
 
+        /**
+         * @brief Getter of o
+         * @return A copy of the origin
+         */
         Vector2D getO() const;
-        void setO(const Vector2D &value);
+
+        /**
+         * @brief Setter of o
+         * @param[in] value The new value of o
+         */
+        void setO(const Vector2D& value);
+
+        /**
+         * @brief Getter of d
+         * @return A copy of the direction
+         */
         Vector2D getD() const;
-        void setD(const Vector2D &value);
+
+        /**
+         * @brief Setter of d
+         * @param[in] value The new value of d
+         */
+        void setD(const Vector2D& value);
 };
 
 #endif // DROITE_H

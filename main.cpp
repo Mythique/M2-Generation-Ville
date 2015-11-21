@@ -42,28 +42,27 @@ int main(int argc, char *argv[])
     QList<std::pair<Vector2D, int>> pointsRoute;
     Vector2D center(0,0);
     CityCenter cc(center, 800);
-    Plan pl1(poly1, m1, m1r, 1, &pointsRoute, cc), pl2(poly2, m2, m2r, 2, &pointsRoute, cc), pl3(poly3, m3, m3r, 3, &pointsRoute, cc), pl4(poly4, m4, m4r, 4, &pointsRoute, cc), pl5(poly5, m5, m5r, 5, &pointsRoute, cc), pl6(poly6, m6, m6r, 6, &pointsRoute, cc), pl7(poly7, m7, m7r, 7, &pointsRoute, cc), pl8(poly8, m8, m8r, 8, &pointsRoute, cc);
-
-    QList<Quartier> lq;
-    QList<Route> lr;
+    Plan pl1(poly1, m1, m1r, 1, &pointsRoute, cc), pl2(poly2, m2, m2r, 2, &pointsRoute, cc), pl3(poly3, m3, m3r, 3, &pointsRoute, cc),
+            pl4(poly4, m4, m4r, 4, &pointsRoute, cc), pl5(poly5, m5, m5r, 5, &pointsRoute, cc), pl6(poly6, m6, m6r, 6, &pointsRoute, cc),
+            pl7(poly7, m7, m7r, 7, &pointsRoute, cc), pl8(poly8, m8, m8r, 8, &pointsRoute, cc);
 
     QTime t;
     t.restart();
-    pl1.create(lq, lr);
+    pl1.create();
     std::cout << " 1 - " << t.restart() << std::endl;
-    pl2.create(lq, lr);
+    pl2.create();
     std::cout << " 2 - " << t.restart() << std::endl;
-    pl3.create(lq, lr);
+    pl3.create();
     std::cout << " 3 - " << t.restart() << std::endl;
-    pl4.create(lq, lr);
+    pl4.create();
     std::cout << " 4 - " << t.restart() << std::endl;
-    pl5.create(lq, lr);
+    pl5.create();
     std::cout << " 5 - " << t.restart() << std::endl;
-    pl6.create(lq, lr);
+    pl6.create();
     std::cout << " 6 - " << t.restart() << std::endl;
-    pl7.create(lq, lr);
+    pl7.create();
     std::cout << " 7 - " << t.restart() << std::endl;
-    pl8.create(lq, lr);
+    pl8.create();
     std::cout << " 8 - " << t.restart() << std::endl;
 
 
@@ -82,7 +81,7 @@ int main(int argc, char *argv[])
 
     Mesh batimentTotal;
 
-    batimentTotal.merge(pl1.getMeshBatiment());
+    /*batimentTotal.merge(pl1.getMeshBatiment());
     std::cout << " Merge 1 " << t.restart() << std::endl;
     batimentTotal.merge(pl2.getMeshBatiment());
     std::cout << " Merge 2 " << t.restart() << std::endl;
@@ -97,7 +96,7 @@ int main(int argc, char *argv[])
     batimentTotal.merge(pl7.getMeshBatiment());
     std::cout << " Merge 7 " << t.restart() << std::endl;
     batimentTotal.merge(pl8.getMeshBatiment());
-    std::cout << " Merge 8 " << t.restart() << std::endl;
+    std::cout << " Merge 8 " << t.restart() << std::endl;*/
 
 
     /*mb.saveMesh("C:/Users/etu/Desktop/testTerrain1.obj", pl1.getMeshBatiment());
@@ -118,6 +117,7 @@ int main(int argc, char *argv[])
 
     mb.saveMesh("C:/Users/etu/Desktop/routes.obj", routeTotal);
     mb.saveMesh("C:/Users/etu/Desktop/batiments.obj", batimentTotal);
+    //mb.saveMesh("D:/Ville/batiments.obj", batimentTotal);
 
 
 

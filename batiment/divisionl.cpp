@@ -5,7 +5,7 @@
 #include "meshbuilder.h"
 #include "multitoit.h"
 
-DivisionL::DivisionL(const Polyangle & p, float h, float hE,int hm,int sm,float am, Polyangle p1, Polyangle p2, Polyangle p3,bool shrink):Batiment(p,h, hE, hm,sm,am),poly1(p1),poly2(p2),poly3(p3)
+DivisionL::DivisionL(const Polyangle & p, float h, float hE, int hm, int sm, float am, const Polyangle &p1, const Polyangle &p2, const Polyangle &p3, bool shrink):Batiment(p,h, hE, hm,sm,am),poly1(p1),poly2(p2),poly3(p3)
 {
     if(shrink){
         poly1 = p1.shrink(p1.plusPetitCote()/10);

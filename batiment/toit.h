@@ -5,6 +5,9 @@
 #include "polyangle.h"
 #include "mesh.h"
 
+/**
+ * @brief The Toit class, deprecated
+ */
 class Toit : public Batiment
 {
 private:
@@ -12,7 +15,7 @@ private:
     float hauteur, hauteurToit;
 public:
     Toit();
-    Toit(Polyangle p, float h, float hToit) : base(p), hauteur(h), hauteurToit(hToit){}
+    Toit(Polyangle p, float h, float hToit) : base(p), hauteur(h), hauteurToit(hToit) {}
     Mesh generate() const;
 };
 

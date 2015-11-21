@@ -1,7 +1,7 @@
 #include "route.h"
 #include "../meshbuilder.h"
 #include "../polyanglehauteur.h"
-Route::Route(Polyangle q) : poly(q)
+Route::Route(const Polyangle &q) : poly(q)
 {
 
 }

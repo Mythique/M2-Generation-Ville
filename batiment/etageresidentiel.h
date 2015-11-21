@@ -2,10 +2,13 @@
 #define ETAGERESIDENTIEL_H
 #include "batiment.h"
 
-class EtageResidentiel:public Batiment
+/**
+ * @brief The EtageResidentiel class, representing a storey on a residential building.
+ */
+class EtageResidentiel : public Batiment
 {
 public:
-    EtageResidentiel(const Polyangle & p, float h, float hE,int hm,int sm,float am):Batiment(p,h, hE, hm,sm,am){}
+    EtageResidentiel(const Polyangle& p, float h, float hE, int hm, int sm, float am) : Batiment(p, h, hE, hm, sm, am) {}
     Mesh generate() const;
 };
 
