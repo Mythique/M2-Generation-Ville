@@ -5,9 +5,9 @@
 
 Plan::Plan(const Polyangle& p, Mesh &mb, Mesh &mr, int i, QList<std::pair<Vector2D, int> > *pR, const CityCenter &cc) : poly(p), meshBatiments(mb), meshRoute(mr), id(i), pointsRoute(pR), cityCenter(cc) {}
 
-void Plan::create(QList<Quartier> &qs, QList<Route> &rs)
+void Plan::create()
 {
-    divide(poly, qs, rs);
+    divide(poly);
 }
 
 bool Plan::getFirstPointBetween(const Vector2D& a, const Vector2D& b, float decalage, int& out) {
@@ -33,7 +33,7 @@ bool Plan::getFirstPointBetween(const Vector2D& a, const Vector2D& b, float deca
         return false;
 }
 
-void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
+void Plan::divide(const Polyangle &p)
 {
     Vector2D center(0,0);
     for(int i = 0; i < p.getLesPoints().size(); ++i) {
@@ -243,8 +243,8 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
         }
 
         p.split(p1, p2, pr, d, 3.5);
-        divide(p1, qs, routes);
-        divide(p2, qs, routes);
+        divide(p1);
+        divide(p2);
         Route rou(pr);
         rou.generate(meshRoute);
     }
@@ -264,10 +264,6 @@ void Plan::divide(const Polyangle &p, QList<Quartier> &qs, QList<Route>& routes)
             Quartier q(p, tailleTrottoir, tailleBatiment, Quartier::TypeQuartier::RESIDENTIEL);
             q.generate(meshBatiments, cityCenter);
         }
-        /*else {
-            Quartier q(p, 0, 15*concentration, Quartier::TypeQuartier::CHAMPS);
-            q.generate(meshBatiments, cityCenter);
-        }*/
     }
 }
 

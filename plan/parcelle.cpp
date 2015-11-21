@@ -14,7 +14,7 @@ void Parcelle::generate(Mesh &m,const CityCenter& cc)
     }
     center /= poly.getLesPoints().size();
 
-    float influence = 0.5+ (MathUtils::fonctionQuadratiqueInv(0.0, cc.getInfluence(), center.distanceToPoint2D(cc.getCenter()))*0.5);
+    float influence = 0.5+ (MathUtils::fonctionQuadratiqueInv(0.0, cc.getInfluence(), center.distanceToPoint2D(cc.getCenter()))*1);
 
     Generateur* bat = nullptr;
     RezDeChausseeBusiness rdcb(poly,0,3,40*influence,4,20);
