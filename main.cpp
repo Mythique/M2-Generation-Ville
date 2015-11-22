@@ -15,12 +15,7 @@
 #include <QTime>
 #include "batiment/jardin.h"
 
-
-int main(int argc, char *argv[])
-{
-    srand(time(NULL));
-
-
+void createVille() {
     QVector<Vector2D> liste1, liste2, liste3, liste4, liste5, liste6, liste7, liste8;
 
     Vector2D p1(0,0), p2(200,200), p3(-200,200), p4(200,800), p5(-200,850),
@@ -96,9 +91,13 @@ int main(int argc, char *argv[])
     mb.saveMesh("plan8.obj", pl8.getMeshBatiment());
 
     mb.saveMesh("routes.obj", routeTotal);
+}
 
 
+int main(int argc, char *argv[])
+{
+    srand(time(NULL));
 
-
+    createVille();
 }
 

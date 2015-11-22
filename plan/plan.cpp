@@ -251,11 +251,11 @@ void Plan::divide(const Polyangle &p)
         float petit = p.plusPetitCote();
         float tailleTrottoir = std::min(2.5,petit*0.5), tailleBatiment = std::min(15.0f, petit*0.3f);
         float rand = MathUtils::random(0,1);
-        if(rand < 0.05+(influence*0.15)) {
+        if(rand < 0.10+(influence*0.10)) {
             Quartier q(p, tailleTrottoir, tailleBatiment, Quartier::TypeQuartier::GRATTECIEL);
             q.generate(meshBatiments, cityCenter);
         }
-        else if(rand < 0.2+(influence*0.5)) {
+        else if(rand < 0.2+(influence*0.3)) {
             Quartier q(p, tailleTrottoir, tailleBatiment, Quartier::TypeQuartier::MARCHAND);
             q.generate(meshBatiments, cityCenter);
         }
