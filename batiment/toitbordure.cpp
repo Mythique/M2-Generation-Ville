@@ -15,7 +15,7 @@ Mesh ToitBordure::generate() const
     polyangles << PolyangleHauteur(base, hauteur)
                << PolyangleHauteur(base, hauteur + hauteurToit)
                << PolyangleHauteur(baseShrinkedBord, hauteur + hauteurToit)
-               << PolyangleHauteur(baseShrinkedBord, hauteur + hauteurToit / 10);
+               << PolyangleHauteur(baseShrinkedBord, hauteur + hauteurToit / 8);
 
     MeshBuilder mb;
     return mb.generationPolyanglesRelies(polyangles);

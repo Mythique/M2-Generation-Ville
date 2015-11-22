@@ -17,7 +17,7 @@ Mesh ToitAntenne::generate() const
     polyangles << PolyangleHauteur(base, hauteur)
                << PolyangleHauteur(base, hauteur + hauteurToit)
                << PolyangleHauteur(baseShrinkedBord, hauteur + hauteurToit)
-               << PolyangleHauteur(baseShrinkedBord, hauteur);
+               << PolyangleHauteur(baseShrinkedBord, hauteur + hauteurToit / 8);
 
     Antenne antenne(baseShrinkedAntenne, hauteur, hauteurAntenne, 0, 0 ,0);
 
