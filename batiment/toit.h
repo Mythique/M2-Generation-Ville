@@ -7,6 +7,7 @@
 
 /**
  * @brief The Toit class, deprecated
+ * @deprecated
  */
 class Toit : public Batiment
 {

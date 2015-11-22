@@ -24,9 +24,18 @@ public:
      * @param[in] p1 The Polyangle of the first part
      * @param[in] p2 The Polyangle of the second part
      * @param[in] p3 The Polyangle of the third part
-     * @param[in] shrink If the three Polyangles have to be shrinked by a tenth of their size
      */
     EtageL(const Polyangle& p, float h, float hE, int hm, int sm, float am, Polyangle p1, Polyangle p2, Polyangle p3) : Batiment(p, h, hE, hm, sm, am), poly1(p1), poly2(p2), poly3(p3) {}
+
+    /**
+     * @brief EtageL
+     * @param[in] p The Polyangle containing the shape of the EtageL.
+     * @param[in] h The height of the base of the EtageL.
+     * @param[in] hE The height of the storeys of the EtageL.
+     * @param[in] hm The maximal number of storeys on the EtageL.
+     * @param[in] sm The maximal number of shrinkages of the base.
+     * @param[in] am The minimal area of the base to allow a shrinkage.
+     */
     EtageL(const Polyangle& p, float h, float hE, int hm, int sm, float am);
     Mesh generate() const;
 

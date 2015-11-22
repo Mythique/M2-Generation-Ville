@@ -9,6 +9,10 @@ class Generateur
 {
 public:
     Generateur();
+    /**
+     * @brief generate Creates a Mesh.
+     * @return The created Mesh.
+     */
     virtual Mesh generate() const =0;
 };
 

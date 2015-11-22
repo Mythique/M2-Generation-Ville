@@ -7,6 +7,7 @@
 
 /**
  * @brief The RezDeChaussee class, deprecated.
+ * @deprecated
  */
 class RezDeChaussee : public Batiment
 {

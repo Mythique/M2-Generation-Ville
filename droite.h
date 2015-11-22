@@ -2,6 +2,9 @@
 #define DROITE_H
 #include "vector2d.h"
 
+/**
+ * @brief The Droite class, a line that goes through an origin following a direction
+ */
 class Droite
 {
     private:
@@ -15,6 +18,13 @@ class Droite
          * @param[in] p2 The direction of the line
          */
         Droite(const Vector2D& p1,const Vector2D& p2) : o(p1), d(p2.normalized()) {}
+
+        /**
+         * @brief getIntersection Finds an intersection point with another Droite
+         * @param[in] a The Droite to intersect
+         * @param[out] point The intersection point
+         * @return True if the Droites intersect, else false.
+         */
         bool getIntersection(const Droite& a, Vector2D& point) const;
 
         /**

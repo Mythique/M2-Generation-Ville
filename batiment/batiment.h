@@ -51,7 +51,7 @@ public:
 
     /**
      * @brief Getter of shrinkMax.
-     * @return A copy of shrinkMax;
+     * @return A copy of shrinkMax.
      */
     int getShrinkMax() const;
 

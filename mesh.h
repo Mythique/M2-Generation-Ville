@@ -22,7 +22,7 @@ public:
 
     /**
      * Copy Mesh constructor. Basic one, not directly implemented.
-     * @param m[in] the mesh to copy
+     * @param[in] m the mesh to copy
      */
     Mesh(const Mesh& m);
 

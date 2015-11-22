@@ -25,9 +25,17 @@ public:
      * @param[in] p1 The Polyangle of the first part
      * @param[in] p2 The Polyangle of the second part
      * @param[in] p3 The Polyangle of the third part
-     * @param[in] shrink If the three Polyangles have to be shrinked by a tenth of their size
      */
     JointureL(const Polyangle& p, float h, float hE, int hm, int sm, float am, const Polyangle& p1, const Polyangle& p2, const Polyangle& p3);
+    /**
+     * @brief JointureL
+     * @param[in] p The Polyangle containing the shape of the JointureL.
+     * @param[in] h The height of the base of the JointureL.
+     * @param[in] hE The height of the storeys of the JointureL.
+     * @param[in] hm The maximal number of storeys on the JointureL.
+     * @param[in] sm The maximal number of shrinkages of the base.
+     * @param[in] am The minimal area of the base to allow a shrinkage.
+     */
     JointureL(const Polyangle& p, float h, float hE, int hm, int sm, float am) : Batiment(p, h, hE, hm, sm, am) {}
     Mesh generate() const;
 

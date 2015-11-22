@@ -63,8 +63,21 @@ public:
      */
     static double dabs(double d);
 
+    /**
+     * @brief aireTriangle Calculates the area of a triangle, based on three points
+     * @param[in] a The first vertex of the triangle
+     * @param[in] b The second vertex of the triangle
+     * @param[in] c The third vertex of the triangle
+     * @return The area of the triangle.
+     */
     static double aireTriangle(const Vector2D & a, const Vector2D & b, const Vector2D & c);
 
+    /**
+     * @brief random Returns a random value contained between min and max
+     * @param[in] min The minimal value of the random
+     * @param[in] max The maximal value of the random
+     * @return A random value between min and max
+     */
     static double random(double min, double max);
 };
 

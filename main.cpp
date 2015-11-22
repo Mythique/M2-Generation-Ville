@@ -99,24 +99,23 @@ int main(int argc, char *argv[])
     std::cout << " Merge 8 " << t.restart() << std::endl;*/
 
 
-    /*mb.saveMesh("C:/Users/etu/Desktop/testTerrain1.obj", pl1.getMeshBatiment());
+    mb.saveMesh("D:/Ville/testTerrain1.obj", pl1.getMeshBatiment());
 
-    mb.saveMesh("C:/Users/etu/Desktop/testTerrain2.obj", pl2.getMeshBatiment());
+    mb.saveMesh("D:/Ville/testTerrain2.obj", pl2.getMeshBatiment());
 
-    mb.saveMesh("C:/Users/etu/Desktop/testTerrain3.obj", pl3.getMeshBatiment());
+    mb.saveMesh("D:/Ville/testTerrain3.obj", pl3.getMeshBatiment());
 
-    mb.saveMesh("C:/Users/etu/Desktop/testTerrain4.obj", pl4.getMeshBatiment());
+    mb.saveMesh("D:/Ville/testTerrain4.obj", pl4.getMeshBatiment());
 
-    mb.saveMesh("C:/Users/etu/Desktop/testTerrain5.obj", pl5.getMeshBatiment());
+    mb.saveMesh("D:/Ville/testTerrain5.obj", pl5.getMeshBatiment());
 
-    mb.saveMesh("C:/Users/etu/Desktop/testTerrain6.obj", pl6.getMeshBatiment());
+    mb.saveMesh("D:/Ville/testTerrain6.obj", pl6.getMeshBatiment());
 
-    mb.saveMesh("C:/Users/etu/Desktop/testTerrain7.obj", pl7.getMeshBatiment());
+    mb.saveMesh("D:/Ville/testTerrain7.obj", pl7.getMeshBatiment());
 
-    mb.saveMesh("C:/Users/etu/Desktop/testTerrain8.obj", pl8.getMeshBatiment());*/
+    mb.saveMesh("D:/Ville/testTerrain8.obj", pl8.getMeshBatiment());
 
-    mb.saveMesh("C:/Users/etu/Desktop/routes.obj", routeTotal);
-    mb.saveMesh("C:/Users/etu/Desktop/batiments.obj", batimentTotal);
+    mb.saveMesh("D:/Ville/routes.obj", routeTotal);
     //mb.saveMesh("D:/Ville/batiments.obj", batimentTotal);
 
 

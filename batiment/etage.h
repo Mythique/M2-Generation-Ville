@@ -7,6 +7,7 @@
 
 /**
  * @brief The Etage class, deprecated.
+ * @deprecated
  */
 class Etage : public Batiment
 {

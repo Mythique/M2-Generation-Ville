@@ -10,6 +10,16 @@ private :
     Polyangle poly1; /**< The Polyangle of the base of the first part */
     Polyangle poly2; /**< The Polyangle of the base of the second part */
 public:
+
+    /**
+     * @brief Division
+     * @param[in] p The Polyangle containing the shape of the Division.
+     * @param[in] h The height of the base of the Division.
+     * @param[in] hE The height of the storeys of the Division.
+     * @param[in] hm The maximal number of storeys on the Division.
+     * @param[in] sm The maximal number of shrinkages of the base.
+     * @param[in] am The minimal area of the base to allow a shrinkage.
+     */
     Division(const Polyangle& p, float h, float hE, int hm, int sm, float am);
 
     /**

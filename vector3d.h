@@ -31,7 +31,7 @@ public:
     /**
      * Constructor of Vector3D from a Vector2D
      * @param[in] vector the Vector2D to base the xp and yp coordinates on
-     * @param[in] ypos the y position of the vector
+     * @param[in] zpos the z position of the vector
      */
     Vector3D(const Vector2D& vector, double zpos);
 
@@ -88,14 +88,18 @@ public:
      */
     void normalize();
 
+
+    /**
+     * Rotates a vector according to a rotation matrix
+     * @param[in] mat The rotation matrix to base the rotation on
+     */
+    void rotate(const QMatrix3x3 &mat);
+
     /**
      * Adds a vector to this vector and returns its reference
      * @param[in] vector the vector to add
      * @return a reference to the vector
      */
-
-    void rotate(const QMatrix3x3 &mat);
-
     Vector3D &operator+=(const Vector3D &vector);
     /**
      * Substracts a vector to this vector and returns its reference

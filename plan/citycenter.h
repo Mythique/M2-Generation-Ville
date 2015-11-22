@@ -9,8 +9,13 @@ class CityCenter
 {
 private :
     Vector2D center; /**< The location of the CityCenter */
-    float influence; /**< The radius of the influence of the CityCenter */
+    float influence; /**< The radius of influence of the CityCenter */
 public:
+    /**
+     * @brief CityCenter
+     * @param[in] c The location of the CityCenter
+     * @param[in] infl The radius of influence of the CityCenter
+     */
     CityCenter(const Vector2D& c, float infl);
     /**
      * @brief Getter of center

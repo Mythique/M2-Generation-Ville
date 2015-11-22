@@ -13,11 +13,6 @@ Polyangle::Polyangle(const Polyangle &poly)
 
 Polyangle::Polyangle(QVector<Vector2D> points) : lesPoints(points)
 {
-    //std::cout << "debut constructeur" << std::endl;
-    //uncross();
-    //std::cout << "après uncross" << std::endl;
-    //checkSens();
-    //std::cout << "après check sens" << std::endl;
 }
 
 
@@ -85,7 +80,6 @@ Polyangle Polyangle::shrink(const double l) const
 
         aPrimeBPrime.getIntersection(bPrimeCPrime, aPrime);
 
-        //std::cout << aPrime << std::endl;
         newPoints[cpt] = aPrime;
     }
 
@@ -94,8 +88,6 @@ Polyangle Polyangle::shrink(const double l) const
 
 void Polyangle::uncross() {
 
-
-    //cout << p[0] << p[1] << p[2] << p[3] << p[4] << p[5] << endl;
         bool test = false;
         for(int i = 0; i < lesPoints.size(); ++i) {
             Vector2D ab = lesPoints.at((i+1)%lesPoints.size())-lesPoints.at(i);
@@ -112,10 +104,6 @@ void Polyangle::uncross() {
                 lesPoints[(i+1)%lesPoints.size()] = lesPoints[(i+2)%lesPoints.size()];
                 lesPoints[(i+2)%lesPoints.size()] = temp;
 
-                /*int tmp = p[(i+1)%p.size()];
-                p[(i+1)%p.size()] = p[(i+2)%p.size()];
-                p[(i+2)%p.size()] = tmp;//*/
-
                 test = true;
 
             }
@@ -129,11 +117,6 @@ void Polyangle::uncross() {
                     Vector2D temp = lesPoints[(i+2)%lesPoints.size()];
                     lesPoints[(i+2)%lesPoints.size()] = lesPoints[(i+3)%lesPoints.size()];
                     lesPoints[(i+3)%lesPoints.size()] = temp;
-
-                    /*int tmp = p[(i+2)%p.size()];
-                    p[(i+2)%p.size()] = p[(i+3)%p.size()];
-                    p[(i+3)%p.size()] = tmp;//*/
-
                 }
             }
 

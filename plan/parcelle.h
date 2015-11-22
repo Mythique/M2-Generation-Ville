@@ -19,7 +19,7 @@ public:
 
     /**
      * @brief Parcelle
-     * @param[in] poly The Polyangle representing the shape of the area of the Parcelle
+     * @param[in] p The Polyangle representing the shape of the area of the Parcelle
      * @param[in] t The type of the Parcelle
      */
     Parcelle(const Polyangle& p, TypeConstruction t) : poly(p), type(t){}
