@@ -18,7 +18,6 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
     srand(time(NULL));
 
 
@@ -41,7 +40,7 @@ int main(int argc, char *argv[])
     Mesh m1, m1r, m2, m2r, m3, m3r, m4, m4r, m5, m5r, m6, m6r, m7, m7r, m8, m8r;
     QList<std::pair<Vector2D, int>> pointsRoute;
     Vector2D center(0,0);
-    CityCenter cc(center, 800);
+    CityCenter cc(center, 500);
     Plan pl1(poly1, m1, m1r, 1, &pointsRoute, cc), pl2(poly2, m2, m2r, 2, &pointsRoute, cc), pl3(poly3, m3, m3r, 3, &pointsRoute, cc),
             pl4(poly4, m4, m4r, 4, &pointsRoute, cc), pl5(poly5, m5, m5r, 5, &pointsRoute, cc), pl6(poly6, m6, m6r, 6, &pointsRoute, cc),
             pl7(poly7, m7, m7r, 7, &pointsRoute, cc), pl8(poly8, m8, m8r, 8, &pointsRoute, cc);
@@ -79,44 +78,24 @@ int main(int argc, char *argv[])
     routeTotal.merge(pl7.getMeshRoute());
     routeTotal.merge(pl8.getMeshRoute());
 
-    Mesh batimentTotal;
 
-    /*batimentTotal.merge(pl1.getMeshBatiment());
-    std::cout << " Merge 1 " << t.restart() << std::endl;
-    batimentTotal.merge(pl2.getMeshBatiment());
-    std::cout << " Merge 2 " << t.restart() << std::endl;
-    batimentTotal.merge(pl3.getMeshBatiment());
-    std::cout << " Merge 3 " << t.restart() << std::endl;
-    batimentTotal.merge(pl4.getMeshBatiment());
-    std::cout << " Merge 4 " << t.restart() << std::endl;
-    batimentTotal.merge(pl5.getMeshBatiment());
-    std::cout << " Merge 5 " << t.restart() << std::endl;
-    batimentTotal.merge(pl6.getMeshBatiment());
-    std::cout << " Merge 6 " << t.restart() << std::endl;
-    batimentTotal.merge(pl7.getMeshBatiment());
-    std::cout << " Merge 7 " << t.restart() << std::endl;
-    batimentTotal.merge(pl8.getMeshBatiment());
-    std::cout << " Merge 8 " << t.restart() << std::endl;*/
+    mb.saveMesh("plan1.obj", pl1.getMeshBatiment());
 
+    mb.saveMesh("plan2.obj", pl2.getMeshBatiment());
 
-    mb.saveMesh("D:/Ville/testTerrain1.obj", pl1.getMeshBatiment());
+    mb.saveMesh("plan3.obj", pl3.getMeshBatiment());
 
-    mb.saveMesh("D:/Ville/testTerrain2.obj", pl2.getMeshBatiment());
+    mb.saveMesh("plan4.obj", pl4.getMeshBatiment());
 
-    mb.saveMesh("D:/Ville/testTerrain3.obj", pl3.getMeshBatiment());
+    mb.saveMesh("plan5.obj", pl5.getMeshBatiment());
 
-    mb.saveMesh("D:/Ville/testTerrain4.obj", pl4.getMeshBatiment());
+    mb.saveMesh("plan6.obj", pl6.getMeshBatiment());
 
-    mb.saveMesh("D:/Ville/testTerrain5.obj", pl5.getMeshBatiment());
+    mb.saveMesh("plan7.obj", pl7.getMeshBatiment());
 
-    mb.saveMesh("D:/Ville/testTerrain6.obj", pl6.getMeshBatiment());
+    mb.saveMesh("plan8.obj", pl8.getMeshBatiment());
 
-    mb.saveMesh("D:/Ville/testTerrain7.obj", pl7.getMeshBatiment());
-
-    mb.saveMesh("D:/Ville/testTerrain8.obj", pl8.getMeshBatiment());
-
-    mb.saveMesh("D:/Ville/routes.obj", routeTotal);
-    //mb.saveMesh("D:/Ville/batiments.obj", batimentTotal);
+    mb.saveMesh("routes.obj", routeTotal);
 
 
 

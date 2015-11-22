@@ -29,7 +29,6 @@ double MathUtils::interpolate(double before_p0, double p0, double p1, double aft
 }
 
 double MathUtils::ridge(double n, double s) {
-    //std::cout<<s<<std::endl;
     return n>s?2*s-n:n;
 }
 

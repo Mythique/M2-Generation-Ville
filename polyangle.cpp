@@ -184,8 +184,6 @@ bool Polyangle::split(Polyangle & p1, Polyangle & p2, Polyangle & route, const D
 
 bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d) const
 {
-    //std::cout << "début split" << std::endl;
-    //Droite d(dr.getO()-dr.getD()*100000000,dr.getD());
     Vector2D pointIntersection1;
     int iBeforeInter1;
     int iAfterInter1;
@@ -200,8 +198,6 @@ bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d) const
         Vector2D pointIntersection;
         Vector2D pointCote1 = lesPoints[i];
         Vector2D pointCote2 = lesPoints[(i+1)%lesPoints.size()];
-        //std::cout << pointCote1 << std::endl;
-        //std::cout << pointCote2 << std::endl;
 
         Droite cote(pointCote1, (pointCote2-pointCote1));
         if(d.getIntersection(cote, pointIntersection))
@@ -280,8 +276,6 @@ bool Polyangle::split(Polyangle & p1, Polyangle & p2, const Droite & d) const
     Vector2D orth(-d.getD().y(), d.getD().x());
     Vector2D point1(lesPoints1[0]- d.getO());
 
-
-    //if(d.getD().distanceToPoint2DSquared(pointIntersection1) > d.getD().distanceToPoint2DSquared(pointIntersection2))
     if(orth*point1 > 0)
     {
         p1 = Polyangle(lesPoints1);

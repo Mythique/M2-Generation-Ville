@@ -233,7 +233,6 @@ void Plan::divide(const Polyangle &p)
 
               */
 
-            //std::cout << "Par ici : quad" << std::endl;
             /*Vector2D un, deux;
             un = p.getLesPoints().at(0);
             deux = p.getLesPoints().at(2);
