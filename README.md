@@ -1,7 +1,7 @@
 # Génération procédurale de villes (Master 2)
 
 Exemple d'une ville générée à partir du programme :
-![Ville](Rendus/ville.png)
+![Ville](Rendus/ville (small).png)
 
 Exemples de bâtiments générés :
 
