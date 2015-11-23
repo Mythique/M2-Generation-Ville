@@ -6,17 +6,23 @@
 #include "mesh.h"
 
 /**
- * @brief The Toit class, deprecated
- * @deprecated
+ * @brief The Toit class, representing a standard roof.
  */
 class Toit : public Batiment
 {
 private:
-    Polyangle base;
-    float hauteur, hauteurToit;
+    Polyangle base; /**< The Polyangle of the base */
+    float hauteur; /**< The height of the base of the Toit */
+    float hauteurToit; /**< The height of the Toit */
 public:
     Toit();
-    Toit(Polyangle p, float h, float hToit) : base(p), hauteur(h), hauteurToit(hToit) {}
+    /**
+     * @brief Toit
+     * @param[in] p The Polyangle of the base of the Toit
+     * @param[in] h The height of the base of the Toit
+     * @param[in] hToit The height of the Toit
+     */
+    Toit(const Polyangle& p, float h, float hToit) : base(p), hauteur(h), hauteurToit(hToit) {}
     Mesh generate() const;
 };
 
